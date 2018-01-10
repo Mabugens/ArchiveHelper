@@ -17,9 +17,9 @@ namespace ArchiveHelper
     public partial class MainForm : Form
     {
         private string[] ArchTypes = { "证件", "红头", "文本", "图纸", "合同", "其他" };
-        
+
         private List<string> Archives;
-        private List<ArchiveInfo> ArchiveInfoList;
+        private List<ArchiveInfo> ArchiveInfoList = new List<ArchiveInfo>();
 
         public MainForm()
         {
@@ -97,7 +97,7 @@ namespace ArchiveHelper
                         {
                             GridRow gr = LendGrid.PrimaryGrid.NewRow();
                             gr[0].Value = reader.GetInt16(0);
-                            gr[1].Value = reader.GetString(1);                            
+                            gr[1].Value = reader.GetString(1);
                             if (!reader.IsDBNull(2))
                             {
                                 gr[2].Value = Convert.ToDateTime(reader.GetString(2));
@@ -147,12 +147,12 @@ namespace ArchiveHelper
                             if (!reader.IsDBNull(2))
                             {
                                 gr[2].Value = Convert.ToDateTime(reader.GetString(2));
-                            }                            
+                            }
                             gr[3].Value = reader.GetInt16(3);
                             gr[4].Value = reader.IsDBNull(4) ? "" : reader.GetString(4);
-                            gr[5].Value = reader.GetInt16(5); 
+                            gr[5].Value = reader.GetInt16(5);
                             gr[6].Value = reader.IsDBNull(6) ? "" : reader.GetString(6);
-                            
+
                             ReturnGrid.PrimaryGrid.Rows.Add(gr);
                         }
 
@@ -173,44 +173,64 @@ namespace ArchiveHelper
         private void LoadArchiveList()
         {
             ArchiveGrid.PrimaryGrid.Rows.Clear();
-            using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
+            //using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
+            //{
+            //    conn.Open();
+            //    SQLiteCommand cmd = new SQLiteCommand();
+            //    cmd.Connection = conn;
+            //    try
+            //    {
+            //        string strsql = "select * from archiveInfo order by archDate desc";
+            //        cmd.CommandText = strsql;
+            //        SQLiteDataReader reader = cmd.ExecuteReader();
+            //        if (reader.HasRows)
+            //        {
+            //            while (reader.Read())
+            //            {
+            //                GridRow gr = ArchiveGrid.PrimaryGrid.NewRow();
+            //                gr[1].Value = reader.GetInt16(0);
+            //                gr[0].Value = reader.GetString(1);
+            //                gr[2].Value = reader.GetString(2);
+            //                if (!reader.IsDBNull(3))
+            //                {
+            //                    gr[3].Value = Convert.ToDateTime(reader.GetString(3));
+            //                }
+            //                gr[4].Value = reader.IsDBNull(4) ? "" : reader.GetString(4);
+            //                gr[5].Value = reader.GetInt16(5);
+            //                gr[6].Value = reader.GetInt16(6);
+            //                gr[7].Value = reader.IsDBNull(7) ? "" : reader.GetString(7);
+            //                gr[8].Value = reader.IsDBNull(8) ? "" : reader.GetString(8);
+            //                gr[9].Value = reader.GetInt16(9) == 0 ? false : true;
+            //                gr[6].ReadOnly = true;
+            //                ArchiveGrid.PrimaryGrid.Rows.Add(gr);
+            //            }
+            //        } 
+            //    }
+            //    catch (System.Data.SQLite.SQLiteException E)
+            //    {
+            //        throw new Exception(E.Message);
+            //    }
+            //}
+            foreach (ArchiveInfo ai in ArchiveInfoList)
             {
-                conn.Open();
-                SQLiteCommand cmd = new SQLiteCommand();
-                cmd.Connection = conn;
-                try
+                GridRow gr = ArchiveGrid.PrimaryGrid.NewRow();
+                gr[1].Value = ai.Id;
+                gr[0].Value = ai.ArchiveName;
+                gr[2].Value = ai.ArchType;
+                if (ai.ArchDate != null)
                 {
-                    string strsql = "select * from archiveInfo order by archDate desc";
-                    cmd.CommandText = strsql;
-                    SQLiteDataReader reader = cmd.ExecuteReader();
-                    if (reader.HasRows)
-                    {
-                        while (reader.Read())
-                        {
-                            GridRow gr = ArchiveGrid.PrimaryGrid.NewRow();
-                            gr[1].Value = reader.GetInt16(0);
-                            gr[0].Value = reader.GetString(1);
-                            gr[2].Value = reader.GetString(2);
-                            if (!reader.IsDBNull(3))
-                            {
-                                gr[3].Value = Convert.ToDateTime(reader.GetString(3));
-                            }
-                            gr[4].Value = reader.IsDBNull(4) ? "" : reader.GetString(4);
-                            gr[5].Value = reader.GetInt16(5);
-                            gr[6].Value = reader.GetInt16(6);
-                            gr[7].Value = reader.IsDBNull(7) ? "" : reader.GetString(7);
-                            gr[8].Value = reader.IsDBNull(8) ? "" : reader.GetString(8);
-                            gr[9].Value = reader.GetInt16(9) == 0 ? false : true;
-                            gr[6].ReadOnly = true;
-                            ArchiveGrid.PrimaryGrid.Rows.Add(gr);
-                        }
-                    } 
+                    gr[3].Value = ai.ArchDate.ToString();//"yyyy-MM-dd"
                 }
-                catch (System.Data.SQLite.SQLiteException E)
-                {
-                    throw new Exception(E.Message);
-                }
+                gr[4].Value = ai.DispatchNum;
+                gr[5].Value = ai.Copies;
+                gr[6].Value = ai.Remaining;
+                gr[7].Value = ai.StorageLocation;
+                gr[8].Value = ai.Handler;
+                gr[9].Value = ai.IsFreeze;
+                gr[6].ReadOnly = true;
+                ArchiveGrid.PrimaryGrid.Rows.Add(gr);
             }
+
         }
 
         private void SaveArchiveInfo(List<GridRow> list)
@@ -284,14 +304,15 @@ namespace ArchiveHelper
 
         private string GenSQL(ArchiveInfo ai)
         {
-            if(ai.Id == 0){
+            if (ai.Id == 0)
+            {
                 return "insert into ArchiveInfo(archiveName, ArchType, ArchDate, DispatchNum, Copies, Remaining, StorageLocation, Handler, IsFreeze) values ('"
                             + ai.ArchiveName + "','" + ai.ArchType + "','" + ai.ArchDate + "','" + ai.DispatchNum + "'," + ai.Copies
                             + "," + ai.Remaining + ",'" + ai.StorageLocation + "','" + ai.Handler + "', " + ai.IsFreeze + ")";
             }
             return "update ArchiveInfo set archiveName='" + ai.ArchiveName + "', ArchType='" + ai.ArchType + "', ArchDate='" + ai.ArchDate +
                 "', DispatchNum='" + ai.DispatchNum + "', Copies=" + ai.Copies + ", Remaining=" + ai.Remaining + ", StorageLocation='" + ai.StorageLocation
-                + "', Handler='" + ai.Handler + "', IsFreeze=" + ai.IsFreeze +" where id =" + ai.Id;
+                + "', Handler='" + ai.Handler + "', IsFreeze=" + ai.IsFreeze + " where id =" + ai.Id;
         }
 
         private ArchiveInfo GridCellMapToArchiveInfo(GridRow gr)
@@ -344,12 +365,15 @@ namespace ArchiveHelper
         private void ArchiveInfoTimer_Tick(object sender, EventArgs e)
         {
             List<GridRow> list = new List<GridRow>();
-            foreach(GridRow gr in ArchiveGrid.PrimaryGrid.Rows){
-                if(gr.RowDirty){
+            foreach (GridRow gr in ArchiveGrid.PrimaryGrid.Rows)
+            {
+                if (gr.RowDirty)
+                {
                     list.Add(gr);
                 }
             }
-            if (list.Count > 0){
+            if (list.Count > 0)
+            {
                 SaveArchiveInfo(list);
             }
         }
@@ -444,7 +468,7 @@ namespace ArchiveHelper
             //{
             //    conn.Open();
             //    SQLiteCommand sql_cmd = conn.CreateCommand();
-                return "update ArchiveInfo set Remaining=Remaining-" + ai.Copies + " where ArchiveName='" + ai.ArchiveName + "'";
+            return "update ArchiveInfo set Remaining=Remaining-" + ai.Copies + " where ArchiveName='" + ai.ArchiveName + "'";
             //    sql_cmd.ExecuteNonQuery();
             //    conn.Close();
             //}
@@ -474,7 +498,7 @@ namespace ArchiveHelper
             {
                 return "insert into LendArchive(archiveName, LendDate, Copies, LendReason, LendUnit, Handler, Phone, ExpectedReturnDate) values ('"
                             + ai.ArchiveName + "','" + ai.LendDate + "'," + ai.Copies
-                            + ",'" + ai.LendReason + "','" + ai.LendUnit + "','" + ai.Handler + "','" + ai.Phone + "','"+ ai.ExpectedReturnDate + "')";
+                            + ",'" + ai.LendReason + "','" + ai.LendUnit + "','" + ai.Handler + "','" + ai.Phone + "','" + ai.ExpectedReturnDate + "')";
             }
             return "update LendArchive set archiveName='" + ai.ArchiveName + "', LendDate='" + ai.LendDate +
                 "', Copies=" + ai.Copies + ", LendReason=" + ai.LendReason + ", LendUnit='" + ai.LendUnit
@@ -568,7 +592,7 @@ namespace ArchiveHelper
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void InitReturnArhiveGrid()
@@ -621,7 +645,7 @@ namespace ArchiveHelper
             {
                 conn.Open();
                 SQLiteCommand sql_cmd = conn.CreateCommand();
-                sql_cmd.CommandText = "select ArchiveName from ArchiveInfo order by ArchDate desc ";
+                sql_cmd.CommandText = "select * from ArchiveInfo order by ArchDate desc ";
                 SQLiteDataReader reader = sql_cmd.ExecuteReader();
                 //while(dr.Read()){
                 //    Archives.Add(dr.GetString(0));
@@ -674,7 +698,7 @@ namespace ArchiveHelper
         {
             using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
             {
-                conn.Open();                
+                conn.Open();
                 CreateReturnPanel(e, conn);
                 CreateLendPanel(e, conn);
             }

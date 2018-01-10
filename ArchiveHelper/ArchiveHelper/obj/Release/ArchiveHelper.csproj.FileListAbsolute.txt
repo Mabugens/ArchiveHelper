@@ -1,0 +1,17 @@
+D:\source\ArchiveHelper\ArchiveHelper\bin\Release\ArchiveHelper.exe.config
+D:\source\ArchiveHelper\ArchiveHelper\bin\Release\ArchiveHelper.exe
+D:\source\ArchiveHelper\ArchiveHelper\bin\Release\ArchiveHelper.pdb
+D:\source\ArchiveHelper\ArchiveHelper\obj\Release\ArchiveHelper.Properties.Resources.resources
+D:\source\ArchiveHelper\ArchiveHelper\obj\Release\ArchiveHelper.csproj.GenerateResource.Cache
+D:\source\ArchiveHelper\ArchiveHelper\obj\Release\ArchiveHelper.exe
+D:\source\ArchiveHelper\ArchiveHelper\obj\Release\ArchiveHelper.pdb
+D:\source\ArchiveHelper\ArchiveHelper\obj\Release\ArchiveHelper.MainForm.resources
+D:\source\ArchiveHelper\ArchiveHelper\obj\Release\ArchiveHelper.LoginForm.resources
+D:\source\ArchiveHelper\ArchiveHelper\bin\Release\System.Data.SQLite.dll
+D:\source\ArchiveHelper\ArchiveHelper\bin\Release\System.Data.SQLite.xml
+D:\source\ArchiveHelper\ArchiveHelper\bin\Release\DevComponents.DotNetBar.Design.dll
+D:\source\ArchiveHelper\ArchiveHelper\bin\Release\DevComponents.DotNetBar.SuperGrid.dll
+D:\source\ArchiveHelper\ArchiveHelper\bin\Release\DevComponents.DotNetBar2.dll
+D:\source\ArchiveHelper\ArchiveHelper\bin\Release\DevComponents.Instrumentation.dll
+D:\source\ArchiveHelper\ArchiveHelper\bin\Release\DevComponents.SuperGrid.Design.dll
+D:\source\ArchiveHelper\ArchiveHelper\obj\Release\ArchiveHelper.csprojResolveAssemblyReference.cache

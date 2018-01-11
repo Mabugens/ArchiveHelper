@@ -18,8 +18,10 @@ namespace ArchiveHelper
     {
         private string[] ArchTypes = { "证件", "红头", "文本", "图纸", "合同", "其他" };
 
-        private List<string> Archives;
+        //private List<string> Archives;
         private List<ArchiveInfo> ArchiveInfoList = new List<ArchiveInfo>();
+
+        private List<ProjectInfo> ProjectList = new List<ProjectInfo>();
 
         public MainForm()
         {
@@ -74,6 +76,7 @@ namespace ArchiveHelper
             InitLendArchiveGrid();
             InitReturnArhiveGrid();
 
+            LoadProjectInfoList();
             LoadArchiveList();
             LoadLendArchiveList();
             LoadReturnArchiveList();
@@ -155,7 +158,6 @@ namespace ArchiveHelper
 
                             ReturnGrid.PrimaryGrid.Rows.Add(gr);
                         }
-
                     }
                 }
                 catch (System.Data.SQLite.SQLiteException E)
@@ -173,44 +175,6 @@ namespace ArchiveHelper
         private void LoadArchiveList()
         {
             ArchiveGrid.PrimaryGrid.Rows.Clear();
-            //using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
-            //{
-            //    conn.Open();
-            //    SQLiteCommand cmd = new SQLiteCommand();
-            //    cmd.Connection = conn;
-            //    try
-            //    {
-            //        string strsql = "select * from archiveInfo order by archDate desc";
-            //        cmd.CommandText = strsql;
-            //        SQLiteDataReader reader = cmd.ExecuteReader();
-            //        if (reader.HasRows)
-            //        {
-            //            while (reader.Read())
-            //            {
-            //                GridRow gr = ArchiveGrid.PrimaryGrid.NewRow();
-            //                gr[1].Value = reader.GetInt16(0);
-            //                gr[0].Value = reader.GetString(1);
-            //                gr[2].Value = reader.GetString(2);
-            //                if (!reader.IsDBNull(3))
-            //                {
-            //                    gr[3].Value = Convert.ToDateTime(reader.GetString(3));
-            //                }
-            //                gr[4].Value = reader.IsDBNull(4) ? "" : reader.GetString(4);
-            //                gr[5].Value = reader.GetInt16(5);
-            //                gr[6].Value = reader.GetInt16(6);
-            //                gr[7].Value = reader.IsDBNull(7) ? "" : reader.GetString(7);
-            //                gr[8].Value = reader.IsDBNull(8) ? "" : reader.GetString(8);
-            //                gr[9].Value = reader.GetInt16(9) == 0 ? false : true;
-            //                gr[6].ReadOnly = true;
-            //                ArchiveGrid.PrimaryGrid.Rows.Add(gr);
-            //            }
-            //        } 
-            //    }
-            //    catch (System.Data.SQLite.SQLiteException E)
-            //    {
-            //        throw new Exception(E.Message);
-            //    }
-            //}
             foreach (ArchiveInfo ai in ArchiveInfoList)
             {
                 GridRow gr = ArchiveGrid.PrimaryGrid.NewRow();
@@ -226,11 +190,10 @@ namespace ArchiveHelper
                 gr[6].Value = ai.Remaining;
                 gr[7].Value = ai.StorageLocation;
                 gr[8].Value = ai.Handler;
-                gr[9].Value = ai.IsFreeze;
+                //gr[9].Value = ai.IsFreeze;
                 gr[6].ReadOnly = true;
                 ArchiveGrid.PrimaryGrid.Rows.Add(gr);
             }
-
         }
 
         private void SaveArchiveInfo(List<GridRow> list)
@@ -255,7 +218,7 @@ namespace ArchiveHelper
                             cmd.ExecuteNonQuery();
                         }
                         ArchiveInfoRetreeIdFixRowCellReadonly(gr, ai);
-                        Archives.Add(ai.ArchiveName);
+                        ArchiveInfoList.Add(ai);
                     }
                     tx.Commit();
                 }
@@ -306,13 +269,13 @@ namespace ArchiveHelper
         {
             if (ai.Id == 0)
             {
-                return "insert into ArchiveInfo(archiveName, ArchType, ArchDate, DispatchNum, Copies, Remaining, StorageLocation, Handler, IsFreeze) values ('"
+                return "insert into ArchiveInfo(archiveName, ArchType, ArchDate, DispatchNum, Copies, Remaining, StorageLocation, Handler, ProjectId) values ('"
                             + ai.ArchiveName + "','" + ai.ArchType + "','" + ai.ArchDate + "','" + ai.DispatchNum + "'," + ai.Copies
-                            + "," + ai.Remaining + ",'" + ai.StorageLocation + "','" + ai.Handler + "', " + ai.IsFreeze + ")";
+                            + "," + ai.Remaining + ",'" + ai.StorageLocation + "','" + ai.Handler + "', " + ai.ProjectId + ")";
             }
             return "update ArchiveInfo set archiveName='" + ai.ArchiveName + "', ArchType='" + ai.ArchType + "', ArchDate='" + ai.ArchDate +
                 "', DispatchNum='" + ai.DispatchNum + "', Copies=" + ai.Copies + ", Remaining=" + ai.Remaining + ", StorageLocation='" + ai.StorageLocation
-                + "', Handler='" + ai.Handler + "', IsFreeze=" + ai.IsFreeze + " where id =" + ai.Id;
+                + "', Handler='" + ai.Handler + "', ProjectId=" + ai.ProjectId + " where id =" + ai.Id;
         }
 
         private ArchiveInfo GridCellMapToArchiveInfo(GridRow gr)
@@ -328,7 +291,7 @@ namespace ArchiveHelper
                 Remaining = (null != gr[6].Value) ? int.Parse(gr[6].Value.ToString()) : 0,
                 StorageLocation = (string)gr[7].Value,
                 Handler = (string)gr[8].Value,
-                IsFreeze = Convert.ToInt16(gr[9].Value)
+                ProjectId = Convert.ToInt16(gr[9].Value)
             };
         }
 
@@ -398,6 +361,7 @@ namespace ArchiveHelper
         {
             GridPanel panel = LendGrid.PrimaryGrid;
             panel.Columns[1].EditorType = typeof(ArchiveDropDownEditControl);
+            List<string> Archives = ArchiveInfoList.Select(i => i.ArchiveName).ToList();//.Where(a => a.project.IsFreeze == 0)
             panel.Columns[1].EditorParams = new object[] { Archives };
 
             GridRow gr = LendGrid.PrimaryGrid.NewRow();
@@ -464,14 +428,7 @@ namespace ArchiveHelper
 
         private string NotifyLendArchiveRemaining(LendArchive ai)
         {
-            //using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
-            //{
-            //    conn.Open();
-            //    SQLiteCommand sql_cmd = conn.CreateCommand();
             return "update ArchiveInfo set Remaining=Remaining-" + ai.Copies + " where ArchiveName='" + ai.ArchiveName + "'";
-            //    sql_cmd.ExecuteNonQuery();
-            //    conn.Close();
-            //}
         }
 
         private void LendArchiveRetreeIdFixRowCellReadonly(GridRow gr, LendArchive ai)
@@ -601,6 +558,7 @@ namespace ArchiveHelper
             panel.Rows.Clear();
 
             panel.Columns[1].EditorType = typeof(ArchiveDropDownEditControl);
+            List<string> Archives = ArchiveInfoList.Select(i => i.ArchiveName).ToList();
             panel.Columns[1].EditorParams = new object[] { Archives };
 
             GridColumn gcReturnDate = panel.Columns[2];
@@ -621,6 +579,7 @@ namespace ArchiveHelper
             panel.Rows.Clear();
 
             panel.Columns[1].EditorType = typeof(ArchiveDropDownEditControl);
+            List<string> Archives = ArchiveInfoList.Select(i => i.ArchiveName).ToList();//Where(a=>a.project.IsFreeze == 0).
             panel.Columns[1].EditorParams = new object[] { Archives };
 
             panel.Columns[2].EditorType = typeof(GridDateTimePickerEditControl);
@@ -640,16 +599,12 @@ namespace ArchiveHelper
 
         private void GetArchivesList()
         {
-            Archives = new List<string>();
             using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
             {
                 conn.Open();
                 SQLiteCommand sql_cmd = conn.CreateCommand();
                 sql_cmd.CommandText = "select * from ArchiveInfo order by ArchDate desc ";
                 SQLiteDataReader reader = sql_cmd.ExecuteReader();
-                //while(dr.Read()){
-                //    Archives.Add(dr.GetString(0));
-                //}
                 if (reader.HasRows)
                 {
                     while (reader.Read())
@@ -667,7 +622,7 @@ namespace ArchiveHelper
                         ai.Remaining = reader.GetInt16(6);
                         ai.StorageLocation = reader.IsDBNull(7) ? "" : reader.GetString(7);
                         ai.Handler = reader.IsDBNull(8) ? "" : reader.GetString(8);
-                        ai.IsFreeze = reader.GetInt16(9);
+                       // ai.ProjectId = reader.GetInt16(9);
                         ArchiveInfoList.Add(ai);
                     }
                 }
@@ -825,6 +780,213 @@ namespace ArchiveHelper
                 };
                 subPanel.Columns.Add(col);
             }
+        }
+
+        private void btnRefreshProject_Click(object sender, EventArgs e)
+        {
+            LoadProjectInfoList();
+        }
+
+        private void LoadProjectInfoList()
+        {
+            //ProjectList.Add(new ProjectInfo() { Id = 1, ProjectName = "正路工业园一期道路", IsFreeze = 0 });
+            //ProjectList.Add(new ProjectInfo() { Id = 2, ProjectName = "正路工业园二期道路", IsFreeze = 0 });
+            //ProjectList.Add(new ProjectInfo() { Id = 3, ProjectName = "正路工业园三期道路", IsFreeze = 0 });
+            ProjectList.Clear();
+            using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
+            {
+                conn.Open();
+                SQLiteCommand sql_cmd = conn.CreateCommand();
+                sql_cmd.CommandText = "select * from ProjectInfo order by Id desc ";
+                SQLiteDataReader reader = sql_cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        ProjectInfo ai = new ProjectInfo();
+                        ai.Id = reader.GetInt16(0);
+                        ai.ProjectName = reader.GetString(1);
+                        ai.IsFreeze = reader.GetInt16(2);
+                        ProjectList.Add(ai);
+                    }
+                }
+                reader.Close();
+                conn.Close();
+            }
+
+            ProjectGrid.PrimaryGrid.Rows.Clear();
+            foreach (ProjectInfo ai in ProjectList)
+            {
+                GridRow gr = ProjectGrid.PrimaryGrid.NewRow();
+                gr[1].Value = ai.Id;
+                gr[0].Value = ai.ProjectName;
+                gr[2].Value = ai.IsFreeze;
+                ProjectGrid.PrimaryGrid.Rows.Add(gr);
+            }
+        }
+
+        private void ProjectGrid_RowHeaderDoubleClick(object sender, GridRowHeaderDoubleClickEventArgs e)
+        {
+            GridPanel panel = ProjectGrid.PrimaryGrid;
+            GridRow row = (GridRow)panel.Rows[e.GridRow.RowIndex];
+            using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
+            {
+                conn.Open();
+                SQLiteCommand cmd = new SQLiteCommand();
+                cmd.Connection = conn;
+                try
+                {
+                    string Id = row.Cells[0].Value.ToString();
+                    string strsql = "select * from ArchiveInfo order by ArchDate desc"; //string.Format(where ArchiveName='{0}', name)
+                    cmd.CommandText = strsql;
+                    SQLiteDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        GridPanel subPanel = new GridPanel();
+                        SetArchivePanelColumn(subPanel);
+                        while (reader.Read())
+                        {
+                            ArchiveInfo ai = new ArchiveInfo();
+                            ai.Id = reader.GetInt16(0);
+                            ai.ArchiveName = reader.GetString(1);
+                            ai.ArchType = reader.GetString(2);
+                            if (!reader.IsDBNull(3))
+                            {
+                                ai.ArchDate = Convert.ToDateTime(reader.GetString(3));
+                            }
+                            ai.DispatchNum = reader.IsDBNull(4) ? "" : reader.GetString(4);
+                            ai.Copies = reader.GetInt16(5);
+                            ai.Remaining = reader.GetInt16(6);
+                            ai.StorageLocation = reader.IsDBNull(7) ? "" : reader.GetString(7);
+                            ai.Handler = reader.IsDBNull(8) ? "" : reader.GetString(8);
+
+                            GridRow gr = new GridRow();
+                            gr.Cells.Add(new GridCell(ai.ArchiveName));
+                            gr.Cells.Add(new GridCell(ai.Id));
+                            gr.Cells.Add(new GridCell(ai.ArchType));
+                            if (ai.ArchDate != null)
+                            {
+                                gr.Cells.Add(new GridCell(ai.ArchDate.ToString()));//"yyyy-MM-dd"
+                            }
+                            gr.Cells.Add(new GridCell(ai.DispatchNum));
+                            gr.Cells.Add(new GridCell(ai.Copies));
+                            gr.Cells.Add(new GridCell(ai.Remaining));
+                            gr.Cells.Add(new GridCell(ai.StorageLocation));
+                            gr.Cells.Add(new GridCell(ai.Handler));
+
+                            subPanel.Rows.Add(gr);
+                        }
+                        e.GridRow.Rows.Add(subPanel);
+                    }
+                }
+                catch (System.Data.SQLite.SQLiteException E)
+                {
+                    throw new Exception(E.Message);
+                }
+            }
+        }
+
+        private void SetArchivePanelColumn(GridPanel subPanel)
+        {
+            subPanel.Caption.Visible = true;
+            subPanel.Caption.RowHeight = 40;
+            subPanel.Caption.Text = "资料记录";
+
+            foreach (GridColumn gc in ArchiveGrid.PrimaryGrid.Columns)
+            {
+                GridColumn col = new GridColumn()
+                {
+                    HeaderText = gc.HeaderText,
+                    Width = gc.Width,
+                    Visible = gc.Visible,
+                    ReadOnly = true
+                };
+                subPanel.Columns.Add(col);
+            }
+        }
+
+        private void btnRegisterProject_Click(object sender, EventArgs e)
+        {
+            GridRow gr = ProjectGrid.PrimaryGrid.NewRow();
+            ProjectGrid.PrimaryGrid.Rows.Add(gr);
+        }
+
+        private void btnSaveProject_Click(object sender, EventArgs e)
+        {
+            List<GridRow> list = new List<GridRow>();
+            foreach (GridRow gr in ProjectGrid.PrimaryGrid.Rows)
+            {
+                if (gr.RowDirty)
+                {
+                    list.Add(gr);
+                }
+            }
+            if (list.Count > 0)
+            {
+                SaveProjectInfo(list);
+            }
+        }
+
+        private void SaveProjectInfo(List<GridRow> list)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
+            {
+                conn.Open();
+                SQLiteCommand cmd = new SQLiteCommand();
+                cmd.Connection = conn;
+                SQLiteTransaction tx = conn.BeginTransaction();
+                cmd.Transaction = tx;
+                try
+                {
+                    foreach (GridRow gr in list)
+                    {
+                        ProjectInfo ai = GridCellMapToProjectInfo(gr);
+
+                        string strsql = GenProjectSQL(ai);
+                        if (strsql.Trim().Length > 1)
+                        {
+                            cmd.CommandText = strsql;
+                            cmd.ExecuteNonQuery();
+                        }
+                        ProjectInfoRetreeIdFixRowCellReadonly(gr, ai);
+                        ProjectList.Add(ai);
+                    }
+                    tx.Commit();
+                }
+                catch (System.Data.SQLite.SQLiteException E)
+                {
+                    tx.Rollback();
+                    MessageBox.Show(cmd.CommandText + Environment.NewLine + E.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        private void ProjectInfoRetreeIdFixRowCellReadonly(GridRow gr, ProjectInfo ai)
+        {
+            gr.RowDirty = false;
+            gr[2].ReadOnly = ai.IsFreeze == 1;
+        }
+
+        private string GenProjectSQL(ProjectInfo ai)
+        {
+            if (ai.Id == 0)
+            {
+                return "insert into ProjectInfo(ProjectName) values ('" + ai.ProjectName + "')";
+            }
+            return "update ProjectInfo set ProjectName='" + ai.ProjectName + "', IsFreeze=" + ai.IsFreeze + " where id =" + ai.Id;
+        }
+
+        private ProjectInfo GridCellMapToProjectInfo(GridRow gr)
+        {
+            ProjectInfo pi = new ProjectInfo();
+            pi.Id =  string.IsNullOrEmpty(gr[1].Value.ToString()) ? 0 : Convert.ToInt16(gr[1].Value);
+            pi.ProjectName = (string)gr[0].Value;
+            pi.IsFreeze = gr[2].Value == null ? 0 : Convert.ToInt16(gr[2].Value);
+            return pi;
         }
     }
 

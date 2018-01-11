@@ -19,7 +19,9 @@ namespace ArchiveHelper
         public string StorageLocation { get; set; }
         public string Handler { get; set; }
 
-        public int IsFreeze { get; set; }
+        public int ProjectId { get; set; }
+
+        public ProjectInfo Project { get; set; }
 
     }
 }

@@ -1,0 +1,9 @@
+-- delete from lendArchive
+--delete from returnArchive
+
+--delete from ArchiveInfo
+
+ --select * from lendArchive
+--select * from returnArchive
+
+select * from ArchiveInfo

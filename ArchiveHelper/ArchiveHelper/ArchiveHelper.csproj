@@ -72,10 +72,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArchiveForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ArchiveForm.Designer.cs">
+      <DependentUpon>ArchiveForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ArchiveInfo.cs" />
     <Compile Include="ArchType.cs" />
     <Compile Include="DataSourceManager.cs" />
+    <Compile Include="GridPanelProvider.cs" />
     <Compile Include="LendArchive.cs" />
+    <Compile Include="LendForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LendForm.Designer.cs">
+      <DependentUpon>LendForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LendGridCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LendGridCtrl.Designer.cs">
+      <DependentUpon>LendGridCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LendGridPanelProvider.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +112,28 @@
     <Compile Include="ProjectInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReturnArchive.cs" />
+    <Compile Include="ReturnForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReturnForm.Designer.cs">
+      <DependentUpon>ReturnForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReturnGridCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReturnGridCtrl.Designer.cs">
+      <DependentUpon>ReturnGridCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReturnGridPanelProvider.cs" />
+    <EmbeddedResource Include="ArchiveForm.resx">
+      <DependentUpon>ArchiveForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LendForm.resx">
+      <DependentUpon>LendForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LendGridCtrl.resx">
+      <DependentUpon>LendGridCtrl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -108,6 +150,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ReturnForm.resx">
+      <DependentUpon>ReturnForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReturnGridCtrl.resx">
+      <DependentUpon>ReturnGridCtrl.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

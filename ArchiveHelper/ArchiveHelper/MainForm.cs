@@ -76,32 +76,10 @@ namespace ArchiveHelper
             ArchiveInfoTimer.Start();
         }
 
-        //private string GenReturnArchiveSQL(ReturnArchive ai)
-        //{
-        //    if (ai.Id == 0)
-        //    {
-        //        return "insert into ReturnArchive(archiveName, ReturnDate, Copies, Handler, DamageOrLost, Remark) values ('"
-        //                    + ai.ArchiveName + "','" + ai.ReturnDate + "'," + ai.Copies + ",'" + ai.Handler + "'," + ai.DamageOrLost
-        //                    + ",'" + ai.Remark + "')";
-        //    }
-        //    return "update ReturnArchive set archiveName='" + ai.ArchiveName + "', ReturnDate='" + ai.ReturnDate + "', Copies=" + ai.Copies +
-        //        ", Handler='" + ai.Handler + "', DamageOrLost=" + ai.DamageOrLost + ", Remark=" + ai.Remark + "' where id =" + ai.Id;
-        //}
-        
+         
         private void ArchiveInfoTimer_Tick(object sender, EventArgs e)
         {
-            List<GridRow> list = new List<GridRow>();
-            foreach (GridRow gr in ArchiveGrid.PrimaryGrid.Rows)
-            {
-                if (gr.RowDirty)
-                {
-                    list.Add(gr);
-                }
-            }
-            if (list.Count > 0)
-            {
-                //SaveArchiveInfo(list);
-            }
+            
         }
 
         private void btnRefreshProject_Click(object sender, EventArgs e)
@@ -232,14 +210,6 @@ namespace ArchiveHelper
 
         private void btnSaveProject_Click(object sender, EventArgs e)
         {
-            //List<GridRow> list = new List<GridRow>();
-            //foreach (GridRow gr in ProjectGrid.PrimaryGrid.Rows)
-            //{
-            //    if (gr.RowDirty)
-            //    {
-            //        list.Add(gr);
-            //    }
-            //}
             if (EditList.Count > 0)
             {
                 SaveProjectInfo(EditList);
@@ -316,14 +286,10 @@ namespace ArchiveHelper
 
         private void ProjectGrid_EndEdit(object sender, GridEditEventArgs e)
         {
-            //e.Cancel = true;
-            //e.GridCell.GridRow.RowDirty = false;
             if (e.GridCell.ColumnIndex == 0 && !preEditValue.Equals(e.GridCell.Value))
             {
-                //MessageBox.Show("Not Changed.");
                 EditList.Add(e.GridCell.GridRow);
             }
-
         }
 
         

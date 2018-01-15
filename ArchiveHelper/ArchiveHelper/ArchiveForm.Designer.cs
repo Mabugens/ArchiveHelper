@@ -211,7 +211,7 @@
             this.Controls.Add(this.tabControlPanel1);
             this.Name = "ArchiveForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ArchiveForm";
+            this.Text = "资料管理";
             this.Shown += new System.EventHandler(this.ArchiveForm_Shown);
             this.tabControlPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

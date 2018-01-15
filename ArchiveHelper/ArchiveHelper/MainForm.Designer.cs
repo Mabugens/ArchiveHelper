@@ -272,6 +272,7 @@
             this.ProjectGrid.Size = new System.Drawing.Size(1068, 541);
             this.ProjectGrid.TabIndex = 6;
             this.ProjectGrid.Text = "ProjectGrid";
+            this.ProjectGrid.BeginEdit += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridEditEventArgs>(this.ProjectGrid_BeginEdit);
             this.ProjectGrid.EndEdit += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridEditEventArgs>(this.ProjectGrid_EndEdit);
             this.ProjectGrid.RowHeaderDoubleClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowHeaderDoubleClickEventArgs>(this.ProjectGrid_RowHeaderDoubleClick);
             this.ProjectGrid.RowMarkedDirty += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridEditEventArgs>(this.ProjectGrid_RowMarkedDirty);

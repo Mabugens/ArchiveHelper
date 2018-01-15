@@ -17,6 +17,8 @@ namespace ArchiveHelper
     public partial class MainForm : Form
     {
         private List<ProjectInfo> ProjectList = new List<ProjectInfo>();
+        private List<GridRow> EditList = new List<GridRow>();
+        private object preEditValue = null;
 
         public MainForm()
         {
@@ -39,6 +41,7 @@ namespace ArchiveHelper
             {
                 ddc.Visible = true;
                 ddc.Text = "查看资料";
+                ddc.UseCellValueAsButtonText = false;
                 ddc.Click += ToRegisterClick;
             }
         }
@@ -54,6 +57,7 @@ namespace ArchiveHelper
                 return;
             }
             int id = (int)row.Cells["gcId"].Value;
+            row.Cells[3].EditorDirty = false;
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -228,17 +232,18 @@ namespace ArchiveHelper
 
         private void btnSaveProject_Click(object sender, EventArgs e)
         {
-            List<GridRow> list = new List<GridRow>();
-            foreach (GridRow gr in ProjectGrid.PrimaryGrid.Rows)
+            //List<GridRow> list = new List<GridRow>();
+            //foreach (GridRow gr in ProjectGrid.PrimaryGrid.Rows)
+            //{
+            //    if (gr.RowDirty)
+            //    {
+            //        list.Add(gr);
+            //    }
+            //}
+            if (EditList.Count > 0)
             {
-                if (gr.RowDirty)
-                {
-                    list.Add(gr);
-                }
-            }
-            if (list.Count > 0)
-            {
-                SaveProjectInfo(list);
+                SaveProjectInfo(EditList);
+                EditList.Clear();
             }
         }
 
@@ -311,7 +316,20 @@ namespace ArchiveHelper
 
         private void ProjectGrid_EndEdit(object sender, GridEditEventArgs e)
         {
-            e.GridCell.GridRow.RowDirty = false;
+            //e.Cancel = true;
+            //e.GridCell.GridRow.RowDirty = false;
+            if (e.GridCell.ColumnIndex == 0 && !preEditValue.Equals(e.GridCell.Value))
+            {
+                //MessageBox.Show("Not Changed.");
+                EditList.Add(e.GridCell.GridRow);
+            }
+
+        }
+
+        
+        private void ProjectGrid_BeginEdit(object sender, GridEditEventArgs e)
+        {
+            preEditValue = e.GridCell.Value;
         }
     }
 

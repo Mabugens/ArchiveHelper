@@ -50,7 +50,6 @@ namespace ArchiveHelper
         {
             GridButtonXEditControl ddc = sender as GridButtonXEditControl;
             GridRow row = ddc.EditorCell.GridRow;
-            
             if (row.Cells["gcId"].Value == null)
             {
                 MessageBox.Show("请先保存项目，然后收存资料");
@@ -58,6 +57,8 @@ namespace ArchiveHelper
             }
             int id = (int)row.Cells["gcId"].Value;
             row.Cells[3].EditorDirty = false;
+            ArchiveForm archiveFrom = new ArchiveForm(id);
+            archiveFrom.ShowDialog();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -126,6 +127,8 @@ namespace ArchiveHelper
         {
             GridPanel panel = ProjectGrid.PrimaryGrid;
             GridRow row = (GridRow)panel.Rows[e.GridRow.RowIndex];
+            row.Rows.Clear();
+            int id = (int)row.Cells["gcId"].Value;
             using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
             {
                 conn.Open();
@@ -134,7 +137,7 @@ namespace ArchiveHelper
                 try
                 {
                     string Id = row.Cells[0].Value.ToString();
-                    string strsql = "select * from ArchiveInfo order by ArchDate desc"; //string.Format(where ArchiveName='{0}', name)
+                    string strsql = string.Format("select * from ArchiveInfo where ProjectId={0} order by ArchDate desc", id);
                     cmd.CommandText = strsql;
                     SQLiteDataReader reader = cmd.ExecuteReader();
                     if (reader.HasRows)
@@ -210,6 +213,7 @@ namespace ArchiveHelper
 
         private void btnSaveProject_Click(object sender, EventArgs e)
         {
+            btnSaveProject.Focus();
             if (EditList.Count > 0)
             {
                 SaveProjectInfo(EditList);
@@ -258,7 +262,19 @@ namespace ArchiveHelper
         private void ProjectInfoRetreeIdFixRowCellReadonly(GridRow gr, ProjectInfo ai)
         {
             gr.RowDirty = false;
-            gr[2].ReadOnly = ai.IsFreeze == 1;
+            gr[2].ReadOnly = ai.IsFreeze == 1; // AllowEdit
+            if (ai.Id == 0)
+            {
+                using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
+                {
+                    conn.Open();
+                    SQLiteCommand sql_cmd = conn.CreateCommand();
+                    sql_cmd.CommandText = "select seq from sqlite_sequence where name='ProjectInfo'; ";
+                    int newId = Convert.ToInt32(sql_cmd.ExecuteScalar());
+                    gr["gcId"].Value = newId;
+                    conn.Close();
+                }
+            }
         }
 
         private string GenProjectSQL(ProjectInfo ai)
@@ -295,7 +311,7 @@ namespace ArchiveHelper
         
         private void ProjectGrid_BeginEdit(object sender, GridEditEventArgs e)
         {
-            preEditValue = e.GridCell.Value;
+            preEditValue = (null == e.GridCell.Value) ? "" : e.GridCell.Value;
         }
     }
 

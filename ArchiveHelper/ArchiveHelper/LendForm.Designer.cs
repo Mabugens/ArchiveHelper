@@ -45,6 +45,7 @@
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell5 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell6 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridRow gridRow2 = new DevComponents.DotNetBar.SuperGrid.GridRow();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LendForm));
             this.LendGrid = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnLendRefresh = new DevComponents.DotNetBar.ButtonX();
@@ -106,7 +107,7 @@
             this.LendGrid.PrimaryGrid.Rows.Add(gridRow1);
             this.LendGrid.PrimaryGrid.Rows.Add(gridRow2);
             this.LendGrid.PrimaryGrid.ShowRowGridIndex = true;
-            this.LendGrid.Size = new System.Drawing.Size(1053, 456);
+            this.LendGrid.Size = new System.Drawing.Size(1054, 512);
             this.LendGrid.TabIndex = 7;
             this.LendGrid.Text = "superGridControl3";
             // 
@@ -118,7 +119,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1053, 51);
+            this.panel3.Size = new System.Drawing.Size(1054, 51);
             this.panel3.TabIndex = 6;
             // 
             // btnLendRefresh
@@ -127,7 +128,7 @@
             this.btnLendRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLendRefresh.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnLendRefresh.Location = new System.Drawing.Point(129, 15);
+            this.btnLendRefresh.Location = new System.Drawing.Point(130, 15);
             this.btnLendRefresh.Name = "btnLendRefresh";
             this.btnLendRefresh.Size = new System.Drawing.Size(75, 26);
             this.btnLendRefresh.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
@@ -141,7 +142,7 @@
             this.btnSaveSend.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveSend.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSaveSend.Location = new System.Drawing.Point(887, 15);
+            this.btnSaveSend.Location = new System.Drawing.Point(888, 15);
             this.btnSaveSend.Name = "btnSaveSend";
             this.btnSaveSend.Size = new System.Drawing.Size(75, 26);
             this.btnSaveSend.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
@@ -165,11 +166,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1053, 507);
+            this.ClientSize = new System.Drawing.Size(1054, 563);
             this.Controls.Add(this.LendGrid);
             this.Controls.Add(this.panel3);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LendForm";
-            this.Text = "LendForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "借出资料";
             this.Shown += new System.EventHandler(this.LendForm_Shown);
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);

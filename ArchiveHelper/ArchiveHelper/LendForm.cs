@@ -13,9 +13,17 @@ namespace ArchiveHelper
 {
     public partial class LendForm : Form
     {
+        private string archiveName;
+
         public LendForm()
         {
             InitializeComponent();
+        }
+
+        public LendForm(string name)
+        {
+            InitializeComponent();
+            this.archiveName = name;
         }
 
         private void InitLendArchiveGrid()
@@ -24,7 +32,7 @@ namespace ArchiveHelper
             panel.Rows.Clear();
 
             panel.Columns[1].EditorType = typeof(ArchiveDropDownEditControl);
-            List<string> Archives = GetArchiveList();// ArchiveInfoList.Select(i => i.ArchiveName).ToList();//Where(a=>a.project.IsFreeze == 0).
+            List<string> Archives = GetArchiveList();
             panel.Columns[1].EditorParams = new object[] { Archives };
 
             panel.Columns[2].EditorType = typeof(GridDateTimePickerEditControl);
@@ -50,13 +58,14 @@ namespace ArchiveHelper
             panel.Columns[1].EditorParams = new object[] { Archives };
 
             GridRow gr = LendGrid.PrimaryGrid.NewRow();
+            gr.Cells["gcArchName"].Value = archiveName;
             LendGrid.PrimaryGrid.Rows.Add(gr);
         }
 
         private List<string> GetArchiveList()
         {
             //ArchiveInfoList.Select(i => i.ArchiveName).ToList();//.Where(a => a.project.IsFreeze == 0)
-            return null;
+            return new List<string>() { archiveName};
         }
 
         private void btnLendRefresh_Click(object sender, EventArgs e)
@@ -74,7 +83,7 @@ namespace ArchiveHelper
                 cmd.Connection = conn;
                 try
                 {
-                    string strsql = "select * from LendArchive order by LendDate desc";
+                    string strsql = string.Format("select * from LendArchive where ArchiveName = '{0}' order by LendDate desc", archiveName);
                     cmd.CommandText = strsql;
                     SQLiteDataReader reader = cmd.ExecuteReader();
                     if (reader.HasRows)
@@ -98,10 +107,8 @@ namespace ArchiveHelper
                                 gr[8].Value = Convert.ToDateTime(reader.GetString(8));
                             }
                             //gr[6].ReadOnly = true;
-
                             LendGrid.PrimaryGrid.Rows.Add(gr);
                         }
-
                     }
                 }
                 catch (System.Data.SQLite.SQLiteException E)
@@ -113,6 +120,7 @@ namespace ArchiveHelper
 
         private void btnSaveSend_Click(object sender, EventArgs e)
         {
+            btnSaveSend.Focus();
             List<GridRow> list = new List<GridRow>();
             foreach (GridRow gr in LendGrid.PrimaryGrid.Rows)
             {
@@ -124,7 +132,7 @@ namespace ArchiveHelper
             if (list.Count > 0)
             {
                 SaveLendArchiveInfo(list);
-                LoadArchiveList();
+                //LoadArchiveList();
             }
         }
 
@@ -209,7 +217,7 @@ namespace ArchiveHelper
                     SQLiteCommand sql_cmd = conn.CreateCommand();
                     sql_cmd.CommandText = "select seq from sqlite_sequence where name='LendArchive'; ";
                     int newId = Convert.ToInt32(sql_cmd.ExecuteScalar());
-                    gr[0].Value = newId;
+                    gr["gcId"].Value = newId;
                     conn.Close();
                 }
             }

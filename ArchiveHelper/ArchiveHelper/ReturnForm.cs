@@ -13,9 +13,17 @@ namespace ArchiveHelper
 {
     public partial class ReturnForm : Form
     {
+        private string archiveName;
+
         public ReturnForm()
         {
             InitializeComponent();
+        }
+
+        public ReturnForm(string name)
+        {
+            InitializeComponent();
+            this.archiveName = name;
         }
 
         private void InitReturnArhiveGrid()
@@ -24,9 +32,9 @@ namespace ArchiveHelper
             panel.Rows.Clear();
 
             panel.Columns[1].EditorType = typeof(ArchiveDropDownEditControl);
-            List<string> Archives = GetArchiveList();// ArchiveInfoList.Select(i => i.ArchiveName).ToList();
+            List<string> Archives = GetArchiveList();
             panel.Columns[1].EditorParams = new object[] { Archives };
-
+            
             GridColumn gcReturnDate = panel.Columns[2];
             gcReturnDate.EditorType = typeof(GridDateTimePickerEditControl);
             gcReturnDate.RenderType = typeof(GridDateTimePickerEditControl);
@@ -41,11 +49,12 @@ namespace ArchiveHelper
 
         private List<string> GetArchiveList()
         {
-            throw new NotImplementedException();
+            return new List<string>() { archiveName };
         }
         private void btnReturn_Click(object sender, EventArgs e)
         {
             GridRow gr = ReturnGrid.PrimaryGrid.NewRow();
+            gr.Cells["gcArchName"].Value = archiveName;
             ReturnGrid.PrimaryGrid.Rows.Add(gr);
         }
 
@@ -65,7 +74,7 @@ namespace ArchiveHelper
                 cmd.Connection = conn;
                 try
                 {
-                    string strsql = "select * from ReturnArchive order by ReturnDate desc";
+                    string strsql = string.Format("select * from ReturnArchive where ArchiveName = '{0}' order by ReturnDate desc", archiveName);
                     cmd.CommandText = strsql;
                     SQLiteDataReader reader = cmd.ExecuteReader();
                     if (reader.HasRows)
@@ -96,6 +105,7 @@ namespace ArchiveHelper
         }
         private void btnSaveReturn_Click(object sender, EventArgs e)
         {
+            btnSaveReturn.Focus();
             List<GridRow> list = new List<GridRow>();
             foreach (GridRow gr in ReturnGrid.PrimaryGrid.Rows)
             {
@@ -113,7 +123,7 @@ namespace ArchiveHelper
 
         private void UpdateArchiveList()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         private void SaveReturnArchiveInfo(List<GridRow> list)
@@ -193,7 +203,7 @@ namespace ArchiveHelper
                     SQLiteCommand sql_cmd = conn.CreateCommand();
                     sql_cmd.CommandText = "select seq from sqlite_sequence where name='ReturnArchive'; ";
                     int newId = Convert.ToInt32(sql_cmd.ExecuteScalar());
-                    gr[0].Value = newId;
+                    gr["gcId"].Value = newId;
                     conn.Close();
                 }
             }

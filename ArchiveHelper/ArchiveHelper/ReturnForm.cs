@@ -114,11 +114,14 @@ namespace ArchiveHelper
                     list.Add(gr);
                 }
             }
-            if (list.Count > 0)
+            if (list.Count == 0)
             {
-                SaveReturnArchiveInfo(list);
-                UpdateArchiveList();
+                ToastMessage.Show(this, "没有可保存的内容。");
+                return;
             }
+            SaveReturnArchiveInfo(list);
+            UpdateArchiveList();
+            ToastMessage.Show(this, "已保存。");
         }
 
         private void UpdateArchiveList()
@@ -212,6 +215,8 @@ namespace ArchiveHelper
         private void ReturnForm_Shown(object sender, EventArgs e)
         {
             InitReturnArhiveGrid();
+            ReturnGrid.PrimaryGrid.Rows.Clear();
+            LoadReturnArchiveList();
         }
     }
 }

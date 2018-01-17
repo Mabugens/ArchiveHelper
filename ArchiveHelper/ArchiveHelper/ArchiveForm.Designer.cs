@@ -38,6 +38,8 @@
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn8 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn9 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn10 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn11 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn12 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridRow gridRow1 = new DevComponents.DotNetBar.SuperGrid.GridRow();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell1 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell2 = new DevComponents.DotNetBar.SuperGrid.GridCell();
@@ -45,6 +47,9 @@
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell4 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell5 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell6 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.Style.Background background1 = new DevComponents.DotNetBar.SuperGrid.Style.Background();
+            DevComponents.DotNetBar.SuperGrid.Style.BackColorBlend backColorBlend1 = new DevComponents.DotNetBar.SuperGrid.Style.BackColorBlend();
+            DevComponents.DotNetBar.SuperGrid.Style.Background background2 = new DevComponents.DotNetBar.SuperGrid.Style.Background();
             DevComponents.DotNetBar.SuperGrid.GridRow gridRow2 = new DevComponents.DotNetBar.SuperGrid.GridRow();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell7 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell8 = new DevComponents.DotNetBar.SuperGrid.GridCell();
@@ -68,7 +73,7 @@
             this.tabControlPanel1.Location = new System.Drawing.Point(0, 0);
             this.tabControlPanel1.Name = "tabControlPanel1";
             this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(1013, 665);
+            this.tabControlPanel1.Size = new System.Drawing.Size(1150, 668);
             this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(179)))), ((int)(((byte)(231)))));
             this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(254)))));
             this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -95,9 +100,11 @@
             gridColumn2.Visible = false;
             gridColumn3.DefaultNewRowCellValue = "";
             gridColumn3.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridTextBoxDropDownEditControl);
+            gridColumn3.FilterPopupMaxItems = 75;
             gridColumn3.HeaderText = "资料分类";
             gridColumn3.Name = "gcType";
             gridColumn3.RenderType = typeof(DevComponents.DotNetBar.SuperGrid.GridComboBoxExEditControl);
+            gridColumn3.Width = 75;
             gridColumn4.HeaderText = "收存日期";
             gridColumn4.Name = "gcArchDate";
             gridColumn5.HeaderText = "发文号";
@@ -115,6 +122,17 @@
             gridColumn9.Width = 80;
             gridColumn10.Name = "gcProjectId";
             gridColumn10.Visible = false;
+            gridColumn11.ColumnSortMode = DevComponents.DotNetBar.SuperGrid.ColumnSortMode.None;
+            gridColumn11.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridButtonXEditControl);
+            gridColumn11.HeaderText = "借出";
+            gridColumn11.Name = "gcLend";
+            gridColumn11.RenderType = typeof(DevComponents.DotNetBar.SuperGrid.GridButtonXEditControl);
+            gridColumn11.SortIndicator = DevComponents.DotNetBar.SuperGrid.SortIndicator.None;
+            gridColumn11.Width = 80;
+            gridColumn12.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridButtonXEditControl);
+            gridColumn12.HeaderText = "归还";
+            gridColumn12.Name = "gcReturn";
+            gridColumn12.Width = 80;
             this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn1);
             this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn2);
             this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn3);
@@ -125,6 +143,8 @@
             this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn8);
             this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn9);
             this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn10);
+            this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn11);
+            this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn12);
             this.ArchiveGrid.PrimaryGrid.EnableFiltering = true;
             this.ArchiveGrid.PrimaryGrid.Filter.RowHeight = 25;
             this.ArchiveGrid.PrimaryGrid.Filter.Visible = true;
@@ -137,8 +157,16 @@
             gridRow1.Cells.Add(gridCell4);
             gridRow1.Cells.Add(gridCell5);
             gridRow1.Cells.Add(gridCell6);
+            backColorBlend1.Colors = new System.Drawing.Color[] {
+        System.Drawing.Color.CornflowerBlue};
+            background1.BackColorBlend = backColorBlend1;
+            background1.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            gridRow1.CellStyles.Default.Background = background1;
             gridRow1.Expanded = true;
             gridRow1.InfoText = "";
+            background2.BackFillType = DevComponents.DotNetBar.SuperGrid.Style.BackFillType.Center;
+            background2.Color1 = System.Drawing.Color.Goldenrod;
+            gridRow1.RowStyles.Default.Background = background2;
             gridCell7.Value = "2";
             gridCell8.Value = "2";
             gridRow2.Cells.Add(gridCell7);
@@ -147,9 +175,12 @@
             this.ArchiveGrid.PrimaryGrid.Rows.Add(gridRow1);
             this.ArchiveGrid.PrimaryGrid.Rows.Add(gridRow2);
             this.ArchiveGrid.PrimaryGrid.ShowRowGridIndex = true;
-            this.ArchiveGrid.Size = new System.Drawing.Size(1011, 612);
+            this.ArchiveGrid.Size = new System.Drawing.Size(1148, 615);
             this.ArchiveGrid.TabIndex = 3;
             this.ArchiveGrid.Text = "superGridControl3";
+            this.ArchiveGrid.AfterCollapse += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridAfterCollapseEventArgs>(this.ArchiveGrid_AfterCollapse);
+            this.ArchiveGrid.EndEdit += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridEditEventArgs>(this.ArchiveGrid_EndEdit);
+            this.ArchiveGrid.AfterExpand += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridAfterExpandEventArgs>(this.ArchiveGrid_AfterExpand);
             this.ArchiveGrid.RowHeaderDoubleClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowHeaderDoubleClickEventArgs>(this.ArchiveGrid_RowHeaderDoubleClick);
             // 
             // panel2
@@ -160,16 +191,16 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(1, 1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1011, 51);
+            this.panel2.Size = new System.Drawing.Size(1148, 51);
             this.panel2.TabIndex = 2;
             // 
             // btnRefreshArchive
             // 
             this.btnRefreshArchive.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnRefreshArchive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRefreshArchive.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnRefreshArchive.Location = new System.Drawing.Point(148, 15);
+            this.btnRefreshArchive.Location = new System.Drawing.Point(146, 15);
             this.btnRefreshArchive.Name = "btnRefreshArchive";
             this.btnRefreshArchive.Size = new System.Drawing.Size(75, 26);
             this.btnRefreshArchive.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
@@ -183,7 +214,7 @@
             this.btnSaveRegister.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveRegister.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSaveRegister.Location = new System.Drawing.Point(845, 15);
+            this.btnSaveRegister.Location = new System.Drawing.Point(982, 15);
             this.btnSaveRegister.Name = "btnSaveRegister";
             this.btnSaveRegister.Size = new System.Drawing.Size(75, 26);
             this.btnSaveRegister.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
@@ -207,11 +238,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1013, 665);
+            this.ClientSize = new System.Drawing.Size(1150, 668);
             this.Controls.Add(this.tabControlPanel1);
             this.Name = "ArchiveForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "资料管理";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Shown += new System.EventHandler(this.ArchiveForm_Shown);
             this.tabControlPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

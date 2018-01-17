@@ -15,17 +15,24 @@ namespace ArchiveHelper
     {
         private List<ArchiveInfo> ArchiveInfoList = new List<ArchiveInfo>();
         private string[] ArchTypes = { "证件", "红头", "文本", "图纸", "合同", "其他" };
+        private int ProjectId;
 
         public ArchiveForm()
         {
             InitializeComponent();
         }
 
+        public ArchiveForm(int projectId)
+        {
+            InitializeComponent();
+            this.ProjectId = projectId;
+        }
+
         private void InitArchiveGrid()
         {
             GridPanel panel = ArchiveGrid.PrimaryGrid;
-            panel.CheckBoxes = true;
-            panel.ShowCheckBox = false;
+            //panel.CheckBoxes = true;
+            //panel.ShowCheckBox = false;
             panel.ShowTreeButtons = true;
             panel.ShowTreeLines = true;
             panel.ShowRowGridIndex = true;
@@ -49,6 +56,53 @@ namespace ArchiveHelper
             panel.Columns[6].DataType = typeof(int);
             panel.Columns[6].CellStyles.Default.Background.Color1 = Color.BurlyWood;
             de5.MinValue = 0;
+
+            GridButtonXEditControl ddcLend = panel.Columns["gcLend"].EditControl as GridButtonXEditControl;
+            if (ddcLend != null)
+            {
+                ddcLend.Visible = true;
+                ddcLend.Text = "借出";
+                ddcLend.UseCellValueAsButtonText = false;
+                ddcLend.Click += ToLendClick;
+            }
+
+            GridButtonXEditControl ddcReturn = panel.Columns["gcReturn"].EditControl as GridButtonXEditControl;
+            if (ddcReturn != null)
+            {
+                ddcReturn.Visible = true;
+                ddcReturn.Text = "归还";
+                ddcReturn.UseCellValueAsButtonText = false;
+                ddcReturn.Click += ToReturnClick;
+            }
+        }
+
+        private void ToReturnClick(object sender, EventArgs e)
+        {
+            GridButtonXEditControl ddc = sender as GridButtonXEditControl;
+            GridRow row = ddc.EditorCell.GridRow;
+            if (row.Cells["gcArchName"].Value == null)
+            {
+                MessageBox.Show("请先保存资料，然后再归还资料");
+                return;
+            }
+            string archiveName = row.Cells["gcArchName"].Value.ToString();
+            ReturnForm form = new ReturnForm(archiveName);
+            form.ShowDialog();
+        }
+
+        private void ToLendClick(object sender, EventArgs e)
+        {
+            GridButtonXEditControl ddc = sender as GridButtonXEditControl;
+            GridRow row = ddc.EditorCell.GridRow;
+            if (row.Cells["gcArchName"].Value == null)
+            {
+                MessageBox.Show("请先保存资料，然后再借出资料");
+                return;
+            }
+            string archiveName = row.Cells["gcArchName"].Value.ToString();
+            LendForm form = new LendForm(archiveName);
+            form.ShowDialog();
+            btnRefreshArchive_Click(sender, e);
         }
 
         private void btnRegistration_Click(object sender, EventArgs e)
@@ -60,6 +114,8 @@ namespace ArchiveHelper
         private void btnRefreshArchive_Click(object sender, EventArgs e)
         {
             ArchiveGrid.PrimaryGrid.Rows.Clear();
+            ArchiveInfoList.Clear();
+            GetArchivesList();
             LoadArchiveList();
         }
 
@@ -69,7 +125,7 @@ namespace ArchiveHelper
             {
                 conn.Open();
                 SQLiteCommand sql_cmd = conn.CreateCommand();
-                sql_cmd.CommandText = "select * from ArchiveInfo order by ArchDate desc ";
+                sql_cmd.CommandText = string.Format("select * from ArchiveInfo where ProjectId = {0} order by ArchDate desc ", ProjectId);
                 SQLiteDataReader reader = sql_cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -88,7 +144,7 @@ namespace ArchiveHelper
                         ai.Remaining = reader.GetInt16(6);
                         ai.StorageLocation = reader.IsDBNull(7) ? "" : reader.GetString(7);
                         ai.Handler = reader.IsDBNull(8) ? "" : reader.GetString(8);
-                        // ai.ProjectId = reader.GetInt16(9);
+                        ai.ProjectId = reader.GetInt16(9);
                         ArchiveInfoList.Add(ai);
                     }
                 }
@@ -115,7 +171,7 @@ namespace ArchiveHelper
                 gr[6].Value = ai.Remaining;
                 gr[7].Value = ai.StorageLocation;
                 gr[8].Value = ai.Handler;
-                //gr[9].Value = ai.IsFreeze;
+                gr[9].Value = ai.ProjectId;
                 gr[6].ReadOnly = true;
                 ArchiveGrid.PrimaryGrid.Rows.Add(gr);
             }
@@ -123,6 +179,7 @@ namespace ArchiveHelper
         
         private void btnSaveRegister_Click(object sender, EventArgs e)
         {
+            btnRegistration.Focus();
             List<GridRow> list = new List<GridRow>();
             foreach (GridRow gr in ArchiveGrid.PrimaryGrid.Rows)
             {
@@ -131,10 +188,13 @@ namespace ArchiveHelper
                     list.Add(gr);
                 }
             }
-            if (list.Count > 0)
+            if (list.Count == 0)
             {
-                SaveArchiveInfo(list);
+                ToastMessage.Show(this, "没有可保存的内容。");
+                return;
             }
+            SaveArchiveInfo(list);
+            ToastMessage.Show(this, "已保存。"); 
         }
 
         private void SaveArchiveInfo(List<GridRow> list)
@@ -193,7 +253,7 @@ namespace ArchiveHelper
             return new ArchiveInfo()
             {
                 Id = string.IsNullOrEmpty(gr[1].Value.ToString()) ? 0 : Convert.ToInt16(gr[1].Value),
-                ArchiveName = (string)gr[0].Value,
+                ArchiveName = gr[0].Value.ToString(),
                 ArchType = (string)gr[2].Value,
                 ArchDate = Convert.ToDateTime(gr[3].Value),
                 DispatchNum = (string)gr[4].Value,
@@ -201,7 +261,7 @@ namespace ArchiveHelper
                 Remaining = (null != gr[6].Value) ? int.Parse(gr[6].Value.ToString()) : 0,
                 StorageLocation = (string)gr[7].Value,
                 Handler = (string)gr[8].Value,
-                ProjectId = Convert.ToInt16(gr[9].Value)
+                ProjectId = this.ProjectId //Convert.ToInt16(gr[9].Value)
             };
         }
         private void ArchiveInfoRetreeIdFixRowCellReadonly(GridRow gr, ArchiveInfo ai)
@@ -216,7 +276,7 @@ namespace ArchiveHelper
                     SQLiteCommand sql_cmd = conn.CreateCommand();
                     sql_cmd.CommandText = "select seq from sqlite_sequence where name='ArchiveInfo'; ";
                     int newId = Convert.ToInt32(sql_cmd.ExecuteScalar());
-                    gr[0].Value = newId;
+                    gr["gcId"].Value = newId;
                     conn.Close();
                 }
             }
@@ -334,6 +394,7 @@ namespace ArchiveHelper
                         subPanel.Rows.Add(gr);
                     }
                     e.GridRow.Rows.Add(subPanel);
+                    e.GridRow.Expanded = true;
                 }
             }
             catch (System.Data.SQLite.SQLiteException E)
@@ -370,6 +431,29 @@ namespace ArchiveHelper
         private void ArchiveForm_Shown(object sender, EventArgs e)
         {
             InitArchiveGrid();
+            ArchiveGrid.PrimaryGrid.Rows.Clear();
+            GetArchivesList();
+            LoadArchiveList();
+        }
+
+        private void ArchiveGrid_EndEdit(object sender, GridEditEventArgs e)
+        {
+            if (e.GridCell.GridColumn.Name.Equals("gcAllCount") && "".Equals(e.GridCell.GridRow.Cells["gcId"].Value))
+            {
+                e.GridCell.GridRow.Cells["gcRemaining"].Value = e.GridCell.Value;
+            }
+        }
+
+        private void ArchiveGrid_AfterExpand(object sender, GridAfterExpandEventArgs e)
+        {
+            GridRow row = (GridRow)ArchiveGrid.PrimaryGrid.Rows[e.GridContainer.RowIndex];
+            row.CellStyles.Default.Background.BackColorBlend.Colors = new Color[1] { Color.CornflowerBlue };
+        }
+
+        private void ArchiveGrid_AfterCollapse(object sender, GridAfterCollapseEventArgs e)
+        {
+            GridRow row = (GridRow)ArchiveGrid.PrimaryGrid.Rows[e.GridContainer.RowIndex];
+            row.CellStyles.Default.Background.BackColorBlend.Colors = new Color[0];
         }
     }
 }

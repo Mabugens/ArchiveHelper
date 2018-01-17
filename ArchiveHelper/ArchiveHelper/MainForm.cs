@@ -50,7 +50,7 @@ namespace ArchiveHelper
         {
             GridButtonXEditControl ddc = sender as GridButtonXEditControl;
             GridRow row = ddc.EditorCell.GridRow;
-            if (row.Cells["gcId"].Value == null)
+            if ("".Equals(row.Cells["gcId"].Value))
             {
                 MessageBox.Show("请先保存项目，然后收存资料");
                 return;
@@ -214,11 +214,14 @@ namespace ArchiveHelper
         private void btnSaveProject_Click(object sender, EventArgs e)
         {
             btnSaveProject.Focus();
-            if (EditList.Count > 0)
+            if (EditList.Count == 0)
             {
-                SaveProjectInfo(EditList);
-                EditList.Clear();
+                ToastMessage.Show(this, "没有可保存的内容。");
+                return;
             }
+            SaveProjectInfo(EditList);
+            EditList.Clear();
+            ToastMessage.Show(this, "已保存。");    
         }
 
         private void SaveProjectInfo(List<GridRow> list)

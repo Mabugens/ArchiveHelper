@@ -129,11 +129,13 @@ namespace ArchiveHelper
                     list.Add(gr);
                 }
             }
-            if (list.Count > 0)
+            if (list.Count == 0)
             {
-                SaveLendArchiveInfo(list);
-                //LoadArchiveList();
+                ToastMessage.Show(this, "没有可保存的内容。");
+                return;
             }
+            SaveLendArchiveInfo(list); 
+            ToastMessage.Show(this, "已保存。"); 
         }
 
         private void LoadArchiveList()
@@ -231,6 +233,8 @@ namespace ArchiveHelper
         private void LendForm_Shown(object sender, EventArgs e)
         {
             InitLendArchiveGrid();
+            LendGrid.PrimaryGrid.Rows.Clear();
+            LoadLendArchiveList();
         }
 
     }

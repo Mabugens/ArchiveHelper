@@ -126,7 +126,7 @@
             // 
             this.btnLendRefresh.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnLendRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLendRefresh.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnLendRefresh.Location = new System.Drawing.Point(130, 15);
             this.btnLendRefresh.Name = "btnLendRefresh";
@@ -173,6 +173,7 @@
             this.Name = "LendForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "借出资料";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Shown += new System.EventHandler(this.LendForm_Shown);
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);

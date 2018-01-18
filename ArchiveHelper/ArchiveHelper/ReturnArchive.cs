@@ -17,6 +17,8 @@ namespace ArchiveHelper
         /// </summary>
         public int DamageOrLost { get; set; }
         public string Remark { get; set; }
-        
+
+
+        public string Returner { get; set; }
     }
 }

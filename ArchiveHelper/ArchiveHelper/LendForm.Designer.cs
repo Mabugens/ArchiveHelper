@@ -32,11 +32,14 @@
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn2 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn3 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn4 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.Style.Background background1 = new DevComponents.DotNetBar.SuperGrid.Style.Background();
+            DevComponents.DotNetBar.SuperGrid.Style.BackColorBlend backColorBlend1 = new DevComponents.DotNetBar.SuperGrid.Style.BackColorBlend();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn5 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn6 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn7 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn8 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn9 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn10 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridRow gridRow1 = new DevComponents.DotNetBar.SuperGrid.GridRow();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell1 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell2 = new DevComponents.DotNetBar.SuperGrid.GridCell();
@@ -51,6 +54,7 @@
             this.btnLendRefresh = new DevComponents.DotNetBar.ButtonX();
             this.btnSaveSend = new DevComponents.DotNetBar.ButtonX();
             this.btnLend = new DevComponents.DotNetBar.ButtonX();
+            this.btnSaveAndReturn = new DevComponents.DotNetBar.ButtonX();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,6 +73,10 @@
             gridColumn2.Width = 360;
             gridColumn3.HeaderText = "借出日期";
             gridColumn3.Name = "gcLendDate";
+            backColorBlend1.Colors = new System.Drawing.Color[] {
+        System.Drawing.Color.LightGray};
+            background1.BackColorBlend = backColorBlend1;
+            gridColumn4.CellStyles.Default.Background = background1;
             gridColumn4.HeaderText = "份数";
             gridColumn4.Name = "gcCount";
             gridColumn5.HeaderText = "借出事由";
@@ -78,12 +86,14 @@
             gridColumn6.Name = "gcLendUnit";
             gridColumn6.Width = 60;
             gridColumn7.HeaderText = "借出人";
-            gridColumn7.Name = "gcLender";
+            gridColumn7.Name = "gcBorrower";
             gridColumn8.HeaderText = "电话";
             gridColumn8.Name = "gcPhone";
             gridColumn8.Width = 80;
             gridColumn9.HeaderText = "预计归还时间";
             gridColumn9.Name = "gcRebackDate";
+            gridColumn10.HeaderText = "经办人";
+            gridColumn10.Name = "gcHandler";
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn1);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn2);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn3);
@@ -93,6 +103,7 @@
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn7);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn8);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn9);
+            this.LendGrid.PrimaryGrid.Columns.Add(gridColumn10);
             this.LendGrid.PrimaryGrid.EnableFiltering = true;
             this.LendGrid.PrimaryGrid.Filter.RowHeight = 25;
             this.LendGrid.PrimaryGrid.Filter.Visible = true;
@@ -113,6 +124,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btnSaveAndReturn);
             this.panel3.Controls.Add(this.btnLendRefresh);
             this.panel3.Controls.Add(this.btnSaveSend);
             this.panel3.Controls.Add(this.btnLend);
@@ -142,7 +154,7 @@
             this.btnSaveSend.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveSend.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSaveSend.Location = new System.Drawing.Point(888, 15);
+            this.btnSaveSend.Location = new System.Drawing.Point(796, 15);
             this.btnSaveSend.Name = "btnSaveSend";
             this.btnSaveSend.Size = new System.Drawing.Size(75, 26);
             this.btnSaveSend.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
@@ -161,6 +173,20 @@
             this.btnLend.TabIndex = 0;
             this.btnLend.Text = "登记借出";
             this.btnLend.Click += new System.EventHandler(this.btnLend_Click);
+            // 
+            // btnSaveAndReturn
+            // 
+            this.btnSaveAndReturn.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSaveAndReturn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveAndReturn.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnSaveAndReturn.Location = new System.Drawing.Point(902, 15);
+            this.btnSaveAndReturn.Name = "btnSaveAndReturn";
+            this.btnSaveAndReturn.Size = new System.Drawing.Size(140, 26);
+            this.btnSaveAndReturn.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
+            this.btnSaveAndReturn.TabIndex = 4;
+            this.btnSaveAndReturn.Text = "保存并返回登记收存";
+            this.btnSaveAndReturn.Click += new System.EventHandler(this.btnSaveAndReturn_Click);
             // 
             // LendForm
             // 
@@ -187,5 +213,6 @@
         private DevComponents.DotNetBar.ButtonX btnLendRefresh;
         private DevComponents.DotNetBar.ButtonX btnSaveSend;
         private DevComponents.DotNetBar.ButtonX btnLend;
+        private DevComponents.DotNetBar.ButtonX btnSaveAndReturn;
     }
 }

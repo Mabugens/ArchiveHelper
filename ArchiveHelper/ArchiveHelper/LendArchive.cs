@@ -18,5 +18,7 @@ namespace ArchiveHelper
         public string Phone { get; set; }
 
         public Nullable<DateTime> ExpectedReturnDate { get; set; }
+
+        public string Borrower { get; set; }
     }
 }

@@ -81,6 +81,12 @@
     <Compile Include="ArchiveInfo.cs" />
     <Compile Include="ArchType.cs" />
     <Compile Include="DataSourceManager.cs" />
+    <Compile Include="GridCellDropDownEditControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GridCellItemComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GridPanelProvider.cs" />
     <Compile Include="LendArchive.cs" />
     <Compile Include="LendForm.cs">

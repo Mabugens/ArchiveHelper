@@ -87,7 +87,10 @@ namespace ArchiveHelper
             }
             string archiveName = row.Cells["gcArchName"].Value.ToString();
             ReturnForm form = new ReturnForm(archiveName);
+            this.Hide();
             form.ShowDialog();
+            btnRefreshArchive_Click(sender, e);
+            this.Show();
         }
 
         private void ToLendClick(object sender, EventArgs e)
@@ -101,7 +104,9 @@ namespace ArchiveHelper
             }
             string archiveName = row.Cells["gcArchName"].Value.ToString();
             LendForm form = new LendForm(archiveName);
+            this.Hide();
             form.ShowDialog();
+            this.Show();
             btnRefreshArchive_Click(sender, e);
         }
 

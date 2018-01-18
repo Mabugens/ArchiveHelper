@@ -14,6 +14,7 @@ namespace ArchiveHelper
     public partial class ReturnForm : Form
     {
         private string archiveName;
+        private string[] MissingDamageItems = { "无损坏", "有损坏" };
 
         public ReturnForm()
         {
@@ -45,6 +46,10 @@ namespace ArchiveHelper
             GridDoubleIntInputEditControl de = (GridDoubleIntInputEditControl)gcCopies.EditControl;
             gcCopies.DataType = typeof(int);
             de.MinValue = 0;
+
+            GridColumn gcDamageOrLost = panel.Columns["gcMissingDamage"];
+            gcDamageOrLost.EditorType = typeof(GridCellDropDownEditControl);
+            gcDamageOrLost.EditorParams = new object[] { MissingDamageItems };
         }
 
         private List<string> GetArchiveList()
@@ -55,6 +60,7 @@ namespace ArchiveHelper
         {
             GridRow gr = ReturnGrid.PrimaryGrid.NewRow();
             gr.Cells["gcArchName"].Value = archiveName;
+            gr.Cells["gcMissingDamage"].Value = MissingDamageItems[0];
             ReturnGrid.PrimaryGrid.Rows.Add(gr);
         }
 
@@ -66,7 +72,6 @@ namespace ArchiveHelper
 
         private void LoadReturnArchiveList()
         {
-
             using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
             {
                 conn.Open();
@@ -89,10 +94,11 @@ namespace ArchiveHelper
                                 gr[2].Value = Convert.ToDateTime(reader.GetString(2));
                             }
                             gr[3].Value = reader.GetInt16(3);
-                            gr[4].Value = reader.IsDBNull(4) ? "" : reader.GetString(4);
-                            gr[5].Value = reader.GetInt16(5);
-                            gr[6].Value = reader.IsDBNull(6) ? "" : reader.GetString(6);
-
+                            gr["gcReturnCount"].AllowEdit = false;
+                            gr["gcHandler"].Value = reader.IsDBNull(4) ? "" : reader.GetString(4);
+                            gr["gcMissingDamage"].Value = reader.GetInt16(5) == 0 ? MissingDamageItems[0] : MissingDamageItems[1];
+                            gr["gcRemark"].Value = reader.IsDBNull(6) ? "" : reader.GetString(6);
+                            gr["gcReturner"].Value = reader.IsDBNull(7) ? "" : reader.GetString(7);
                             ReturnGrid.PrimaryGrid.Rows.Add(gr);
                         }
                     }
@@ -136,8 +142,8 @@ namespace ArchiveHelper
                 conn.Open();
                 SQLiteCommand cmd = new SQLiteCommand();
                 cmd.Connection = conn;
-                SQLiteTransaction tx = conn.BeginTransaction();
-                cmd.Transaction = tx;
+                //SQLiteTransaction tx = conn.BeginTransaction();
+                //cmd.Transaction = tx;
                 try
                 {
                     foreach (GridRow gr in list)
@@ -145,15 +151,19 @@ namespace ArchiveHelper
                         ReturnArchive ai = GridCellMapToReturnArchive(gr);
                         cmd.CommandText = GenReturnSQL(ai);
                         cmd.ExecuteNonQuery();
-                        ReturnArchiveRetreeIdFixRowCellReadonly(gr, ai);
-                        cmd.CommandText = NotifyArchiveRemaining(ai);
-                        cmd.ExecuteNonQuery();
+                        if (ai.Id == 0)
+                        {
+                            cmd.CommandText = NotifyArchiveRemaining(ai);
+                            cmd.ExecuteNonQuery();
+                            ReturnArchiveRetreeIdFixRowCellReadonly(gr, ai);
+                            gr["gcReturnCount"].AllowEdit = false;
+                        }
                     }
-                    tx.Commit();
+                    //tx.Commit();
                 }
                 catch (System.Data.SQLite.SQLiteException E)
                 {
-                    tx.Rollback();
+                    //tx.Rollback();
                     MessageBox.Show(cmd.CommandText + Environment.NewLine + E.Message);
                 }
                 finally
@@ -171,9 +181,10 @@ namespace ArchiveHelper
                 ArchiveName = (string)gr[1].Value,
                 ReturnDate = Convert.ToDateTime(gr[2].Value),
                 Copies = (null != gr[3].Value) ? int.Parse(gr[3].Value.ToString()) : 0,
-                Handler = (string)gr[4].Value,
-                DamageOrLost = gr[5].IsValueNull ? 0 : Convert.ToInt16(gr[5].Value),
-                Remark = (string)gr[6].Value
+                Handler = (string)gr["gcHandler"].Value,
+                DamageOrLost = (string)gr["gcMissingDamage"].Value == MissingDamageItems[0] ? 0 : 1,
+                Remark = (string)gr["gcRemark"].Value,
+                Returner = (string)gr["gcReturner"].Value
             };
         }
 
@@ -181,12 +192,13 @@ namespace ArchiveHelper
         {
             if (ai.Id == 0)
             {
-                return "insert into ReturnArchive(archiveName, ReturnDate, Copies, Handler, DamageOrLost, Remark) values ('"
+                return "insert into ReturnArchive(archiveName, ReturnDate, Copies, Handler, DamageOrLost, Remark, Returner) values ('"
                             + ai.ArchiveName + "','" + ai.ReturnDate + "'," + ai.Copies + ",'" + ai.Handler + "'," + ai.DamageOrLost
-                            + ",'" + ai.Remark + "')";
+                            + ",'" + ai.Remark + "','" + ai.Returner +"')";
             }
             return "update ReturnArchive set archiveName='" + ai.ArchiveName + "', ReturnDate='" + ai.ReturnDate + "', Copies=" + ai.Copies +
-                ", Handler='" + ai.Handler + "', DamageOrLost=" + ai.DamageOrLost + ", Remark='" + ai.Remark + "' where id =" + ai.Id;
+                ", Handler='" + ai.Handler + "', DamageOrLost=" + ai.DamageOrLost + ", Remark='" + ai.Remark + "', Returner='" + ai.Returner +
+                "' where id =" + ai.Id;
         }
 
 
@@ -205,8 +217,8 @@ namespace ArchiveHelper
                     conn.Open();
                     SQLiteCommand sql_cmd = conn.CreateCommand();
                     sql_cmd.CommandText = "select seq from sqlite_sequence where name='ReturnArchive'; ";
-                    int newId = Convert.ToInt32(sql_cmd.ExecuteScalar());
-                    gr["gcId"].Value = newId;
+                    ai.Id = Convert.ToInt32(sql_cmd.ExecuteScalar());
+                    gr["gcId"].Value = ai.Id;
                     conn.Close();
                 }
             }
@@ -217,6 +229,12 @@ namespace ArchiveHelper
             InitReturnArhiveGrid();
             ReturnGrid.PrimaryGrid.Rows.Clear();
             LoadReturnArchiveList();
+        }
+
+        private void btnSaveAndClose_Click(object sender, EventArgs e)
+        {
+            btnSaveReturn_Click(sender, e);
+            this.Close();
         }
     }
 }

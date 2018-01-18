@@ -58,7 +58,9 @@ namespace ArchiveHelper
             int id = (int)row.Cells["gcId"].Value;
             row.Cells[3].EditorDirty = false;
             ArchiveForm archiveFrom = new ArchiveForm(id);
+            this.Hide();
             archiveFrom.ShowDialog();
+            this.Show();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)

@@ -42,9 +42,10 @@ namespace ArchiveHelper
             panel.Columns[3].EditorType = typeof(GridDoubleIntInputEditControl);
             GridDoubleIntInputEditControl de = (GridDoubleIntInputEditControl)panel.Columns[3].EditControl;
             panel.Columns[3].DataType = typeof(int);
+            panel.Columns[3].CellStyles.Default.Background.BackColorBlend.Colors = new Color[1] { Color.LightGray };
             de.MinValue = 0;
 
-            GridColumn gc = panel.Columns[8];
+            GridColumn gc = panel.Columns["gcRebackDate"];
             gc.EditorType = typeof(GridDateTimePickerEditControl);
             gc.RenderType = typeof(GridDateTimePickerEditControl);
             gc.DefaultNewRowCellValue = DateTime.Now;
@@ -64,7 +65,6 @@ namespace ArchiveHelper
 
         private List<string> GetArchiveList()
         {
-            //ArchiveInfoList.Select(i => i.ArchiveName).ToList();//.Where(a => a.project.IsFreeze == 0)
             return new List<string>() { archiveName};
         }
 
@@ -91,22 +91,24 @@ namespace ArchiveHelper
                         while (reader.Read())
                         {
                             GridRow gr = LendGrid.PrimaryGrid.NewRow();
-                            gr[0].Value = reader.GetInt16(0);
-                            gr[1].Value = reader.GetString(1);
+                            gr["gcId"].Value = reader.GetInt16(0);
+                            gr["gcArchName"].Value = reader.GetString(1);
                             if (!reader.IsDBNull(2))
                             {
-                                gr[2].Value = Convert.ToDateTime(reader.GetString(2));
+                                gr["gcLendDate"].Value = Convert.ToDateTime(reader.GetString(2));
                             }
-                            gr[3].Value = reader.GetInt16(3);
-                            gr[4].Value = reader.IsDBNull(4) ? "" : reader.GetString(4);
-                            gr[5].Value = reader.IsDBNull(5) ? "" : reader.GetString(5);
-                            gr[6].Value = reader.IsDBNull(6) ? "" : reader.GetString(6);
-                            gr[7].Value = reader.IsDBNull(7) ? "" : reader.GetString(7);
+                            gr["gcCount"].Value = reader.GetInt16(3);
+                            gr["gcCount"].AllowEdit = false;
+                            gr["gcReason"].Value = reader.IsDBNull(4) ? "" : reader.GetString(4);
+                            gr["gcLendUnit"].Value = reader.IsDBNull(5) ? "" : reader.GetString(5);
+                            gr["gcHandler"].Value = reader.IsDBNull(6) ? "" : reader.GetString(6);
+                            gr["gcPhone"].Value = reader.IsDBNull(7) ? "" : reader.GetString(7);
                             if (!reader.IsDBNull(8))
                             {
-                                gr[8].Value = Convert.ToDateTime(reader.GetString(8));
+                                gr["gcRebackDate"].Value = Convert.ToDateTime(reader.GetString(8));
                             }
-                            //gr[6].ReadOnly = true;
+                            gr["gcBorrower"].Value = reader.IsDBNull(9) ? "" : reader.GetString(9);
+                            gr["gcCount"].ReadOnly = true;
                             LendGrid.PrimaryGrid.Rows.Add(gr);
                         }
                     }
@@ -150,25 +152,35 @@ namespace ArchiveHelper
                 conn.Open();
                 SQLiteCommand cmd = new SQLiteCommand();
                 cmd.Connection = conn;
-                SQLiteTransaction tx = conn.BeginTransaction();
-                cmd.Transaction = tx;
+                //SQLiteTransaction tx = conn.BeginTransaction();
+                //cmd.Transaction = tx;
                 try
                 {
                     foreach (GridRow gr in list)
                     {
                         LendArchive ai = GridCellMapToLendArchive(gr);
-
+                        if (!CheckLendable(ai))
+                        {
+                            gr["gcCount"].CellStyles.Default.TextColor = Color.Red;
+                            ToastMessage.Show(this, ai.ArchiveName + " 剩余数量不足，请重新修改借出数量");
+                            continue;
+                        }
                         cmd.CommandText = GenLendArchiveSQL(ai);
                         cmd.ExecuteNonQuery();
+                        gr["gcCount"].CellStyles.Default.TextColor = Color.Black;
+                        gr["gcCount"].AllowEdit = false;
+                        if (ai.Id == 0)
+                        {
+                            cmd.CommandText = NotifyLendArchiveRemaining(ai);
+                            cmd.ExecuteNonQuery();
+                        }
                         LendArchiveRetreeIdFixRowCellReadonly(gr, ai);
-                        cmd.CommandText = NotifyLendArchiveRemaining(ai);
-                        cmd.ExecuteNonQuery();
                     }
-                    tx.Commit();
+                    //tx.Commit();
                 }
                 catch (System.Data.SQLite.SQLiteException E)
                 {
-                    tx.Rollback();
+                    //tx.Rollback();
                     MessageBox.Show(cmd.CommandText + Environment.NewLine + E.Message);
                 }
                 finally
@@ -178,19 +190,33 @@ namespace ArchiveHelper
             }
         }
 
+        private bool CheckLendable(LendArchive ai)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
+            {
+                conn.Open();
+                SQLiteCommand sql_cmd = conn.CreateCommand();
+                sql_cmd.CommandText = string.Format("select remaining - {0} from archiveInfo where archiveName='{1}'", ai.Copies, ai.ArchiveName);
+                int value = Convert.ToInt32(sql_cmd.ExecuteScalar());
+                conn.Close();
+                return value >= 0;
+            }
+        }
+
         private LendArchive GridCellMapToLendArchive(GridRow gr)
         {
             return new LendArchive()
             {
-                Id = gr[0].IsValueNull ? 0 : Convert.ToInt16(gr[0].Value),
-                ArchiveName = (string)gr[1].Value,
-                LendDate = Convert.ToDateTime(gr[2].Value),
-                Copies = (null != gr[3].Value) ? int.Parse(gr[3].Value.ToString()) : 0,
-                LendReason = (string)gr[4].Value,
-                LendUnit = (string)gr[5].Value,
-                Handler = (string)gr[6].Value,
-                Phone = (string)gr[7].Value,
-                ExpectedReturnDate = Convert.ToDateTime(gr[8].Value)
+                Id = gr["gcId"].IsValueNull ? 0 : Convert.ToInt16(gr["gcId"].Value),
+                ArchiveName = (string)gr["gcArchName"].Value,
+                LendDate = Convert.ToDateTime(gr["gcLendDate"].Value),
+                Copies = (null != gr["gcCount"].Value) ? int.Parse(gr["gcCount"].Value.ToString()) : 0,
+                LendReason = (string)gr["gcReason"].Value,
+                LendUnit = (string)gr["gcLendUnit"].Value,
+                Handler = (string)gr["gcHandler"].Value,
+                Phone = (string)gr["gcPhone"].Value,
+                ExpectedReturnDate = Convert.ToDateTime(gr["gcRebackDate"].Value),
+                Borrower = (string)gr["gcBorrower"].Value
             };
         }
 
@@ -198,13 +224,15 @@ namespace ArchiveHelper
         {
             if (ai.Id == 0)
             {
-                return "insert into LendArchive(archiveName, LendDate, Copies, LendReason, LendUnit, Handler, Phone, ExpectedReturnDate) values ('"
+                return "insert into LendArchive(archiveName, LendDate, Copies, LendReason, LendUnit, Handler, Phone, ExpectedReturnDate,Borrower) values ('"
                             + ai.ArchiveName + "','" + ai.LendDate + "'," + ai.Copies
-                            + ",'" + ai.LendReason + "','" + ai.LendUnit + "','" + ai.Handler + "','" + ai.Phone + "','" + ai.ExpectedReturnDate + "')";
+                            + ",'" + ai.LendReason + "','" + ai.LendUnit + "','" + ai.Handler + "','" + ai.Phone + "','" + ai.ExpectedReturnDate + "','" +
+                            ai.Borrower + "')";
             }
-            return "update LendArchive set archiveName='" + ai.ArchiveName + "', LendDate='" + ai.LendDate +
-                "', Copies=" + ai.Copies + ", LendReason=" + ai.LendReason + ", LendUnit='" + ai.LendUnit
-                + "', Handler='" + ai.Handler + "', Phone='" + ai.Phone + "', ExpectedReturnDate='" + ai.ExpectedReturnDate + "' where id =" + ai.Id;
+            return "update LendArchive set archiveName='" + ai.ArchiveName + "', LendDate='" + ai.LendDate
+                + "', Copies=" + ai.Copies + ", LendReason=" + ai.LendReason + ", LendUnit='" + ai.LendUnit
+                + "', Handler='" + ai.Handler + "', Phone='" + ai.Phone + "', ExpectedReturnDate='" + ai.ExpectedReturnDate
+                + "', Borrower='" + ai.Borrower + "' where id =" + ai.Id;
         }
 
         private void LendArchiveRetreeIdFixRowCellReadonly(GridRow gr, LendArchive ai)
@@ -217,9 +245,9 @@ namespace ArchiveHelper
                 {
                     conn.Open();
                     SQLiteCommand sql_cmd = conn.CreateCommand();
-                    sql_cmd.CommandText = "select seq from sqlite_sequence where name='LendArchive'; ";
-                    int newId = Convert.ToInt32(sql_cmd.ExecuteScalar());
-                    gr["gcId"].Value = newId;
+                    sql_cmd.CommandText = "select seq from sqlite_sequence where name='LendArchive'";
+                    ai.Id = Convert.ToInt32(sql_cmd.ExecuteScalar());
+                    gr["gcId"].Value = ai.Id;
                     conn.Close();
                 }
             }
@@ -235,6 +263,12 @@ namespace ArchiveHelper
             InitLendArchiveGrid();
             LendGrid.PrimaryGrid.Rows.Clear();
             LoadLendArchiveList();
+        }
+
+        private void btnSaveAndReturn_Click(object sender, EventArgs e)
+        {
+            btnSaveSend_Click(sender, e);
+            this.Close();
         }
 
     }

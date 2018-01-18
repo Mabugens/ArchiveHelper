@@ -28,26 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn15 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn16 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn17 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn18 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn19 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn20 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn21 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridRow gridRow5 = new DevComponents.DotNetBar.SuperGrid.GridRow();
-            DevComponents.DotNetBar.SuperGrid.GridCell gridCell13 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            DevComponents.DotNetBar.SuperGrid.GridCell gridCell14 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            DevComponents.DotNetBar.SuperGrid.GridCell gridCell15 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            DevComponents.DotNetBar.SuperGrid.GridCell gridCell16 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            DevComponents.DotNetBar.SuperGrid.GridCell gridCell17 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            DevComponents.DotNetBar.SuperGrid.GridCell gridCell18 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            DevComponents.DotNetBar.SuperGrid.GridRow gridRow6 = new DevComponents.DotNetBar.SuperGrid.GridRow();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn1 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn2 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn3 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn4 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn5 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn6 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn7 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn8 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridRow gridRow1 = new DevComponents.DotNetBar.SuperGrid.GridRow();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell1 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell2 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell3 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell4 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell5 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell6 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridRow gridRow2 = new DevComponents.DotNetBar.SuperGrid.GridRow();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReturnForm));
             this.ReturnGrid = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
             this.panel4 = new System.Windows.Forms.Panel();
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.btnSaveReturn = new DevComponents.DotNetBar.ButtonX();
             this.btnReturn = new DevComponents.DotNetBar.ButtonX();
+            this.btnSaveAndClose = new DevComponents.DotNetBar.ButtonX();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,44 +62,47 @@
             this.ReturnGrid.Name = "ReturnGrid";
             this.ReturnGrid.PrimaryGrid.Caption.RowHeight = 40;
             this.ReturnGrid.PrimaryGrid.Caption.Text = "资料总目";
-            gridColumn15.Name = "gcId";
-            gridColumn15.Visible = false;
-            gridColumn16.HeaderText = "资料名称";
-            gridColumn16.Name = "gcArchName";
-            gridColumn16.Width = 360;
-            gridColumn17.HeaderText = "归还日期";
-            gridColumn17.Name = "gcReturnDate";
-            gridColumn18.HeaderText = "份数";
-            gridColumn18.Name = "gcReturnCount";
-            gridColumn19.HeaderText = "归还人";
-            gridColumn19.Name = "gcReturnPerson";
-            gridColumn19.Width = 70;
-            gridColumn20.HeaderText = "有无缺失损坏";
-            gridColumn20.Name = "gcMissingDamage";
-            gridColumn20.Width = 90;
-            gridColumn21.HeaderText = "备注";
-            gridColumn21.Name = "gcRemark";
-            gridColumn21.Width = 80;
-            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn15);
-            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn16);
-            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn17);
-            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn18);
-            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn19);
-            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn20);
-            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn21);
+            gridColumn1.Name = "gcId";
+            gridColumn1.Visible = false;
+            gridColumn2.HeaderText = "资料名称";
+            gridColumn2.Name = "gcArchName";
+            gridColumn2.Width = 360;
+            gridColumn3.HeaderText = "归还日期";
+            gridColumn3.Name = "gcReturnDate";
+            gridColumn4.HeaderText = "份数";
+            gridColumn4.Name = "gcReturnCount";
+            gridColumn5.HeaderText = "归还人";
+            gridColumn5.Name = "gcReturner";
+            gridColumn5.Width = 70;
+            gridColumn6.HeaderText = "有无缺失损坏";
+            gridColumn6.Name = "gcMissingDamage";
+            gridColumn6.Width = 90;
+            gridColumn7.HeaderText = "经办人";
+            gridColumn7.Name = "gcHandler";
+            gridColumn8.HeaderText = "备注";
+            gridColumn8.Name = "gcRemark";
+            gridColumn8.Width = 80;
+            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn1);
+            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn2);
+            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn3);
+            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn4);
+            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn5);
+            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn6);
+            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn7);
+            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn8);
             this.ReturnGrid.PrimaryGrid.EnableFiltering = true;
             this.ReturnGrid.PrimaryGrid.Filter.RowHeight = 25;
             this.ReturnGrid.PrimaryGrid.Filter.Visible = true;
             this.ReturnGrid.PrimaryGrid.RowHeaderIndexOffset = 1;
-            gridRow5.Cells.Add(gridCell13);
-            gridRow5.Cells.Add(gridCell14);
-            gridRow5.Cells.Add(gridCell15);
-            gridRow5.Cells.Add(gridCell16);
-            gridRow5.Cells.Add(gridCell17);
-            gridRow5.Cells.Add(gridCell18);
-            gridRow5.InfoText = "";
-            this.ReturnGrid.PrimaryGrid.Rows.Add(gridRow5);
-            this.ReturnGrid.PrimaryGrid.Rows.Add(gridRow6);
+            gridRow1.Cells.Add(gridCell1);
+            gridRow1.Cells.Add(gridCell2);
+            gridRow1.Cells.Add(gridCell3);
+            gridRow1.Cells.Add(gridCell4);
+            gridRow1.Cells.Add(gridCell5);
+            gridRow1.Cells.Add(gridCell6);
+            gridRow1.InfoText = "";
+            this.ReturnGrid.PrimaryGrid.Rows.Add(gridRow1);
+            this.ReturnGrid.PrimaryGrid.Rows.Add(gridRow2);
             this.ReturnGrid.PrimaryGrid.ShowRowGridIndex = true;
             this.ReturnGrid.Size = new System.Drawing.Size(1056, 517);
             this.ReturnGrid.TabIndex = 7;
@@ -104,6 +110,7 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.btnSaveAndClose);
             this.panel4.Controls.Add(this.buttonX1);
             this.panel4.Controls.Add(this.btnSaveReturn);
             this.panel4.Controls.Add(this.btnReturn);
@@ -133,7 +140,7 @@
             this.btnSaveReturn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveReturn.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSaveReturn.Location = new System.Drawing.Point(890, 15);
+            this.btnSaveReturn.Location = new System.Drawing.Point(799, 15);
             this.btnSaveReturn.Name = "btnSaveReturn";
             this.btnSaveReturn.Size = new System.Drawing.Size(75, 26);
             this.btnSaveReturn.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
@@ -153,6 +160,20 @@
             this.btnReturn.Text = "登记归还";
             this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
+            // btnSaveAndClose
+            // 
+            this.btnSaveAndClose.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSaveAndClose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveAndClose.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnSaveAndClose.Location = new System.Drawing.Point(899, 15);
+            this.btnSaveAndClose.Name = "btnSaveAndClose";
+            this.btnSaveAndClose.Size = new System.Drawing.Size(132, 26);
+            this.btnSaveAndClose.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
+            this.btnSaveAndClose.TabIndex = 5;
+            this.btnSaveAndClose.Text = "保存并返回登记收存";
+            this.btnSaveAndClose.Click += new System.EventHandler(this.btnSaveAndClose_Click);
+            // 
             // ReturnForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -160,6 +181,7 @@
             this.ClientSize = new System.Drawing.Size(1056, 568);
             this.Controls.Add(this.ReturnGrid);
             this.Controls.Add(this.panel4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ReturnForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "归还资料";
@@ -177,5 +199,6 @@
         private DevComponents.DotNetBar.ButtonX buttonX1;
         private DevComponents.DotNetBar.ButtonX btnSaveReturn;
         private DevComponents.DotNetBar.ButtonX btnReturn;
+        private DevComponents.DotNetBar.ButtonX btnSaveAndClose;
     }
 }

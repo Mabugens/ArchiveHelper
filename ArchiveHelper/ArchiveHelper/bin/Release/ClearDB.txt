@@ -1,9 +1,10 @@
--- delete from lendArchive
+        --   delete from lendArchive
 --delete from returnArchive
 
---delete from ArchiveInfo
-
- --select * from lendArchive
+ --delete from ArchiveInfo
+  --  delete from ProjectInfo
+--select * from lendArchive
 --select * from returnArchive
 
-select * from ArchiveInfo
+--select * from ArchiveInfo
+ select * from ProjectInfo

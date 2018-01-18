@@ -27,8 +27,13 @@ D:\GitRepository\ArchiveHelper\ArchiveHelper\bin\Release\DevComponents.Instrumen
 D:\GitRepository\ArchiveHelper\ArchiveHelper\bin\Release\DevComponents.SuperGrid.Design.dll
 D:\GitRepository\ArchiveHelper\ArchiveHelper\bin\Release\System.Data.SQLite.dll
 D:\GitRepository\ArchiveHelper\ArchiveHelper\bin\Release\System.Data.SQLite.xml
-D:\GitRepository\ArchiveHelper\ArchiveHelper\obj\Release\ArchiveHelper.csprojResolveAssemblyReference.cache
 D:\GitRepository\ArchiveHelper\ArchiveHelper\obj\Release\ArchiveHelper.MainForm.resources
 D:\GitRepository\ArchiveHelper\ArchiveHelper\obj\Release\ArchiveHelper.LoginForm.resources
 D:\GitRepository\ArchiveHelper\ArchiveHelper\obj\Release\ArchiveHelper.Properties.Resources.resources
 D:\GitRepository\ArchiveHelper\ArchiveHelper\obj\Release\ArchiveHelper.csproj.GenerateResource.Cache
+D:\GitRepository\ArchiveHelper\ArchiveHelper\obj\Release\ArchiveHelper.ArchiveForm.resources
+D:\GitRepository\ArchiveHelper\ArchiveHelper\obj\Release\ArchiveHelper.LendGridCtrl.resources
+D:\GitRepository\ArchiveHelper\ArchiveHelper\obj\Release\ArchiveHelper.ReturnGridCtrl.resources
+D:\GitRepository\ArchiveHelper\ArchiveHelper\obj\Release\ArchiveHelper.LendForm.resources
+D:\GitRepository\ArchiveHelper\ArchiveHelper\obj\Release\ArchiveHelper.ReturnForm.resources
+D:\GitRepository\ArchiveHelper\ArchiveHelper\obj\Release\ArchiveHelper.csprojResolveAssemblyReference.cache

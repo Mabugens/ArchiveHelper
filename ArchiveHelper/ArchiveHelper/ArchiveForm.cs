@@ -289,6 +289,7 @@ namespace ArchiveHelper
         }
         private void ArchiveGrid_RowHeaderDoubleClick(object sender, DevComponents.DotNetBar.SuperGrid.GridRowHeaderDoubleClickEventArgs e)
         {
+            e.GridRow.Rows.Clear();
             using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
             {
                 conn.Open();

@@ -233,8 +233,8 @@ namespace ArchiveHelper
                 conn.Open();
                 SQLiteCommand cmd = new SQLiteCommand();
                 cmd.Connection = conn;
-                SQLiteTransaction tx = conn.BeginTransaction();
-                cmd.Transaction = tx;
+                //SQLiteTransaction tx = conn.BeginTransaction();
+                //cmd.Transaction = tx;
                 try
                 {
                     foreach (GridRow gr in list)
@@ -250,11 +250,11 @@ namespace ArchiveHelper
                         ProjectInfoRetreeIdFixRowCellReadonly(gr, ai);
                         ProjectList.Add(ai);
                     }
-                    tx.Commit();
+                    //tx.Commit();
                 }
                 catch (System.Data.SQLite.SQLiteException E)
                 {
-                    tx.Rollback();
+                    //tx.Rollback();
                     MessageBox.Show(cmd.CommandText + Environment.NewLine + E.Message);
                 }
                 finally
@@ -274,7 +274,7 @@ namespace ArchiveHelper
                 {
                     conn.Open();
                     SQLiteCommand sql_cmd = conn.CreateCommand();
-                    sql_cmd.CommandText = "select seq from sqlite_sequence where name='ProjectInfo'; ";
+                    sql_cmd.CommandText = "select seq from sqlite_sequence where name='ProjectInfo'"; //"select Id from ProjectInfo where ProjectName='{0}'"; // 
                     int newId = Convert.ToInt32(sql_cmd.ExecuteScalar());
                     gr["gcId"].Value = newId;
                     conn.Close();

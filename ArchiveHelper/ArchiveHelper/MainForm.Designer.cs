@@ -44,30 +44,13 @@
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell7 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell8 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell9 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn5 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn6 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn7 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn8 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn9 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn10 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn11 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridRow gridRow3 = new DevComponents.DotNetBar.SuperGrid.GridRow();
-            DevComponents.DotNetBar.SuperGrid.GridCell gridCell10 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            DevComponents.DotNetBar.SuperGrid.GridCell gridCell11 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            DevComponents.DotNetBar.SuperGrid.GridCell gridCell12 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            DevComponents.DotNetBar.SuperGrid.GridCell gridCell13 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            DevComponents.DotNetBar.SuperGrid.GridCell gridCell14 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            DevComponents.DotNetBar.SuperGrid.GridCell gridCell15 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            DevComponents.DotNetBar.SuperGrid.GridRow gridRow4 = new DevComponents.DotNetBar.SuperGrid.GridRow();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn12 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn13 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn14 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn15 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn16 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn17 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn18 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn19 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn20 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridRow gridRow5 = new DevComponents.DotNetBar.SuperGrid.GridRow();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell16 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell17 = new DevComponents.DotNetBar.SuperGrid.GridCell();
@@ -76,16 +59,15 @@
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell20 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell21 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridRow gridRow6 = new DevComponents.DotNetBar.SuperGrid.GridRow();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn18 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn19 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn20 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn21 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn22 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn23 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn24 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn25 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn26 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn27 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn28 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn29 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn30 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridRow gridRow7 = new DevComponents.DotNetBar.SuperGrid.GridRow();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell22 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell23 = new DevComponents.DotNetBar.SuperGrid.GridCell();
@@ -94,9 +76,41 @@
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell26 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell27 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridRow gridRow8 = new DevComponents.DotNetBar.SuperGrid.GridRow();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn27 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn28 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn29 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn30 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn31 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn32 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn33 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn34 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn35 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn36 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridRow gridRow9 = new DevComponents.DotNetBar.SuperGrid.GridRow();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell28 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell29 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell30 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell31 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell32 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell33 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridRow gridRow10 = new DevComponents.DotNetBar.SuperGrid.GridRow();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell34 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell35 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell36 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn5 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn6 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn7 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn8 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn9 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn10 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridRow gridRow3 = new DevComponents.DotNetBar.SuperGrid.GridRow();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell10 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell11 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell12 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell13 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell14 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell15 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridRow gridRow4 = new DevComponents.DotNetBar.SuperGrid.GridRow();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -134,6 +148,32 @@
             this.tabControlPanel4 = new DevComponents.DotNetBar.TabControlPanel();
             this.tabItem4 = new DevComponents.DotNetBar.TabItem(this.components);
             this.ArchiveInfoTimer = new System.Windows.Forms.Timer(this.components);
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.expandableSplitter1 = new DevComponents.DotNetBar.ExpandableSplitter();
+            this.UserGrid = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.BtnChangeMyPsd = new DevComponents.DotNetBar.ButtonX();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.textBoxX2 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.textBoxX1 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkBoxX1 = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.textBoxX3 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.textBoxX4 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.label2 = new System.Windows.Forms.Label();
+            this.checkBoxX2 = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.textBoxX5 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.checkBoxX3 = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainTabCtrl)).BeginInit();
@@ -146,6 +186,14 @@
             this.panel3.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.tabControlPanel4.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -184,10 +232,10 @@
             // 
             this.MainTabCtrl.CanReorderTabs = true;
             this.MainTabCtrl.Controls.Add(this.tabControlPanel5);
+            this.MainTabCtrl.Controls.Add(this.tabControlPanel4);
             this.MainTabCtrl.Controls.Add(this.tabControlPanel3);
             this.MainTabCtrl.Controls.Add(this.tabControlPanel2);
             this.MainTabCtrl.Controls.Add(this.tabControlPanel1);
-            this.MainTabCtrl.Controls.Add(this.tabControlPanel4);
             this.MainTabCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainTabCtrl.Location = new System.Drawing.Point(0, 0);
             this.MainTabCtrl.Name = "MainTabCtrl";
@@ -364,44 +412,44 @@
             this.ReturnGrid.Name = "ReturnGrid";
             this.ReturnGrid.PrimaryGrid.Caption.RowHeight = 40;
             this.ReturnGrid.PrimaryGrid.Caption.Text = "资料总目";
-            gridColumn5.Name = "gcId";
-            gridColumn5.Visible = false;
-            gridColumn6.HeaderText = "资料名称";
-            gridColumn6.Name = "gcArchName";
-            gridColumn6.Width = 360;
-            gridColumn7.HeaderText = "归还日期";
-            gridColumn7.Name = "gcReturnDate";
-            gridColumn8.HeaderText = "份数";
-            gridColumn8.Name = "gcReturnCount";
-            gridColumn9.HeaderText = "归还人";
-            gridColumn9.Name = "gcReturnPerson";
-            gridColumn9.Width = 70;
-            gridColumn10.HeaderText = "有无缺失损坏";
-            gridColumn10.Name = "gcMissingDamage";
-            gridColumn10.Width = 90;
-            gridColumn11.HeaderText = "备注";
-            gridColumn11.Name = "gcRemark";
-            gridColumn11.Width = 80;
-            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn5);
-            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn6);
-            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn7);
-            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn8);
-            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn9);
-            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn10);
+            gridColumn11.Name = "gcId";
+            gridColumn11.Visible = false;
+            gridColumn12.HeaderText = "资料名称";
+            gridColumn12.Name = "gcArchName";
+            gridColumn12.Width = 360;
+            gridColumn13.HeaderText = "归还日期";
+            gridColumn13.Name = "gcReturnDate";
+            gridColumn14.HeaderText = "份数";
+            gridColumn14.Name = "gcReturnCount";
+            gridColumn15.HeaderText = "归还人";
+            gridColumn15.Name = "gcReturnPerson";
+            gridColumn15.Width = 70;
+            gridColumn16.HeaderText = "有无缺失损坏";
+            gridColumn16.Name = "gcMissingDamage";
+            gridColumn16.Width = 90;
+            gridColumn17.HeaderText = "备注";
+            gridColumn17.Name = "gcRemark";
+            gridColumn17.Width = 80;
             this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn11);
+            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn12);
+            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn13);
+            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn14);
+            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn15);
+            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn16);
+            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn17);
             this.ReturnGrid.PrimaryGrid.EnableFiltering = true;
             this.ReturnGrid.PrimaryGrid.Filter.RowHeight = 25;
             this.ReturnGrid.PrimaryGrid.Filter.Visible = true;
             this.ReturnGrid.PrimaryGrid.RowHeaderIndexOffset = 1;
-            gridRow3.Cells.Add(gridCell10);
-            gridRow3.Cells.Add(gridCell11);
-            gridRow3.Cells.Add(gridCell12);
-            gridRow3.Cells.Add(gridCell13);
-            gridRow3.Cells.Add(gridCell14);
-            gridRow3.Cells.Add(gridCell15);
-            gridRow3.InfoText = "";
-            this.ReturnGrid.PrimaryGrid.Rows.Add(gridRow3);
-            this.ReturnGrid.PrimaryGrid.Rows.Add(gridRow4);
+            gridRow5.Cells.Add(gridCell16);
+            gridRow5.Cells.Add(gridCell17);
+            gridRow5.Cells.Add(gridCell18);
+            gridRow5.Cells.Add(gridCell19);
+            gridRow5.Cells.Add(gridCell20);
+            gridRow5.Cells.Add(gridCell21);
+            gridRow5.InfoText = "";
+            this.ReturnGrid.PrimaryGrid.Rows.Add(gridRow5);
+            this.ReturnGrid.PrimaryGrid.Rows.Add(gridRow6);
             this.ReturnGrid.PrimaryGrid.ShowRowGridIndex = true;
             this.ReturnGrid.Size = new System.Drawing.Size(1068, 541);
             this.ReturnGrid.TabIndex = 5;
@@ -492,50 +540,50 @@
             this.LendGrid.Name = "LendGrid";
             this.LendGrid.PrimaryGrid.Caption.RowHeight = 40;
             this.LendGrid.PrimaryGrid.Caption.Text = "资料总目";
-            gridColumn12.Name = "gcId";
-            gridColumn12.Visible = false;
-            gridColumn13.HeaderText = "资料名称";
-            gridColumn13.Name = "gcArchName";
-            gridColumn13.Width = 360;
-            gridColumn14.HeaderText = "借出日期";
-            gridColumn14.Name = "gcLendDate";
-            gridColumn15.HeaderText = "份数";
-            gridColumn15.Name = "gcCount";
-            gridColumn16.HeaderText = "借出事由";
-            gridColumn16.Name = "gcReason";
-            gridColumn16.Width = 70;
-            gridColumn17.HeaderText = "借出单位";
-            gridColumn17.Name = "gcLendUnit";
-            gridColumn17.Width = 60;
-            gridColumn18.HeaderText = "借出人";
-            gridColumn18.Name = "gcLender";
-            gridColumn19.HeaderText = "电话";
-            gridColumn19.Name = "gcPhone";
-            gridColumn19.Width = 80;
-            gridColumn20.HeaderText = "预计归还时间";
-            gridColumn20.Name = "gcRebackDate";
-            this.LendGrid.PrimaryGrid.Columns.Add(gridColumn12);
-            this.LendGrid.PrimaryGrid.Columns.Add(gridColumn13);
-            this.LendGrid.PrimaryGrid.Columns.Add(gridColumn14);
-            this.LendGrid.PrimaryGrid.Columns.Add(gridColumn15);
-            this.LendGrid.PrimaryGrid.Columns.Add(gridColumn16);
-            this.LendGrid.PrimaryGrid.Columns.Add(gridColumn17);
+            gridColumn18.Name = "gcId";
+            gridColumn18.Visible = false;
+            gridColumn19.HeaderText = "资料名称";
+            gridColumn19.Name = "gcArchName";
+            gridColumn19.Width = 360;
+            gridColumn20.HeaderText = "借出日期";
+            gridColumn20.Name = "gcLendDate";
+            gridColumn21.HeaderText = "份数";
+            gridColumn21.Name = "gcCount";
+            gridColumn22.HeaderText = "借出事由";
+            gridColumn22.Name = "gcReason";
+            gridColumn22.Width = 70;
+            gridColumn23.HeaderText = "借出单位";
+            gridColumn23.Name = "gcLendUnit";
+            gridColumn23.Width = 60;
+            gridColumn24.HeaderText = "借出人";
+            gridColumn24.Name = "gcLender";
+            gridColumn25.HeaderText = "电话";
+            gridColumn25.Name = "gcPhone";
+            gridColumn25.Width = 80;
+            gridColumn26.HeaderText = "预计归还时间";
+            gridColumn26.Name = "gcRebackDate";
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn18);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn19);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn20);
+            this.LendGrid.PrimaryGrid.Columns.Add(gridColumn21);
+            this.LendGrid.PrimaryGrid.Columns.Add(gridColumn22);
+            this.LendGrid.PrimaryGrid.Columns.Add(gridColumn23);
+            this.LendGrid.PrimaryGrid.Columns.Add(gridColumn24);
+            this.LendGrid.PrimaryGrid.Columns.Add(gridColumn25);
+            this.LendGrid.PrimaryGrid.Columns.Add(gridColumn26);
             this.LendGrid.PrimaryGrid.EnableFiltering = true;
             this.LendGrid.PrimaryGrid.Filter.RowHeight = 25;
             this.LendGrid.PrimaryGrid.Filter.Visible = true;
             this.LendGrid.PrimaryGrid.RowHeaderIndexOffset = 1;
-            gridRow5.Cells.Add(gridCell16);
-            gridRow5.Cells.Add(gridCell17);
-            gridRow5.Cells.Add(gridCell18);
-            gridRow5.Cells.Add(gridCell19);
-            gridRow5.Cells.Add(gridCell20);
-            gridRow5.Cells.Add(gridCell21);
-            gridRow5.InfoText = "";
-            this.LendGrid.PrimaryGrid.Rows.Add(gridRow5);
-            this.LendGrid.PrimaryGrid.Rows.Add(gridRow6);
+            gridRow7.Cells.Add(gridCell22);
+            gridRow7.Cells.Add(gridCell23);
+            gridRow7.Cells.Add(gridCell24);
+            gridRow7.Cells.Add(gridCell25);
+            gridRow7.Cells.Add(gridCell26);
+            gridRow7.Cells.Add(gridCell27);
+            gridRow7.InfoText = "";
+            this.LendGrid.PrimaryGrid.Rows.Add(gridRow7);
+            this.LendGrid.PrimaryGrid.Rows.Add(gridRow8);
             this.LendGrid.PrimaryGrid.ShowRowGridIndex = true;
             this.LendGrid.Size = new System.Drawing.Size(1068, 541);
             this.LendGrid.TabIndex = 5;
@@ -625,65 +673,65 @@
             this.ArchiveGrid.Name = "ArchiveGrid";
             this.ArchiveGrid.PrimaryGrid.Caption.RowHeight = 40;
             this.ArchiveGrid.PrimaryGrid.Caption.Text = "资料总目";
-            gridColumn21.HeaderText = "资料名称";
-            gridColumn21.Name = "gcArchName";
-            gridColumn21.Width = 360;
-            gridColumn22.DefaultNewRowCellValue = "";
-            gridColumn22.Name = "gcId";
-            gridColumn22.Visible = false;
-            gridColumn23.DefaultNewRowCellValue = "";
-            gridColumn23.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridTextBoxDropDownEditControl);
-            gridColumn23.HeaderText = "资料分类";
-            gridColumn23.Name = "gcType";
-            gridColumn23.RenderType = typeof(DevComponents.DotNetBar.SuperGrid.GridComboBoxExEditControl);
-            gridColumn24.HeaderText = "收存日期";
-            gridColumn24.Name = "gcArchDate";
-            gridColumn25.HeaderText = "发文号";
-            gridColumn25.Name = "gcDispatchNum";
-            gridColumn26.HeaderText = "总份数";
-            gridColumn26.Name = "gcAllCount";
-            gridColumn26.Width = 70;
-            gridColumn27.HeaderText = "剩余份数";
-            gridColumn27.Name = "gcRemaining";
-            gridColumn27.Width = 60;
-            gridColumn28.HeaderText = "存放位置";
-            gridColumn28.Name = "gcLocation";
-            gridColumn29.HeaderText = "经办人";
-            gridColumn29.Name = "gcHandler";
-            gridColumn29.Width = 80;
-            gridColumn30.Name = "gcProjectId";
-            gridColumn30.Visible = false;
-            this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn21);
-            this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn22);
-            this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn23);
-            this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn24);
-            this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn25);
-            this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn26);
+            gridColumn27.HeaderText = "资料名称";
+            gridColumn27.Name = "gcArchName";
+            gridColumn27.Width = 360;
+            gridColumn28.DefaultNewRowCellValue = "";
+            gridColumn28.Name = "gcId";
+            gridColumn28.Visible = false;
+            gridColumn29.DefaultNewRowCellValue = "";
+            gridColumn29.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridTextBoxDropDownEditControl);
+            gridColumn29.HeaderText = "资料分类";
+            gridColumn29.Name = "gcType";
+            gridColumn29.RenderType = typeof(DevComponents.DotNetBar.SuperGrid.GridComboBoxExEditControl);
+            gridColumn30.HeaderText = "收存日期";
+            gridColumn30.Name = "gcArchDate";
+            gridColumn31.HeaderText = "发文号";
+            gridColumn31.Name = "gcDispatchNum";
+            gridColumn32.HeaderText = "总份数";
+            gridColumn32.Name = "gcAllCount";
+            gridColumn32.Width = 70;
+            gridColumn33.HeaderText = "剩余份数";
+            gridColumn33.Name = "gcRemaining";
+            gridColumn33.Width = 60;
+            gridColumn34.HeaderText = "存放位置";
+            gridColumn34.Name = "gcLocation";
+            gridColumn35.HeaderText = "经办人";
+            gridColumn35.Name = "gcHandler";
+            gridColumn35.Width = 80;
+            gridColumn36.Name = "gcProjectId";
+            gridColumn36.Visible = false;
             this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn27);
             this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn28);
             this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn29);
             this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn30);
+            this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn31);
+            this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn32);
+            this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn33);
+            this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn34);
+            this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn35);
+            this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn36);
             this.ArchiveGrid.PrimaryGrid.EnableFiltering = true;
             this.ArchiveGrid.PrimaryGrid.Filter.RowHeight = 25;
             this.ArchiveGrid.PrimaryGrid.Filter.Visible = true;
             this.ArchiveGrid.PrimaryGrid.RowHeaderIndexOffset = 1;
-            gridCell22.Value = "1";
-            gridCell23.Value = "2";
-            gridRow7.Cells.Add(gridCell22);
-            gridRow7.Cells.Add(gridCell23);
-            gridRow7.Cells.Add(gridCell24);
-            gridRow7.Cells.Add(gridCell25);
-            gridRow7.Cells.Add(gridCell26);
-            gridRow7.Cells.Add(gridCell27);
-            gridRow7.Expanded = true;
-            gridRow7.InfoText = "";
-            gridCell28.Value = "2";
+            gridCell28.Value = "1";
             gridCell29.Value = "2";
-            gridRow8.Cells.Add(gridCell28);
-            gridRow8.Cells.Add(gridCell29);
-            gridRow8.Cells.Add(gridCell30);
-            this.ArchiveGrid.PrimaryGrid.Rows.Add(gridRow7);
-            this.ArchiveGrid.PrimaryGrid.Rows.Add(gridRow8);
+            gridRow9.Cells.Add(gridCell28);
+            gridRow9.Cells.Add(gridCell29);
+            gridRow9.Cells.Add(gridCell30);
+            gridRow9.Cells.Add(gridCell31);
+            gridRow9.Cells.Add(gridCell32);
+            gridRow9.Cells.Add(gridCell33);
+            gridRow9.Expanded = true;
+            gridRow9.InfoText = "";
+            gridCell34.Value = "2";
+            gridCell35.Value = "2";
+            gridRow10.Cells.Add(gridCell34);
+            gridRow10.Cells.Add(gridCell35);
+            gridRow10.Cells.Add(gridCell36);
+            this.ArchiveGrid.PrimaryGrid.Rows.Add(gridRow9);
+            this.ArchiveGrid.PrimaryGrid.Rows.Add(gridRow10);
             this.ArchiveGrid.PrimaryGrid.ShowRowGridIndex = true;
             this.ArchiveGrid.Size = new System.Drawing.Size(1068, 541);
             this.ArchiveGrid.TabIndex = 3;
@@ -746,6 +794,7 @@
             // 
             // tabControlPanel4
             // 
+            this.tabControlPanel4.Controls.Add(this.panel6);
             this.tabControlPanel4.DisabledBackColor = System.Drawing.Color.Empty;
             this.tabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlPanel4.Location = new System.Drawing.Point(0, 26);
@@ -773,6 +822,378 @@
             this.ArchiveInfoTimer.Interval = 9000;
             this.ArchiveInfoTimer.Tick += new System.EventHandler(this.ArchiveInfoTimer_Tick);
             // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.panel8);
+            this.panel6.Controls.Add(this.panel7);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(1, 1);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1068, 592);
+            this.panel6.TabIndex = 0;
+            // 
+            // panel7
+            // 
+            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel7.Controls.Add(this.label5);
+            this.panel7.Controls.Add(this.checkBox1);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1068, 69);
+            this.panel7.TabIndex = 0;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.UserGrid);
+            this.panel8.Controls.Add(this.expandableSplitter1);
+            this.panel8.Controls.Add(this.panel9);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Location = new System.Drawing.Point(0, 69);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(1068, 523);
+            this.panel8.TabIndex = 1;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(796, 28);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(132, 16);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "允许管理员删除数据";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.groupBox3);
+            this.panel9.Controls.Add(this.groupBox2);
+            this.panel9.Controls.Add(this.groupBox1);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel9.Location = new System.Drawing.Point(702, 0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(366, 523);
+            this.panel9.TabIndex = 7;
+            // 
+            // expandableSplitter1
+            // 
+            this.expandableSplitter1.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(101)))), ((int)(((byte)(147)))), ((int)(((byte)(207)))));
+            this.expandableSplitter1.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.expandableSplitter1.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.expandableSplitter1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.expandableSplitter1.ExpandFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(101)))), ((int)(((byte)(147)))), ((int)(((byte)(207)))));
+            this.expandableSplitter1.ExpandFillColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.expandableSplitter1.ExpandLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.expandableSplitter1.ExpandLineColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.expandableSplitter1.GripDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.expandableSplitter1.GripDarkColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.expandableSplitter1.GripLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.expandableSplitter1.GripLightColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.expandableSplitter1.HotBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(151)))), ((int)(((byte)(61)))));
+            this.expandableSplitter1.HotBackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(184)))), ((int)(((byte)(94)))));
+            this.expandableSplitter1.HotBackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemPressedBackground2;
+            this.expandableSplitter1.HotBackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemPressedBackground;
+            this.expandableSplitter1.HotExpandFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(101)))), ((int)(((byte)(147)))), ((int)(((byte)(207)))));
+            this.expandableSplitter1.HotExpandFillColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.expandableSplitter1.HotExpandLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.expandableSplitter1.HotExpandLineColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.expandableSplitter1.HotGripDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(101)))), ((int)(((byte)(147)))), ((int)(((byte)(207)))));
+            this.expandableSplitter1.HotGripDarkColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.expandableSplitter1.HotGripLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.expandableSplitter1.HotGripLightColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.expandableSplitter1.Location = new System.Drawing.Point(680, 0);
+            this.expandableSplitter1.Name = "expandableSplitter1";
+            this.expandableSplitter1.Size = new System.Drawing.Size(22, 523);
+            this.expandableSplitter1.Style = DevComponents.DotNetBar.eSplitterStyle.Office2007;
+            this.expandableSplitter1.TabIndex = 8;
+            this.expandableSplitter1.TabStop = false;
+            // 
+            // UserGrid
+            // 
+            this.UserGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UserGrid.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
+            this.UserGrid.Location = new System.Drawing.Point(0, 0);
+            this.UserGrid.Name = "UserGrid";
+            this.UserGrid.PrimaryGrid.Caption.RowHeight = 40;
+            this.UserGrid.PrimaryGrid.Caption.Text = "用户列表";
+            gridColumn5.Name = "gcId";
+            gridColumn5.Visible = false;
+            gridColumn6.HeaderText = "登陆名称";
+            gridColumn6.Name = "gcUserName";
+            gridColumn6.Width = 160;
+            gridColumn7.HeaderText = "真实姓名";
+            gridColumn7.Name = "gcRealName";
+            gridColumn7.Width = 120;
+            gridColumn8.HeaderText = "单位";
+            gridColumn8.Name = "gcUnit";
+            gridColumn8.Width = 160;
+            gridColumn9.HeaderText = "角色类型";
+            gridColumn9.Name = "gcRoleType";
+            gridColumn10.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridButtonXEditControl);
+            gridColumn10.Name = "";
+            this.UserGrid.PrimaryGrid.Columns.Add(gridColumn5);
+            this.UserGrid.PrimaryGrid.Columns.Add(gridColumn6);
+            this.UserGrid.PrimaryGrid.Columns.Add(gridColumn7);
+            this.UserGrid.PrimaryGrid.Columns.Add(gridColumn8);
+            this.UserGrid.PrimaryGrid.Columns.Add(gridColumn9);
+            this.UserGrid.PrimaryGrid.Columns.Add(gridColumn10);
+            this.UserGrid.PrimaryGrid.EnableFiltering = true;
+            this.UserGrid.PrimaryGrid.Filter.RowHeight = 25;
+            this.UserGrid.PrimaryGrid.Filter.Visible = true;
+            this.UserGrid.PrimaryGrid.RowHeaderIndexOffset = 1;
+            gridRow3.Cells.Add(gridCell10);
+            gridRow3.Cells.Add(gridCell11);
+            gridRow3.Cells.Add(gridCell12);
+            gridRow3.Cells.Add(gridCell13);
+            gridRow3.Cells.Add(gridCell14);
+            gridRow3.Cells.Add(gridCell15);
+            gridRow3.InfoText = "";
+            this.UserGrid.PrimaryGrid.Rows.Add(gridRow3);
+            this.UserGrid.PrimaryGrid.Rows.Add(gridRow4);
+            this.UserGrid.PrimaryGrid.ShowRowGridIndex = true;
+            this.UserGrid.Size = new System.Drawing.Size(680, 523);
+            this.UserGrid.TabIndex = 9;
+            this.UserGrid.Text = "UserGrid";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.BtnChangeMyPsd);
+            this.groupBox1.Controls.Add(this.labelX2);
+            this.groupBox1.Controls.Add(this.labelX1);
+            this.groupBox1.Controls.Add(this.textBoxX2);
+            this.groupBox1.Controls.Add(this.textBoxX1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(366, 171);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "修改口令";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.textBoxX4);
+            this.groupBox2.Controls.Add(this.textBoxX3);
+            this.groupBox2.Controls.Add(this.checkBoxX1);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox2.Location = new System.Drawing.Point(0, 345);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(366, 178);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "备份";
+            // 
+            // BtnChangeMyPsd
+            // 
+            this.BtnChangeMyPsd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.BtnChangeMyPsd.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.BtnChangeMyPsd.Location = new System.Drawing.Point(156, 119);
+            this.BtnChangeMyPsd.Name = "BtnChangeMyPsd";
+            this.BtnChangeMyPsd.Size = new System.Drawing.Size(129, 23);
+            this.BtnChangeMyPsd.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
+            this.BtnChangeMyPsd.TabIndex = 9;
+            this.BtnChangeMyPsd.Text = "修改我的口令";
+            this.BtnChangeMyPsd.Click += new System.EventHandler(this.BtnChangeMyPsd_Click);
+            // 
+            // labelX2
+            // 
+            // 
+            // 
+            // 
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.Location = new System.Drawing.Point(75, 78);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(75, 23);
+            this.labelX2.TabIndex = 8;
+            this.labelX2.Text = "再次输入密码";
+            this.labelX2.TextAlignment = System.Drawing.StringAlignment.Far;
+            // 
+            // labelX1
+            // 
+            // 
+            // 
+            // 
+            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.Location = new System.Drawing.Point(75, 36);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(75, 23);
+            this.labelX1.TabIndex = 7;
+            this.labelX1.Text = "请输入密码";
+            this.labelX1.TextAlignment = System.Drawing.StringAlignment.Far;
+            // 
+            // textBoxX2
+            // 
+            // 
+            // 
+            // 
+            this.textBoxX2.Border.Class = "TextBoxBorder";
+            this.textBoxX2.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.textBoxX2.Location = new System.Drawing.Point(156, 78);
+            this.textBoxX2.Name = "textBoxX2";
+            this.textBoxX2.PasswordChar = '*';
+            this.textBoxX2.PreventEnterBeep = true;
+            this.textBoxX2.Size = new System.Drawing.Size(129, 21);
+            this.textBoxX2.TabIndex = 6;
+            // 
+            // textBoxX1
+            // 
+            // 
+            // 
+            // 
+            this.textBoxX1.Border.Class = "TextBoxBorder";
+            this.textBoxX1.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.textBoxX1.Location = new System.Drawing.Point(156, 36);
+            this.textBoxX1.Name = "textBoxX1";
+            this.textBoxX1.PasswordChar = '*';
+            this.textBoxX1.PreventEnterBeep = true;
+            this.textBoxX1.Size = new System.Drawing.Size(129, 21);
+            this.textBoxX1.TabIndex = 5;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.checkBoxX3);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.textBoxX5);
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.checkBoxX2);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(0, 171);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(366, 174);
+            this.groupBox3.TabIndex = 8;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "系统设置";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(251, 40);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(17, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "天";
+            // 
+            // checkBoxX1
+            // 
+            // 
+            // 
+            // 
+            this.checkBoxX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.checkBoxX1.Location = new System.Drawing.Point(62, 32);
+            this.checkBoxX1.Name = "checkBoxX1";
+            this.checkBoxX1.Size = new System.Drawing.Size(80, 29);
+            this.checkBoxX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
+            this.checkBoxX1.TabIndex = 1;
+            this.checkBoxX1.Text = "自动备份";
+            // 
+            // textBoxX3
+            // 
+            // 
+            // 
+            // 
+            this.textBoxX3.Border.Class = "TextBoxBorder";
+            this.textBoxX3.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.textBoxX3.Location = new System.Drawing.Point(148, 36);
+            this.textBoxX3.Name = "textBoxX3";
+            this.textBoxX3.PreventEnterBeep = true;
+            this.textBoxX3.Size = new System.Drawing.Size(100, 21);
+            this.textBoxX3.TabIndex = 2;
+            this.textBoxX3.Text = "3";
+            // 
+            // textBoxX4
+            // 
+            // 
+            // 
+            // 
+            this.textBoxX4.Border.Class = "TextBoxBorder";
+            this.textBoxX4.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.textBoxX4.Location = new System.Drawing.Point(67, 85);
+            this.textBoxX4.Name = "textBoxX4";
+            this.textBoxX4.PreventEnterBeep = true;
+            this.textBoxX4.Size = new System.Drawing.Size(288, 21);
+            this.textBoxX4.TabIndex = 3;
+            this.textBoxX4.Text = "d:\\ArchiveInfoBackup";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 87);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "备份路径";
+            // 
+            // checkBoxX2
+            // 
+            // 
+            // 
+            // 
+            this.checkBoxX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.checkBoxX2.Location = new System.Drawing.Point(46, 47);
+            this.checkBoxX2.Name = "checkBoxX2";
+            this.checkBoxX2.Size = new System.Drawing.Size(125, 29);
+            this.checkBoxX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
+            this.checkBoxX2.TabIndex = 2;
+            this.checkBoxX2.Text = "自动提醒归还资料";
+            // 
+            // textBoxX5
+            // 
+            // 
+            // 
+            // 
+            this.textBoxX5.Border.Class = "TextBoxBorder";
+            this.textBoxX5.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.textBoxX5.Location = new System.Drawing.Point(225, 55);
+            this.textBoxX5.Name = "textBoxX5";
+            this.textBoxX5.PreventEnterBeep = true;
+            this.textBoxX5.Size = new System.Drawing.Size(42, 21);
+            this.textBoxX5.TabIndex = 4;
+            this.textBoxX5.Text = "3";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(273, 59);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "天提醒";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(190, 59);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 12);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "提前";
+            // 
+            // checkBoxX3
+            // 
+            // 
+            // 
+            // 
+            this.checkBoxX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.checkBoxX3.Location = new System.Drawing.Point(46, 101);
+            this.checkBoxX3.Name = "checkBoxX3";
+            this.checkBoxX3.Size = new System.Drawing.Size(239, 29);
+            this.checkBoxX3.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
+            this.checkBoxX3.TabIndex = 6;
+            this.checkBoxX3.Text = "关闭程序时不退出，最小化到托盘";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(195, 28);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(164, 26);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "本页功能暂未实现";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -785,6 +1206,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "资料管理助手";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.panel1.ResumeLayout(false);
@@ -801,6 +1223,17 @@
             this.panel3.ResumeLayout(false);
             this.tabControlPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.tabControlPanel4.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -902,6 +1335,32 @@
         private DevComponents.DotNetBar.ButtonX btnSaveProject;
         private DevComponents.DotNetBar.ButtonX btnRegisterProject;
         private DevComponents.DotNetBar.TabItem tabItem5;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private DevComponents.DotNetBar.ExpandableSplitter expandableSplitter1;
+        private System.Windows.Forms.Panel panel9;
+        private DevComponents.DotNetBar.SuperGrid.SuperGridControl UserGrid;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label2;
+        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX4;
+        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX3;
+        private DevComponents.DotNetBar.Controls.CheckBoxX checkBoxX1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private DevComponents.DotNetBar.ButtonX BtnChangeMyPsd;
+        private DevComponents.DotNetBar.LabelX labelX2;
+        private DevComponents.DotNetBar.LabelX labelX1;
+        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX2;
+        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX1;
+        private DevComponents.DotNetBar.Controls.CheckBoxX checkBoxX3;
+        private System.Windows.Forms.Label label4;
+        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX5;
+        private System.Windows.Forms.Label label3;
+        private DevComponents.DotNetBar.Controls.CheckBoxX checkBoxX2;
+        private System.Windows.Forms.Label label5;
 
     }
 }

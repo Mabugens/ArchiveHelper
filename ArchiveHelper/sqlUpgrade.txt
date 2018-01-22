@@ -1,0 +1,2 @@
+-- 2018.1.22
+alter table lendArchive  add column ApprovedBy Text;

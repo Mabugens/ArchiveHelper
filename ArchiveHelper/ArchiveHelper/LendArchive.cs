@@ -20,5 +20,7 @@ namespace ArchiveHelper
         public Nullable<DateTime> ExpectedReturnDate { get; set; }
 
         public string Borrower { get; set; }
+
+        public string ApprovedBy { get; set; }
     }
 }

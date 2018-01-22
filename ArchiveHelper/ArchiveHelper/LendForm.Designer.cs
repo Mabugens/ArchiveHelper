@@ -40,6 +40,7 @@
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn8 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn9 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn10 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn11 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridRow gridRow1 = new DevComponents.DotNetBar.SuperGrid.GridRow();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell1 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell2 = new DevComponents.DotNetBar.SuperGrid.GridCell();
@@ -94,6 +95,8 @@
             gridColumn9.Name = "gcRebackDate";
             gridColumn10.HeaderText = "经办人";
             gridColumn10.Name = "gcHandler";
+            gridColumn11.HeaderText = "核准人";
+            gridColumn11.Name = "gcApprovedBy";
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn1);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn2);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn3);
@@ -104,6 +107,7 @@
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn8);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn9);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn10);
+            this.LendGrid.PrimaryGrid.Columns.Add(gridColumn11);
             this.LendGrid.PrimaryGrid.EnableFiltering = true;
             this.LendGrid.PrimaryGrid.Filter.RowHeight = 25;
             this.LendGrid.PrimaryGrid.Filter.Visible = true;

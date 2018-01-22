@@ -7,7 +7,7 @@ namespace ArchiveHelper
 {
     public class ArchiveInfo
     {
-        private int _freeze = 0;
+        public bool HasLend { get; set; }
 
         public int Id { get; set; }
         public string ArchiveName { get; set; }

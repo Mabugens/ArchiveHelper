@@ -318,6 +318,19 @@ namespace ArchiveHelper
         {
             preEditValue = (null == e.GridCell.Value) ? "" : e.GridCell.Value;
         }
+
+        private void BtnChangeMyPsd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (EditList.Count > 0)
+            {
+                e.Cancel = true;
+            }
+        }
     }
 
     internal class ArchiveTypeComboBox : GridComboBoxExEditControl

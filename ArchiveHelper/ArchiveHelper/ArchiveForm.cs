@@ -36,6 +36,7 @@ namespace ArchiveHelper
             panel.ShowTreeButtons = true;
             panel.ShowTreeLines = true;
             panel.ShowRowGridIndex = true;
+            panel.EnableColumnFiltering = true;
             panel.RowDragBehavior = RowDragBehavior.GroupMove;
 
             panel.Rows.Clear();
@@ -130,7 +131,10 @@ namespace ArchiveHelper
             {
                 conn.Open();
                 SQLiteCommand sql_cmd = conn.CreateCommand();
-                sql_cmd.CommandText = string.Format("select * from ArchiveInfo where ProjectId = {0} order by ArchDate desc ", ProjectId);
+                sql_cmd.CommandText = string.Format("select a.Id,a.ArchiveName,ArchType,ArchDate,DispatchNum,a.Copies,Remaining,StorageLocation,a.Handler,ProjectId "
+                    + ", count(b.Id) bcount from ArchiveInfo a left join lendArchive b on a.ArchiveName = b.ArchiveName where ProjectId = {0} "
+                    + " group by a.Id,a.ArchiveName,ArchType,ArchDate,DispatchNum,a.Copies,Remaining,StorageLocation,a.Handler,ProjectId "
+                    + " order by ArchDate desc ", ProjectId);
                 SQLiteDataReader reader = sql_cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -150,6 +154,7 @@ namespace ArchiveHelper
                         ai.StorageLocation = reader.IsDBNull(7) ? "" : reader.GetString(7);
                         ai.Handler = reader.IsDBNull(8) ? "" : reader.GetString(8);
                         ai.ProjectId = reader.GetInt16(9);
+                        ai.HasLend = reader.GetInt16(10) > 0;
                         ArchiveInfoList.Add(ai);
                     }
                 }
@@ -177,7 +182,8 @@ namespace ArchiveHelper
                 gr[7].Value = ai.StorageLocation;
                 gr[8].Value = ai.Handler;
                 gr[9].Value = ai.ProjectId;
-                gr[6].ReadOnly = true;
+                gr[6].ReadOnly = ai.HasLend;
+                gr[1].Tag = ai;
                 ArchiveGrid.PrimaryGrid.Rows.Add(gr);
             }
         }
@@ -209,8 +215,6 @@ namespace ArchiveHelper
                 conn.Open();
                 SQLiteCommand cmd = new SQLiteCommand();
                 cmd.Connection = conn;
-                SQLiteTransaction tx = conn.BeginTransaction();
-                cmd.Transaction = tx;
                 try
                 {
                     foreach (GridRow gr in list)
@@ -226,11 +230,9 @@ namespace ArchiveHelper
                         ArchiveInfoRetreeIdFixRowCellReadonly(gr, ai);
                         ArchiveInfoList.Add(ai);
                     }
-                    tx.Commit();
                 }
                 catch (System.Data.SQLite.SQLiteException E)
                 {
-                    tx.Rollback();
                     MessageBox.Show(cmd.CommandText + Environment.NewLine + E.Message);
                 }
                 finally
@@ -266,7 +268,8 @@ namespace ArchiveHelper
                 Remaining = (null != gr[6].Value) ? int.Parse(gr[6].Value.ToString()) : 0,
                 StorageLocation = (string)gr[7].Value,
                 Handler = (string)gr[8].Value,
-                ProjectId = this.ProjectId //Convert.ToInt16(gr[9].Value)
+                ProjectId = this.ProjectId,
+                HasLend = gr[6].ReadOnly    ///////
             };
         }
         private void ArchiveInfoRetreeIdFixRowCellReadonly(GridRow gr, ArchiveInfo ai)
@@ -274,14 +277,16 @@ namespace ArchiveHelper
             gr.RowDirty = false;
             if (ai.Id == 0)
             {
-                gr[6].ReadOnly = true;
+                gr[6].ReadOnly = ai.HasLend;
                 using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
                 {
                     conn.Open();
                     SQLiteCommand sql_cmd = conn.CreateCommand();
                     sql_cmd.CommandText = "select seq from sqlite_sequence where name='ArchiveInfo'; ";
-                    int newId = Convert.ToInt32(sql_cmd.ExecuteScalar());
-                    gr["gcId"].Value = newId;
+                    ai.Id = Convert.ToInt32(sql_cmd.ExecuteScalar());
+                    gr["gcId"].Value = ai.Id;
+                    ai.HasLend = false;
+                    gr["gcId"].Tag = ai;
                     conn.Close();
                 }
             }
@@ -444,7 +449,13 @@ namespace ArchiveHelper
 
         private void ArchiveGrid_EndEdit(object sender, GridEditEventArgs e)
         {
-            if (e.GridCell.GridColumn.Name.Equals("gcAllCount") && "".Equals(e.GridCell.GridRow.Cells["gcId"].Value))
+            object o = e.GridCell.GridRow.Cells["gcId"].Tag;
+            if (o == null)
+            {
+                return;
+            }
+            ArchiveInfo ai = (ArchiveInfo)o;
+            if (e.GridCell.GridColumn.Name.Equals("gcAllCount") && !ai.HasLend)
             {
                 e.GridCell.GridRow.Cells["gcRemaining"].Value = e.GridCell.Value;
             }

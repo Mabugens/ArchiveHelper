@@ -150,6 +150,7 @@
             this.ArchiveGrid.PrimaryGrid.Filter.RowHeight = 25;
             this.ArchiveGrid.PrimaryGrid.Filter.Visible = true;
             this.ArchiveGrid.PrimaryGrid.RowHeaderIndexOffset = 1;
+            this.ArchiveGrid.PrimaryGrid.RowHeaderWidth = 65;
             gridCell1.Value = "1";
             gridCell2.Value = "2";
             gridRow1.Cells.Add(gridCell1);

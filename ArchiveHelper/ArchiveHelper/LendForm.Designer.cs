@@ -41,6 +41,7 @@
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn9 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn10 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn11 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn12 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridRow gridRow1 = new DevComponents.DotNetBar.SuperGrid.GridRow();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell1 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell2 = new DevComponents.DotNetBar.SuperGrid.GridCell();
@@ -52,10 +53,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LendForm));
             this.LendGrid = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnSaveAndReturn = new DevComponents.DotNetBar.ButtonX();
             this.btnLendRefresh = new DevComponents.DotNetBar.ButtonX();
             this.btnSaveSend = new DevComponents.DotNetBar.ButtonX();
             this.btnLend = new DevComponents.DotNetBar.ButtonX();
-            this.btnSaveAndReturn = new DevComponents.DotNetBar.ButtonX();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,7 +67,7 @@
             this.LendGrid.Location = new System.Drawing.Point(0, 51);
             this.LendGrid.Name = "LendGrid";
             this.LendGrid.PrimaryGrid.Caption.RowHeight = 40;
-            this.LendGrid.PrimaryGrid.Caption.Text = "资料总目";
+            this.LendGrid.PrimaryGrid.Caption.Text = "资料借出登记表";
             gridColumn1.Name = "gcId";
             gridColumn1.Visible = false;
             gridColumn2.HeaderText = "资料名称";
@@ -97,6 +98,8 @@
             gridColumn10.Name = "gcHandler";
             gridColumn11.HeaderText = "核准人";
             gridColumn11.Name = "gcApprovedBy";
+            gridColumn12.HeaderText = "是否需要归还";
+            gridColumn12.Name = "gcNeedReturn";
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn1);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn2);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn3);
@@ -108,6 +111,7 @@
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn9);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn10);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn11);
+            this.LendGrid.PrimaryGrid.Columns.Add(gridColumn12);
             this.LendGrid.PrimaryGrid.EnableFiltering = true;
             this.LendGrid.PrimaryGrid.Filter.RowHeight = 25;
             this.LendGrid.PrimaryGrid.Filter.Visible = true;
@@ -122,7 +126,7 @@
             this.LendGrid.PrimaryGrid.Rows.Add(gridRow1);
             this.LendGrid.PrimaryGrid.Rows.Add(gridRow2);
             this.LendGrid.PrimaryGrid.ShowRowGridIndex = true;
-            this.LendGrid.Size = new System.Drawing.Size(1054, 512);
+            this.LendGrid.Size = new System.Drawing.Size(1285, 543);
             this.LendGrid.TabIndex = 7;
             this.LendGrid.Text = "superGridControl3";
             // 
@@ -135,8 +139,22 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1054, 51);
+            this.panel3.Size = new System.Drawing.Size(1285, 51);
             this.panel3.TabIndex = 6;
+            // 
+            // btnSaveAndReturn
+            // 
+            this.btnSaveAndReturn.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSaveAndReturn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveAndReturn.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnSaveAndReturn.Location = new System.Drawing.Point(1133, 15);
+            this.btnSaveAndReturn.Name = "btnSaveAndReturn";
+            this.btnSaveAndReturn.Size = new System.Drawing.Size(140, 26);
+            this.btnSaveAndReturn.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
+            this.btnSaveAndReturn.TabIndex = 4;
+            this.btnSaveAndReturn.Text = "保存并返回登记收存";
+            this.btnSaveAndReturn.Click += new System.EventHandler(this.btnSaveAndReturn_Click);
             // 
             // btnLendRefresh
             // 
@@ -158,7 +176,7 @@
             this.btnSaveSend.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveSend.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSaveSend.Location = new System.Drawing.Point(796, 15);
+            this.btnSaveSend.Location = new System.Drawing.Point(1027, 15);
             this.btnSaveSend.Name = "btnSaveSend";
             this.btnSaveSend.Size = new System.Drawing.Size(75, 26);
             this.btnSaveSend.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
@@ -178,25 +196,11 @@
             this.btnLend.Text = "登记借出";
             this.btnLend.Click += new System.EventHandler(this.btnLend_Click);
             // 
-            // btnSaveAndReturn
-            // 
-            this.btnSaveAndReturn.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSaveAndReturn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveAndReturn.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSaveAndReturn.Location = new System.Drawing.Point(902, 15);
-            this.btnSaveAndReturn.Name = "btnSaveAndReturn";
-            this.btnSaveAndReturn.Size = new System.Drawing.Size(140, 26);
-            this.btnSaveAndReturn.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
-            this.btnSaveAndReturn.TabIndex = 4;
-            this.btnSaveAndReturn.Text = "保存并返回登记收存";
-            this.btnSaveAndReturn.Click += new System.EventHandler(this.btnSaveAndReturn_Click);
-            // 
             // LendForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1054, 563);
+            this.ClientSize = new System.Drawing.Size(1285, 594);
             this.Controls.Add(this.LendGrid);
             this.Controls.Add(this.panel3);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -204,6 +208,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "借出资料";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LendForm_FormClosing);
             this.Shown += new System.EventHandler(this.LendForm_Shown);
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);

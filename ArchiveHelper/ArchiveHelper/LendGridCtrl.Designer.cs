@@ -32,11 +32,16 @@
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn2 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn3 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn4 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.Style.Background background1 = new DevComponents.DotNetBar.SuperGrid.Style.Background();
+            DevComponents.DotNetBar.SuperGrid.Style.BackColorBlend backColorBlend1 = new DevComponents.DotNetBar.SuperGrid.Style.BackColorBlend();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn5 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn6 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn7 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn8 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn9 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn10 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn11 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn12 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridRow gridRow1 = new DevComponents.DotNetBar.SuperGrid.GridRow();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell1 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell2 = new DevComponents.DotNetBar.SuperGrid.GridCell();
@@ -55,7 +60,7 @@
             this.LendGrid.Location = new System.Drawing.Point(0, 0);
             this.LendGrid.Name = "LendGrid";
             this.LendGrid.PrimaryGrid.Caption.RowHeight = 40;
-            this.LendGrid.PrimaryGrid.Caption.Text = "资料总目";
+            this.LendGrid.PrimaryGrid.Caption.Text = "资料借出登记表";
             gridColumn1.Name = "gcId";
             gridColumn1.Visible = false;
             gridColumn2.HeaderText = "资料名称";
@@ -63,6 +68,10 @@
             gridColumn2.Width = 360;
             gridColumn3.HeaderText = "借出日期";
             gridColumn3.Name = "gcLendDate";
+            backColorBlend1.Colors = new System.Drawing.Color[] {
+        System.Drawing.Color.LightGray};
+            background1.BackColorBlend = backColorBlend1;
+            gridColumn4.CellStyles.Default.Background = background1;
             gridColumn4.HeaderText = "份数";
             gridColumn4.Name = "gcCount";
             gridColumn5.HeaderText = "借出事由";
@@ -72,12 +81,18 @@
             gridColumn6.Name = "gcLendUnit";
             gridColumn6.Width = 60;
             gridColumn7.HeaderText = "借出人";
-            gridColumn7.Name = "gcLender";
+            gridColumn7.Name = "gcBorrower";
             gridColumn8.HeaderText = "电话";
             gridColumn8.Name = "gcPhone";
             gridColumn8.Width = 80;
             gridColumn9.HeaderText = "预计归还时间";
             gridColumn9.Name = "gcRebackDate";
+            gridColumn10.HeaderText = "经办人";
+            gridColumn10.Name = "gcHandler";
+            gridColumn11.HeaderText = "核准人";
+            gridColumn11.Name = "gcApprovedBy";
+            gridColumn12.HeaderText = "是否需要归还";
+            gridColumn12.Name = "gcNeedReturn";
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn1);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn2);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn3);
@@ -87,6 +102,9 @@
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn7);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn8);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn9);
+            this.LendGrid.PrimaryGrid.Columns.Add(gridColumn10);
+            this.LendGrid.PrimaryGrid.Columns.Add(gridColumn11);
+            this.LendGrid.PrimaryGrid.Columns.Add(gridColumn12);
             this.LendGrid.PrimaryGrid.EnableFiltering = true;
             this.LendGrid.PrimaryGrid.Filter.RowHeight = 25;
             this.LendGrid.PrimaryGrid.Filter.Visible = true;
@@ -101,8 +119,8 @@
             this.LendGrid.PrimaryGrid.Rows.Add(gridRow1);
             this.LendGrid.PrimaryGrid.Rows.Add(gridRow2);
             this.LendGrid.PrimaryGrid.ShowRowGridIndex = true;
-            this.LendGrid.Size = new System.Drawing.Size(976, 585);
-            this.LendGrid.TabIndex = 6;
+            this.LendGrid.Size = new System.Drawing.Size(1308, 585);
+            this.LendGrid.TabIndex = 8;
             this.LendGrid.Text = "superGridControl3";
             // 
             // LendGridCtrl
@@ -111,7 +129,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.LendGrid);
             this.Name = "LendGridCtrl";
-            this.Size = new System.Drawing.Size(976, 585);
+            this.Size = new System.Drawing.Size(1308, 585);
             this.ResumeLayout(false);
 
         }
@@ -119,5 +137,7 @@
         #endregion
 
         private DevComponents.DotNetBar.SuperGrid.SuperGridControl LendGrid;
+
+
     }
 }

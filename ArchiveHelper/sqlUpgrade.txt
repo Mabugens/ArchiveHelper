@@ -1,2 +1,10 @@
 -- 2018.1.22
 alter table lendArchive  add column ApprovedBy Text;
+
+-- 2018.1.23
+Alter Table LendArchive add Column NeedReturn Text default '需要归还';
+
+Alter Table ArchiveInfo add Column RegisterDate Date;
+Alter Table ArchiveInfo add Column Remark Text;
+
+update LendArchive set NeedReturn='需归还' where needReturn is null;

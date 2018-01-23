@@ -31,6 +31,7 @@ namespace ArchiveHelper
         {
             GridPanel panel = ReturnGrid.PrimaryGrid;
             panel.Rows.Clear();
+            panel.EnableColumnFiltering = true;
 
             panel.Columns[1].EditorType = typeof(ArchiveDropDownEditControl);
             List<string> Archives = GetArchiveList();
@@ -235,6 +236,11 @@ namespace ArchiveHelper
         {
             btnSaveReturn_Click(sender, e);
             this.Close();
+        }
+
+        private void ReturnForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            btnSaveReturn_Click(sender, e);
         }
     }
 }

@@ -23,5 +23,9 @@ namespace ArchiveHelper
 
         public ProjectInfo Project { get; set; }
 
+        public Nullable<DateTime> RegisterDate { get; set; }
+
+        public string Remark { get; set; }
+
     }
 }

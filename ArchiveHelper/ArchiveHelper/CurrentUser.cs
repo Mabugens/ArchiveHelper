@@ -7,10 +7,13 @@ namespace ArchiveHelper
 {
     public class CurrentUser
     {
-        private User currentUser;
-        //public static User Instance { get{
-        //    return currentUser;
-        //} 
-        //}
+        private static User currentUser;
+        public static User Instance
+        {
+            get
+            {
+                return currentUser;
+            }
+        }
     }
 }

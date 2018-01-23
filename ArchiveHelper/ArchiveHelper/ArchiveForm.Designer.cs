@@ -40,6 +40,8 @@
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn10 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn11 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn12 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn13 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn14 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridRow gridRow1 = new DevComponents.DotNetBar.SuperGrid.GridRow();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell1 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell2 = new DevComponents.DotNetBar.SuperGrid.GridCell();
@@ -74,7 +76,7 @@
             this.tabControlPanel1.Location = new System.Drawing.Point(0, 0);
             this.tabControlPanel1.Name = "tabControlPanel1";
             this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(1150, 668);
+            this.tabControlPanel1.Size = new System.Drawing.Size(1231, 668);
             this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(179)))), ((int)(((byte)(231)))));
             this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(254)))));
             this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -106,7 +108,7 @@
             gridColumn3.Name = "gcType";
             gridColumn3.RenderType = typeof(DevComponents.DotNetBar.SuperGrid.GridComboBoxExEditControl);
             gridColumn3.Width = 75;
-            gridColumn4.HeaderText = "收存日期";
+            gridColumn4.HeaderText = "资料日期";
             gridColumn4.Name = "gcArchDate";
             gridColumn5.HeaderText = "发文号";
             gridColumn5.Name = "gcDispatchNum";
@@ -123,17 +125,21 @@
             gridColumn9.Width = 80;
             gridColumn10.Name = "gcProjectId";
             gridColumn10.Visible = false;
-            gridColumn11.ColumnSortMode = DevComponents.DotNetBar.SuperGrid.ColumnSortMode.None;
-            gridColumn11.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridButtonXEditControl);
-            gridColumn11.HeaderText = "借出";
-            gridColumn11.Name = "gcLend";
-            gridColumn11.RenderType = typeof(DevComponents.DotNetBar.SuperGrid.GridButtonXEditControl);
-            gridColumn11.SortIndicator = DevComponents.DotNetBar.SuperGrid.SortIndicator.None;
-            gridColumn11.Width = 80;
-            gridColumn12.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridButtonXEditControl);
-            gridColumn12.HeaderText = "归还";
-            gridColumn12.Name = "gcReturn";
-            gridColumn12.Width = 80;
+            gridColumn11.HeaderText = "收存日期";
+            gridColumn11.Name = "gcRegisteDate";
+            gridColumn12.HeaderText = "备注";
+            gridColumn12.Name = "gcRemark";
+            gridColumn13.ColumnSortMode = DevComponents.DotNetBar.SuperGrid.ColumnSortMode.None;
+            gridColumn13.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridButtonXEditControl);
+            gridColumn13.HeaderText = "借出";
+            gridColumn13.Name = "gcLend";
+            gridColumn13.RenderType = typeof(DevComponents.DotNetBar.SuperGrid.GridButtonXEditControl);
+            gridColumn13.SortIndicator = DevComponents.DotNetBar.SuperGrid.SortIndicator.None;
+            gridColumn13.Width = 80;
+            gridColumn14.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridButtonXEditControl);
+            gridColumn14.HeaderText = "归还";
+            gridColumn14.Name = "gcReturn";
+            gridColumn14.Width = 80;
             this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn1);
             this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn2);
             this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn3);
@@ -146,6 +152,8 @@
             this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn10);
             this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn11);
             this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn12);
+            this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn13);
+            this.ArchiveGrid.PrimaryGrid.Columns.Add(gridColumn14);
             this.ArchiveGrid.PrimaryGrid.EnableFiltering = true;
             this.ArchiveGrid.PrimaryGrid.Filter.RowHeight = 25;
             this.ArchiveGrid.PrimaryGrid.Filter.Visible = true;
@@ -177,7 +185,7 @@
             this.ArchiveGrid.PrimaryGrid.Rows.Add(gridRow1);
             this.ArchiveGrid.PrimaryGrid.Rows.Add(gridRow2);
             this.ArchiveGrid.PrimaryGrid.ShowRowGridIndex = true;
-            this.ArchiveGrid.Size = new System.Drawing.Size(1148, 615);
+            this.ArchiveGrid.Size = new System.Drawing.Size(1229, 615);
             this.ArchiveGrid.TabIndex = 3;
             this.ArchiveGrid.Text = "superGridControl3";
             this.ArchiveGrid.AfterCollapse += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridAfterCollapseEventArgs>(this.ArchiveGrid_AfterCollapse);
@@ -193,7 +201,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(1, 1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1148, 51);
+            this.panel2.Size = new System.Drawing.Size(1229, 51);
             this.panel2.TabIndex = 2;
             // 
             // btnRefreshArchive
@@ -216,7 +224,7 @@
             this.btnSaveRegister.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveRegister.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSaveRegister.Location = new System.Drawing.Point(982, 15);
+            this.btnSaveRegister.Location = new System.Drawing.Point(1063, 15);
             this.btnSaveRegister.Name = "btnSaveRegister";
             this.btnSaveRegister.Size = new System.Drawing.Size(75, 26);
             this.btnSaveRegister.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
@@ -240,13 +248,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1150, 668);
+            this.ClientSize = new System.Drawing.Size(1231, 668);
             this.Controls.Add(this.tabControlPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ArchiveForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "资料管理";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ArchiveForm_FormClosing);
             this.Shown += new System.EventHandler(this.ArchiveForm_Shown);
             this.tabControlPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

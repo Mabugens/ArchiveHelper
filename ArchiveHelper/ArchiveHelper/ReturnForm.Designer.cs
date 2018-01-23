@@ -47,10 +47,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReturnForm));
             this.ReturnGrid = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btnSaveAndClose = new DevComponents.DotNetBar.ButtonX();
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.btnSaveReturn = new DevComponents.DotNetBar.ButtonX();
             this.btnReturn = new DevComponents.DotNetBar.ButtonX();
-            this.btnSaveAndClose = new DevComponents.DotNetBar.ButtonX();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,6 +120,20 @@
             this.panel4.Size = new System.Drawing.Size(1056, 51);
             this.panel4.TabIndex = 6;
             // 
+            // btnSaveAndClose
+            // 
+            this.btnSaveAndClose.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSaveAndClose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveAndClose.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnSaveAndClose.Location = new System.Drawing.Point(899, 15);
+            this.btnSaveAndClose.Name = "btnSaveAndClose";
+            this.btnSaveAndClose.Size = new System.Drawing.Size(132, 26);
+            this.btnSaveAndClose.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
+            this.btnSaveAndClose.TabIndex = 5;
+            this.btnSaveAndClose.Text = "保存并返回登记收存";
+            this.btnSaveAndClose.Click += new System.EventHandler(this.btnSaveAndClose_Click);
+            // 
             // buttonX1
             // 
             this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -160,20 +174,6 @@
             this.btnReturn.Text = "登记归还";
             this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
-            // btnSaveAndClose
-            // 
-            this.btnSaveAndClose.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSaveAndClose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveAndClose.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSaveAndClose.Location = new System.Drawing.Point(899, 15);
-            this.btnSaveAndClose.Name = "btnSaveAndClose";
-            this.btnSaveAndClose.Size = new System.Drawing.Size(132, 26);
-            this.btnSaveAndClose.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
-            this.btnSaveAndClose.TabIndex = 5;
-            this.btnSaveAndClose.Text = "保存并返回登记收存";
-            this.btnSaveAndClose.Click += new System.EventHandler(this.btnSaveAndClose_Click);
-            // 
             // ReturnForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -186,6 +186,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "归还资料";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ReturnForm_FormClosing);
             this.Shown += new System.EventHandler(this.ReturnForm_Shown);
             this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -90,8 +90,9 @@ namespace ArchiveHelper
             ReturnForm form = new ReturnForm(archiveName);
             this.Hide();
             form.ShowDialog();
-            btnRefreshArchive_Click(sender, e);
             this.Show();
+            btnRefreshArchive_Click(sender, e);
+            NavigateTo(archiveName);
         }
 
         private void ToLendClick(object sender, EventArgs e)
@@ -109,6 +110,20 @@ namespace ArchiveHelper
             form.ShowDialog();
             this.Show();
             btnRefreshArchive_Click(sender, e);
+            NavigateTo(archiveName);
+        }
+
+        private void NavigateTo(string archiveName)
+        {
+            GridPanel panel = ArchiveGrid.PrimaryGrid;
+            foreach(GridRow row in panel.Rows){
+                if (row.Cells["gcArchName"].Value.ToString().Equals(archiveName))
+                {
+                    row.SetActive(true);
+                    row.IsSelected = true;
+                    break;
+                }
+            }
         }
 
         private void btnRegistration_Click(object sender, EventArgs e)
@@ -131,9 +146,9 @@ namespace ArchiveHelper
             {
                 conn.Open();
                 SQLiteCommand sql_cmd = conn.CreateCommand();
-                sql_cmd.CommandText = string.Format("select a.Id,a.ArchiveName,ArchType,ArchDate,DispatchNum,a.Copies,Remaining,StorageLocation,a.Handler,ProjectId "
+                sql_cmd.CommandText = string.Format("select a.Id,a.ArchiveName,ArchType,ArchDate,DispatchNum,a.Copies,Remaining,StorageLocation,a.Handler,ProjectId, RegisterDate, Remark"
                     + ", count(b.Id) bcount from ArchiveInfo a left join lendArchive b on a.ArchiveName = b.ArchiveName where ProjectId = {0} "
-                    + " group by a.Id,a.ArchiveName,ArchType,ArchDate,DispatchNum,a.Copies,Remaining,StorageLocation,a.Handler,ProjectId "
+                    + " group by a.Id,a.ArchiveName,ArchType,ArchDate,DispatchNum,a.Copies,Remaining,StorageLocation,a.Handler,ProjectId, RegisterDate, Remark "
                     + " order by ArchDate desc ", ProjectId);
                 SQLiteDataReader reader = sql_cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -154,7 +169,9 @@ namespace ArchiveHelper
                         ai.StorageLocation = reader.IsDBNull(7) ? "" : reader.GetString(7);
                         ai.Handler = reader.IsDBNull(8) ? "" : reader.GetString(8);
                         ai.ProjectId = reader.GetInt16(9);
-                        ai.HasLend = reader.GetInt16(10) > 0;
+                        ai.RegisterDate = reader.IsDBNull(10) ? DateTime.Now : Convert.ToDateTime(reader.GetString(10));
+                        ai.Remark = reader.IsDBNull(11) ? "" : reader.GetString(11);
+                        ai.HasLend = reader.GetInt16(12) > 0;
                         ArchiveInfoList.Add(ai);
                     }
                 }
@@ -183,6 +200,8 @@ namespace ArchiveHelper
                 gr[8].Value = ai.Handler;
                 gr[9].Value = ai.ProjectId;
                 gr[6].ReadOnly = ai.HasLend;
+                gr[10].Value = ai.RegisterDate != null ? ai.RegisterDate.ToString() : "";
+                gr[11].Value = ai.Remark;
                 gr[1].Tag = ai;
                 ArchiveGrid.PrimaryGrid.Rows.Add(gr);
             }
@@ -191,6 +210,18 @@ namespace ArchiveHelper
         private void btnSaveRegister_Click(object sender, EventArgs e)
         {
             btnRegistration.Focus();
+            List<GridRow> list = GetUnSavedList();
+            if (list.Count == 0)
+            {
+                ToastMessage.Show(this, "没有可保存的内容。");
+                return;
+            }
+            SaveArchiveInfo(list);
+            ToastMessage.Show(this, "已保存。"); 
+        }
+
+        private List<GridRow> GetUnSavedList()
+        {
             List<GridRow> list = new List<GridRow>();
             foreach (GridRow gr in ArchiveGrid.PrimaryGrid.Rows)
             {
@@ -199,13 +230,7 @@ namespace ArchiveHelper
                     list.Add(gr);
                 }
             }
-            if (list.Count == 0)
-            {
-                ToastMessage.Show(this, "没有可保存的内容。");
-                return;
-            }
-            SaveArchiveInfo(list);
-            ToastMessage.Show(this, "已保存。"); 
+            return list;
         }
 
         private void SaveArchiveInfo(List<GridRow> list)
@@ -246,13 +271,13 @@ namespace ArchiveHelper
         {
             if (ai.Id == 0)
             {
-                return "insert into ArchiveInfo(archiveName, ArchType, ArchDate, DispatchNum, Copies, Remaining, StorageLocation, Handler, ProjectId) values ('"
-                            + ai.ArchiveName + "','" + ai.ArchType + "','" + ai.ArchDate + "','" + ai.DispatchNum + "'," + ai.Copies
-                            + "," + ai.Remaining + ",'" + ai.StorageLocation + "','" + ai.Handler + "', " + ai.ProjectId + ")";
+                return "insert into ArchiveInfo(archiveName, ArchType, ArchDate, DispatchNum, Copies, Remaining, StorageLocation, Handler, ProjectId, RegisterDate, Remark) values ('"
+                    + ai.ArchiveName + "','" + ai.ArchType + "','" + ai.ArchDate + "','" + ai.DispatchNum + "'," + ai.Copies + "," + ai.Remaining 
+                    + ",'" + ai.StorageLocation + "','" + ai.Handler + "', " + ai.ProjectId + ", '" + ai.RegisterDate + "','" + ai.Remark + "')";
             }
             return "update ArchiveInfo set archiveName='" + ai.ArchiveName + "', ArchType='" + ai.ArchType + "', ArchDate='" + ai.ArchDate +
                 "', DispatchNum='" + ai.DispatchNum + "', Copies=" + ai.Copies + ", Remaining=" + ai.Remaining + ", StorageLocation='" + ai.StorageLocation
-                + "', Handler='" + ai.Handler + "', ProjectId=" + ai.ProjectId + " where id =" + ai.Id;
+                + "', Handler='" + ai.Handler + "', ProjectId=" + ai.ProjectId + ",RegisterDate='" + ai.RegisterDate + "', Remark='" + ai.Remark + "' where id =" + ai.Id;
         }
 
         private ArchiveInfo GridCellMapToArchiveInfo(GridRow gr)
@@ -269,7 +294,9 @@ namespace ArchiveHelper
                 StorageLocation = (string)gr[7].Value,
                 Handler = (string)gr[8].Value,
                 ProjectId = this.ProjectId,
-                HasLend = gr[6].ReadOnly    ///////
+                RegisterDate = Convert.ToDateTime(gr[10].Value),
+                Remark = (string)gr[11].Value,
+                HasLend = gr[6].ReadOnly
             };
         }
         private void ArchiveInfoRetreeIdFixRowCellReadonly(GridRow gr, ArchiveInfo ai)
@@ -396,12 +423,15 @@ namespace ArchiveHelper
                         gr.Cells.Add(new GridCell(reader.GetInt16(3)));
                         gr.Cells.Add(new GridCell(reader.IsDBNull(4) ? "" : reader.GetString(4)));
                         gr.Cells.Add(new GridCell(reader.IsDBNull(5) ? "" : reader.GetString(5)));
-                        gr.Cells.Add(new GridCell(reader.IsDBNull(6) ? "" : reader.GetString(6)));
+                        gr.Cells.Add(new GridCell(reader.IsDBNull(9) ? "" : reader.GetString(9)));
                         gr.Cells.Add(new GridCell(reader.IsDBNull(7) ? "" : reader.GetString(7)));
                         if (!reader.IsDBNull(8))
                         {
                             gr.Cells.Add(new GridCell(Convert.ToDateTime(reader.GetString(8))));
                         }
+                        gr.Cells.Add(new GridCell(reader.IsDBNull(6) ? "" : reader.GetString(6)));
+                        gr.Cells.Add(new GridCell(reader.IsDBNull(10) ? "" : reader.GetString(10)));
+                        gr.Cells.Add(new GridCell(reader.IsDBNull(11) ? "" : reader.GetString(11)));
                         subPanel.Rows.Add(gr);
                     }
                     e.GridRow.Rows.Add(subPanel);
@@ -449,13 +479,12 @@ namespace ArchiveHelper
 
         private void ArchiveGrid_EndEdit(object sender, GridEditEventArgs e)
         {
-            object o = e.GridCell.GridRow.Cells["gcId"].Tag;
-            if (o == null)
-            {
-                return;
+            if (!e.GridCell.GridColumn.Name.Equals("gcAllCount")){
+                return ;
             }
-            ArchiveInfo ai = (ArchiveInfo)o;
-            if (e.GridCell.GridColumn.Name.Equals("gcAllCount") && !ai.HasLend)
+            object o = e.GridCell.GridRow.Cells["gcId"].Tag;
+            ArchiveInfo ai = o as ArchiveInfo;
+            if (ai == null || !ai.HasLend)
             {
                 e.GridCell.GridRow.Cells["gcRemaining"].Value = e.GridCell.Value;
             }
@@ -471,6 +500,16 @@ namespace ArchiveHelper
         {
             GridRow row = (GridRow)ArchiveGrid.PrimaryGrid.Rows[e.GridContainer.RowIndex];
             row.CellStyles.Default.Background.BackColorBlend.Colors = new Color[0];
+        }
+
+        private void ArchiveForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            List<GridRow> list = GetUnSavedList();
+            if (list.Count > 0)
+            {
+                ToastMessage.Show(this, "尚有未保存的内容，请保存后再退出。");
+                e.Cancel = true;
+            }
         }
     }
 }

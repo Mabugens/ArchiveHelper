@@ -14,6 +14,7 @@ namespace ArchiveHelper
     public partial class LendForm : Form
     {
         private string archiveName;
+        private string[] NeedReturnArgs = { "需归还", "不归还" };
 
         public LendForm()
         {
@@ -30,6 +31,7 @@ namespace ArchiveHelper
         {
             GridPanel panel = LendGrid.PrimaryGrid;
             panel.Rows.Clear();
+            panel.EnableColumnFiltering = true;
 
             panel.Columns[1].EditorType = typeof(ArchiveDropDownEditControl);
             List<string> Archives = GetArchiveList();
@@ -49,6 +51,11 @@ namespace ArchiveHelper
             gc.EditorType = typeof(GridDateTimePickerEditControl);
             gc.RenderType = typeof(GridDateTimePickerEditControl);
             gc.DefaultNewRowCellValue = DateTime.Now;
+
+            GridColumn nr = panel.Columns["gcNeedReturn"];
+            nr.EditorType = typeof(ArchiveDropDownEditControl);
+            nr.EditorParams = new object[] { NeedReturnArgs };
+            nr.DefaultNewRowCellValue = NeedReturnArgs[0];
         }
 
         private void btnLend_Click(object sender, EventArgs e)
@@ -153,7 +160,7 @@ namespace ArchiveHelper
                     foreach (GridRow gr in list)
                     {
                         LendArchive ai = GridCellMapToLendArchive(gr);
-                        if (!CheckLendable(ai))
+                        if (ai.Id == 0 && !CheckLendable(ai))
                         {
                             gr["gcCount"].CellStyles.Default.TextColor = Color.Red;
                             ToastMessage.Show(this, ai.ArchiveName + " 剩余数量不足，请重新修改借出数量");
@@ -222,7 +229,7 @@ namespace ArchiveHelper
                     + ai.LendUnit + "','" + ai.Handler + "','" + ai.Phone + "','" + ai.ExpectedReturnDate + "','" + ai.Borrower + "','" + ai.ApprovedBy + "')";
             }
             return "update LendArchive set archiveName='" + ai.ArchiveName + "', LendDate='" + ai.LendDate
-                + "', Copies=" + ai.Copies + ", LendReason=" + ai.LendReason + ", LendUnit='" + ai.LendUnit
+                + "', Copies=" + ai.Copies + ", LendReason='" + ai.LendReason + "', LendUnit='" + ai.LendUnit
                 + "', Handler='" + ai.Handler + "', Phone='" + ai.Phone + "', ExpectedReturnDate='" + ai.ExpectedReturnDate
                 + "', Borrower='" + ai.Borrower + "', ApprovedBy='" + ai.ApprovedBy + "' where id =" + ai.Id;
         }
@@ -261,6 +268,11 @@ namespace ArchiveHelper
         {
             btnSaveSend_Click(sender, e);
             this.Close();
+        }
+
+        private void LendForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            btnSaveSend_Click(sender, e);
         }
 
     }

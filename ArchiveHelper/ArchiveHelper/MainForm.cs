@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,7 @@ namespace ArchiveHelper
             panel.ShowTreeButtons = true;
             panel.ShowTreeLines = true;
             panel.ShowRowGridIndex = true;
+            panel.EnableColumnFiltering = true;
             panel.RowDragBehavior = RowDragBehavior.GroupMove;
 
             GridButtonXEditControl ddc =
@@ -65,6 +67,14 @@ namespace ArchiveHelper
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            if(!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + @"backup"))
+            {
+                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"backup");
+            }
+            string sourceFile = AppDomain.CurrentDomain.BaseDirectory + @"archiveinfo.s3db";
+            string destinationFile = AppDomain.CurrentDomain.BaseDirectory + @"backup\archiveinfo_"+DateTime.Now.ToString("yyMMdd_Hmmss") + ".s3db";
+            bool isrewrite = true;
+            System.IO.File.Copy(sourceFile, destinationFile, isrewrite); 
             Application.Exit();
         }
 

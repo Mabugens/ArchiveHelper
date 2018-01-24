@@ -37,6 +37,8 @@ namespace ArchiveHelper
             panel.ShowTreeLines = true;
             panel.ShowRowGridIndex = true;
             panel.EnableColumnFiltering = true;
+            panel.FilterLevel = FilterLevel.AllConditional;
+            panel.FilterMatchType = FilterMatchType.RegularExpressions;
             panel.RowDragBehavior = RowDragBehavior.GroupMove;
 
             panel.Rows.Clear();
@@ -57,6 +59,11 @@ namespace ArchiveHelper
             panel.Columns[6].DataType = typeof(int);
             panel.Columns[6].CellStyles.Default.Background.Color1 = Color.BurlyWood;
             de5.MinValue = 0;
+
+            GridColumn gcRegisterDate = panel.Columns["gcRegisteDate"];
+            gcRegisterDate.EditorType = typeof(GridDateTimePickerEditControl);
+            gcRegisterDate.RenderType = typeof(GridDateTimePickerEditControl);
+            gcRegisterDate.DefaultNewRowCellValue = DateTime.Now;
 
             GridButtonXEditControl ddcLend = panel.Columns["gcLend"].EditControl as GridButtonXEditControl;
             if (ddcLend != null)

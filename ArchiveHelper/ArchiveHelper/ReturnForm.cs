@@ -32,6 +32,8 @@ namespace ArchiveHelper
             GridPanel panel = ReturnGrid.PrimaryGrid;
             panel.Rows.Clear();
             panel.EnableColumnFiltering = true;
+            panel.FilterLevel = FilterLevel.AllConditional;
+            panel.FilterMatchType = FilterMatchType.RegularExpressions;
 
             panel.Columns[1].EditorType = typeof(ArchiveDropDownEditControl);
             List<string> Archives = GetArchiveList();

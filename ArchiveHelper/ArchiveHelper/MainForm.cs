@@ -35,6 +35,8 @@ namespace ArchiveHelper
             panel.ShowTreeLines = true;
             panel.ShowRowGridIndex = true;
             panel.EnableColumnFiltering = true;
+            panel.FilterLevel = FilterLevel.AllConditional;
+            panel.FilterMatchType = FilterMatchType.RegularExpressions;
             panel.RowDragBehavior = RowDragBehavior.GroupMove;
 
             GridButtonXEditControl ddc =

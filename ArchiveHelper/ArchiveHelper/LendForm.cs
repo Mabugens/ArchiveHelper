@@ -32,6 +32,8 @@ namespace ArchiveHelper
             GridPanel panel = LendGrid.PrimaryGrid;
             panel.Rows.Clear();
             panel.EnableColumnFiltering = true;
+            panel.FilterLevel = FilterLevel.AllConditional;
+            panel.FilterMatchType = FilterMatchType.RegularExpressions;
 
             panel.Columns[1].EditorType = typeof(ArchiveDropDownEditControl);
             List<string> Archives = GetArchiveList();
@@ -105,7 +107,7 @@ namespace ArchiveHelper
                                 gr["gcLendDate"].Value = Convert.ToDateTime(reader.GetString(2));
                             }
                             gr["gcCount"].Value = reader.GetInt16(3);
-                            gr["gcCount"].AllowEdit = false;
+                            //gr["gcCount"].AllowEdit = false;
                             gr["gcReason"].Value = reader.IsDBNull(4) ? "" : reader.GetString(4);
                             gr["gcLendUnit"].Value = reader.IsDBNull(5) ? "" : reader.GetString(5);
                             gr["gcHandler"].Value = reader.IsDBNull(6) ? "" : reader.GetString(6);
@@ -116,7 +118,7 @@ namespace ArchiveHelper
                             }
                             gr["gcBorrower"].Value = reader.IsDBNull(9) ? "" : reader.GetString(9);
                             gr["gcApprovedBy"].Value = reader.IsDBNull(10) ? "" : reader.GetString(10);
-                            gr["gcCount"].ReadOnly = true;
+                            //gr["gcCount"].ReadOnly = true;
                             LendGrid.PrimaryGrid.Rows.Add(gr);
                         }
                     }
@@ -144,12 +146,15 @@ namespace ArchiveHelper
                 ToastMessage.Show(this, "没有可保存的内容。");
                 return;
             }
-            SaveLendArchiveInfo(list); 
-            ToastMessage.Show(this, "已保存。"); 
+            if (SaveLendArchiveInfo(list) > 0)
+            {
+                ToastMessage.Show(this, "已保存。"); 
+            }
         }
         
-        private void SaveLendArchiveInfo(List<GridRow> list)
+        private int SaveLendArchiveInfo(List<GridRow> list)
         {
+            int changeCount = 0;
             using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
             {
                 conn.Open();
@@ -160,7 +165,7 @@ namespace ArchiveHelper
                     foreach (GridRow gr in list)
                     {
                         LendArchive ai = GridCellMapToLendArchive(gr);
-                        if (ai.Id == 0 && !CheckLendable(ai))
+                        if (!CheckLendable(ai))
                         {
                             gr["gcCount"].CellStyles.Default.TextColor = Color.Red;
                             ToastMessage.Show(this, ai.ArchiveName + " 剩余数量不足，请重新修改借出数量");
@@ -169,13 +174,10 @@ namespace ArchiveHelper
                         cmd.CommandText = GenLendArchiveSQL(ai);
                         cmd.ExecuteNonQuery();
                         gr["gcCount"].CellStyles.Default.TextColor = Color.Black;
-                        gr["gcCount"].AllowEdit = false;
-                        if (ai.Id == 0)
-                        {
-                            cmd.CommandText = NotifyLendArchiveRemaining(ai);
-                            cmd.ExecuteNonQuery();
-                        }
+                        cmd.CommandText = NotifyLendArchiveRemaining(ai);
+                        cmd.ExecuteNonQuery();
                         LendArchiveRetreeIdFixRowCellReadonly(gr, ai);
+                        changeCount++;
                     }
                 }
                 catch (System.Data.SQLite.SQLiteException E)
@@ -187,6 +189,7 @@ namespace ArchiveHelper
                     conn.Close();
                 }
             }
+            return changeCount;
         }
 
         private bool CheckLendable(LendArchive ai)
@@ -254,7 +257,7 @@ namespace ArchiveHelper
 
         private string NotifyLendArchiveRemaining(LendArchive ai)
         {
-            return "update ArchiveInfo set Remaining=Remaining-" + ai.Copies + " where ArchiveName='" + ai.ArchiveName + "'";
+            return string.Format("update archiveInfo set remaining = copies - (select sum(copies) from lendArchive b where b.ArchiveName = '{0}') where ArchiveName = '{0}'", ai.ArchiveName);
         }
 
         private void LendForm_Shown(object sender, EventArgs e)

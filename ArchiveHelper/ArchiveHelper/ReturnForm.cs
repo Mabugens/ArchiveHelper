@@ -13,7 +13,7 @@ namespace ArchiveHelper
 {
     public partial class ReturnForm : Form
     {
-        private string archiveName;
+        private ArchiveInfo CurrentArchiveInfo;
         private string[] MissingDamageItems = { "无损坏", "有损坏" };
 
         public ReturnForm()
@@ -21,10 +21,10 @@ namespace ArchiveHelper
             InitializeComponent();
         }
 
-        public ReturnForm(string name)
+        public ReturnForm(ArchiveInfo ai)
         {
             InitializeComponent();
-            this.archiveName = name;
+            this.CurrentArchiveInfo = ai;
         }
 
         private void InitReturnArhiveGrid()
@@ -57,13 +57,14 @@ namespace ArchiveHelper
 
         private List<string> GetArchiveList()
         {
-            return new List<string>() { archiveName };
+            return new List<string>() { CurrentArchiveInfo.ArchiveName };
         }
         private void btnReturn_Click(object sender, EventArgs e)
         {
             GridRow gr = ReturnGrid.PrimaryGrid.NewRow();
-            gr.Cells["gcArchName"].Value = archiveName;
+            gr.Cells["gcArchName"].Value = CurrentArchiveInfo.ArchiveName;
             gr.Cells["gcMissingDamage"].Value = MissingDamageItems[0];
+            gr.Cells["gcArchId"].Value = CurrentArchiveInfo.Id;
             ReturnGrid.PrimaryGrid.Rows.Add(gr);
         }
 
@@ -82,7 +83,7 @@ namespace ArchiveHelper
                 cmd.Connection = conn;
                 try
                 {
-                    string strsql = string.Format("select * from ReturnArchive where ArchiveName = '{0}' order by ReturnDate desc", archiveName);
+                    string strsql = string.Format("select * from ReturnArchive where ArchId = {0} order by ReturnDate desc", CurrentArchiveInfo.Id);
                     cmd.CommandText = strsql;
                     SQLiteDataReader reader = cmd.ExecuteReader();
                     if (reader.HasRows)
@@ -102,6 +103,7 @@ namespace ArchiveHelper
                             gr["gcMissingDamage"].Value = reader.GetInt16(5) == 0 ? MissingDamageItems[0] : MissingDamageItems[1];
                             gr["gcRemark"].Value = reader.IsDBNull(6) ? "" : reader.GetString(6);
                             gr["gcReturner"].Value = reader.IsDBNull(7) ? "" : reader.GetString(7);
+                            gr["gcArchId"].Value = CurrentArchiveInfo.Id;
                             ReturnGrid.PrimaryGrid.Rows.Add(gr);
                         }
                     }
@@ -145,8 +147,6 @@ namespace ArchiveHelper
                 conn.Open();
                 SQLiteCommand cmd = new SQLiteCommand();
                 cmd.Connection = conn;
-                //SQLiteTransaction tx = conn.BeginTransaction();
-                //cmd.Transaction = tx;
                 try
                 {
                     foreach (GridRow gr in list)
@@ -162,11 +162,9 @@ namespace ArchiveHelper
                             gr["gcReturnCount"].AllowEdit = false;
                         }
                     }
-                    //tx.Commit();
                 }
                 catch (System.Data.SQLite.SQLiteException E)
                 {
-                    //tx.Rollback();
                     MessageBox.Show(cmd.CommandText + Environment.NewLine + E.Message);
                 }
                 finally
@@ -187,7 +185,8 @@ namespace ArchiveHelper
                 Handler = (string)gr["gcHandler"].Value,
                 DamageOrLost = (string)gr["gcMissingDamage"].Value == MissingDamageItems[0] ? 0 : 1,
                 Remark = (string)gr["gcRemark"].Value,
-                Returner = (string)gr["gcReturner"].Value
+                Returner = (string)gr["gcReturner"].Value,
+                ArchId = CurrentArchiveInfo.Id
             };
         }
 
@@ -195,9 +194,9 @@ namespace ArchiveHelper
         {
             if (ai.Id == 0)
             {
-                return "insert into ReturnArchive(archiveName, ReturnDate, Copies, Handler, DamageOrLost, Remark, Returner) values ('"
+                return "insert into ReturnArchive(archiveName, ReturnDate, Copies, Handler, DamageOrLost, Remark, Returner, ArchId) values ('"
                             + ai.ArchiveName + "','" + ai.ReturnDate + "'," + ai.Copies + ",'" + ai.Handler + "'," + ai.DamageOrLost
-                            + ",'" + ai.Remark + "','" + ai.Returner +"')";
+                            + ",'" + ai.Remark + "','" + ai.Returner +"'," + CurrentArchiveInfo.Id +")";
             }
             return "update ReturnArchive set archiveName='" + ai.ArchiveName + "', ReturnDate='" + ai.ReturnDate + "', Copies=" + ai.Copies +
                 ", Handler='" + ai.Handler + "', DamageOrLost=" + ai.DamageOrLost + ", Remark='" + ai.Remark + "', Returner='" + ai.Returner +
@@ -207,7 +206,7 @@ namespace ArchiveHelper
 
         private string NotifyArchiveRemaining(ReturnArchive ai)
         {
-            return "update ArchiveInfo set Remaining=Remaining+" + ai.Copies + " where ArchiveName='" + ai.ArchiveName + "'";
+            return "update ArchiveInfo set Remaining=Remaining+" + ai.Copies + " where Id='" + CurrentArchiveInfo.Id + "'";
         }
 
         private void ReturnArchiveRetreeIdFixRowCellReadonly(GridRow gr, ReturnArchive ai)

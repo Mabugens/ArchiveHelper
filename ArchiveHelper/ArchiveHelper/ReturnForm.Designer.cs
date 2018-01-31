@@ -36,6 +36,7 @@
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn6 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn7 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn8 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn9 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridRow gridRow1 = new DevComponents.DotNetBar.SuperGrid.GridRow();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell1 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell2 = new DevComponents.DotNetBar.SuperGrid.GridCell();
@@ -82,6 +83,8 @@
             gridColumn8.HeaderText = "备注";
             gridColumn8.Name = "gcRemark";
             gridColumn8.Width = 80;
+            gridColumn9.Name = "gcArchId";
+            gridColumn9.Visible = false;
             this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn1);
             this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn2);
             this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn3);
@@ -90,6 +93,7 @@
             this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn6);
             this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn7);
             this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn8);
+            this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn9);
             this.ReturnGrid.PrimaryGrid.EnableFiltering = true;
             this.ReturnGrid.PrimaryGrid.Filter.RowHeight = 25;
             this.ReturnGrid.PrimaryGrid.Filter.Visible = true;

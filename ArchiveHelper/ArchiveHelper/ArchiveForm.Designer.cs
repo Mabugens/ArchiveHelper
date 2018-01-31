@@ -60,6 +60,7 @@
             this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
             this.ArchiveGrid = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.btnRefreshArchive = new DevComponents.DotNetBar.ButtonX();
             this.btnSaveRegister = new DevComponents.DotNetBar.ButtonX();
             this.btnRegistration = new DevComponents.DotNetBar.ButtonX();
@@ -76,7 +77,7 @@
             this.tabControlPanel1.Location = new System.Drawing.Point(0, 0);
             this.tabControlPanel1.Name = "tabControlPanel1";
             this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(1231, 668);
+            this.tabControlPanel1.Size = new System.Drawing.Size(1374, 668);
             this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(179)))), ((int)(((byte)(231)))));
             this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(254)))));
             this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -185,7 +186,7 @@
             this.ArchiveGrid.PrimaryGrid.Rows.Add(gridRow1);
             this.ArchiveGrid.PrimaryGrid.Rows.Add(gridRow2);
             this.ArchiveGrid.PrimaryGrid.ShowRowGridIndex = true;
-            this.ArchiveGrid.Size = new System.Drawing.Size(1229, 615);
+            this.ArchiveGrid.Size = new System.Drawing.Size(1372, 615);
             this.ArchiveGrid.TabIndex = 3;
             this.ArchiveGrid.Text = "superGridControl3";
             this.ArchiveGrid.AfterCollapse += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridAfterCollapseEventArgs>(this.ArchiveGrid_AfterCollapse);
@@ -195,14 +196,28 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.buttonX1);
             this.panel2.Controls.Add(this.btnRefreshArchive);
             this.panel2.Controls.Add(this.btnSaveRegister);
             this.panel2.Controls.Add(this.btnRegistration);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(1, 1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1229, 51);
+            this.panel2.Size = new System.Drawing.Size(1372, 51);
             this.panel2.TabIndex = 2;
+            // 
+            // buttonX1
+            // 
+            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX1.Location = new System.Drawing.Point(1140, 15);
+            this.buttonX1.Name = "buttonX1";
+            this.buttonX1.Size = new System.Drawing.Size(75, 23);
+            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
+            this.buttonX1.TabIndex = 3;
+            this.buttonX1.Text = "buttonX1";
+            this.buttonX1.Visible = false;
+            this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click);
             // 
             // btnRefreshArchive
             // 
@@ -224,7 +239,7 @@
             this.btnSaveRegister.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveRegister.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSaveRegister.Location = new System.Drawing.Point(1063, 15);
+            this.btnSaveRegister.Location = new System.Drawing.Point(1029, 15);
             this.btnSaveRegister.Name = "btnSaveRegister";
             this.btnSaveRegister.Size = new System.Drawing.Size(75, 26);
             this.btnSaveRegister.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
@@ -248,7 +263,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1231, 668);
+            this.ClientSize = new System.Drawing.Size(1374, 668);
             this.Controls.Add(this.tabControlPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ArchiveForm";
@@ -271,5 +286,6 @@
         private DevComponents.DotNetBar.ButtonX btnRefreshArchive;
         private DevComponents.DotNetBar.ButtonX btnSaveRegister;
         private DevComponents.DotNetBar.ButtonX btnRegistration;
+        private DevComponents.DotNetBar.ButtonX buttonX1;
     }
 }

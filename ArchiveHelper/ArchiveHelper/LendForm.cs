@@ -13,7 +13,7 @@ namespace ArchiveHelper
 {
     public partial class LendForm : Form
     {
-        private string archiveName;
+        private ArchiveInfo CurrentArchiveInfo;
         private string[] NeedReturnArgs = { "需归还", "不归还" };
 
         public LendForm()
@@ -21,10 +21,10 @@ namespace ArchiveHelper
             InitializeComponent();
         }
 
-        public LendForm(string name)
+        public LendForm(ArchiveInfo ai)
         {
             InitializeComponent();
-            this.archiveName = name;
+            this.CurrentArchiveInfo = ai;
         }
 
         private void InitLendArchiveGrid()
@@ -68,13 +68,14 @@ namespace ArchiveHelper
             panel.Columns[1].EditorParams = new object[] { Archives };
 
             GridRow gr = LendGrid.PrimaryGrid.NewRow();
-            gr.Cells["gcArchName"].Value = archiveName;
+            gr.Cells["gcArchName"].Value = CurrentArchiveInfo.ArchiveName;
+            gr.Cells["gcArchId"].Value = CurrentArchiveInfo.Id;
             LendGrid.PrimaryGrid.Rows.Add(gr);
         }
 
         private List<string> GetArchiveList()
         {
-            return new List<string>() { archiveName};
+            return new List<string>() { CurrentArchiveInfo.ArchiveName };
         }
 
         private void btnLendRefresh_Click(object sender, EventArgs e)
@@ -92,7 +93,7 @@ namespace ArchiveHelper
                 cmd.Connection = conn;
                 try
                 {
-                    string strsql = string.Format("select * from LendArchive where ArchiveName = '{0}' order by LendDate desc", archiveName);
+                    string strsql = string.Format("select * from LendArchive where ArchId = {0} order by LendDate desc", CurrentArchiveInfo.Id);
                     cmd.CommandText = strsql;
                     SQLiteDataReader reader = cmd.ExecuteReader();
                     if (reader.HasRows)
@@ -118,6 +119,8 @@ namespace ArchiveHelper
                             }
                             gr["gcBorrower"].Value = reader.IsDBNull(9) ? "" : reader.GetString(9);
                             gr["gcApprovedBy"].Value = reader.IsDBNull(10) ? "" : reader.GetString(10);
+                            gr["gcNeedReturn"].Value = reader.IsDBNull(11) ? "" : reader.GetString(11);
+                            gr["gcArchId"].Value = reader.GetInt16(12);
                             //gr["gcCount"].ReadOnly = true;
                             LendGrid.PrimaryGrid.Rows.Add(gr);
                         }
@@ -198,7 +201,7 @@ namespace ArchiveHelper
             {
                 conn.Open();
                 SQLiteCommand sql_cmd = conn.CreateCommand();
-                sql_cmd.CommandText = string.Format("select remaining - {0} from archiveInfo where archiveName='{1}'", ai.Copies, ai.ArchiveName);
+                sql_cmd.CommandText = string.Format("select (copies - ifnull((select sum(copies) from lendArchive where archId={0} and id <> {4}),0) - {1}) as copies from archiveInfo where archiveName='{2}' And ProjectId={3}", ai.ArchId, ai.Copies, ai.ArchiveName, CurrentArchiveInfo.ProjectId, ai.Id);
                 int value = Convert.ToInt32(sql_cmd.ExecuteScalar());
                 conn.Close();
                 return value >= 0;
@@ -219,7 +222,9 @@ namespace ArchiveHelper
                 Phone = (string)gr["gcPhone"].Value,
                 ExpectedReturnDate = Convert.ToDateTime(gr["gcRebackDate"].Value),
                 Borrower = (string)gr["gcBorrower"].Value,
-                ApprovedBy = (string)gr["gcApprovedBy"].Value
+                ApprovedBy = (string)gr["gcApprovedBy"].Value,
+                NeedReturn = (string)gr["gcNeedReturn"].Value,
+                ArchId = (null != gr["gcArchId"].Value) ? int.Parse(gr["gcArchId"].Value.ToString()) : 0
             };
         }
 
@@ -227,14 +232,15 @@ namespace ArchiveHelper
         {
             if (ai.Id == 0)
             {
-                return "insert into LendArchive(archiveName, LendDate, Copies, LendReason, LendUnit, Handler, Phone, ExpectedReturnDate,Borrower, ApprovedBy)"
+                return "insert into LendArchive(archiveName, LendDate, Copies, LendReason, LendUnit, Handler, Phone, ExpectedReturnDate,Borrower, ApprovedBy, NeedReturn, ArchId)"
                     + " values ('" + ai.ArchiveName + "','" + ai.LendDate + "'," + ai.Copies + ",'" + ai.LendReason + "','"
-                    + ai.LendUnit + "','" + ai.Handler + "','" + ai.Phone + "','" + ai.ExpectedReturnDate + "','" + ai.Borrower + "','" + ai.ApprovedBy + "')";
+                    + ai.LendUnit + "','" + ai.Handler + "','" + ai.Phone + "','" + ai.ExpectedReturnDate + "','" + ai.Borrower + "','"
+                    + ai.ApprovedBy + "','" + ai.NeedReturn + "'," + ai.ArchId + ")";
             }
             return "update LendArchive set archiveName='" + ai.ArchiveName + "', LendDate='" + ai.LendDate
                 + "', Copies=" + ai.Copies + ", LendReason='" + ai.LendReason + "', LendUnit='" + ai.LendUnit
                 + "', Handler='" + ai.Handler + "', Phone='" + ai.Phone + "', ExpectedReturnDate='" + ai.ExpectedReturnDate
-                + "', Borrower='" + ai.Borrower + "', ApprovedBy='" + ai.ApprovedBy + "' where id =" + ai.Id;
+                + "', Borrower='" + ai.Borrower + "', ApprovedBy='" + ai.ApprovedBy + "', NeedReturn='" + ai.NeedReturn + "' where id =" + ai.Id;
         }
 
         private void LendArchiveRetreeIdFixRowCellReadonly(GridRow gr, LendArchive ai)
@@ -242,7 +248,6 @@ namespace ArchiveHelper
             gr.RowDirty = false;
             if (ai.Id == 0)
             {
-                //gr[6].ReadOnly = true;
                 using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
                 {
                     conn.Open();
@@ -257,7 +262,7 @@ namespace ArchiveHelper
 
         private string NotifyLendArchiveRemaining(LendArchive ai)
         {
-            return string.Format("update archiveInfo set remaining = copies - (select sum(copies) from lendArchive b where b.ArchiveName = '{0}') where ArchiveName = '{0}'", ai.ArchiveName);
+            return string.Format("update archiveInfo set remaining = copies - (select sum(copies) from lendArchive b where b.ArchId = {0}) where id = {0}", ai.ArchId);
         }
 
         private void LendForm_Shown(object sender, EventArgs e)

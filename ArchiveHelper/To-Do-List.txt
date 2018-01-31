@@ -30,3 +30,25 @@ To-Do list：
 
 10、收存里增加“资料日期”、“备注”  完成
 11、同时增加“后台自动提醒”功能；	
+
+
+1、借出里，需归还和不归还无法正常使用 		完成
+
+2、BUG：项目1和项目2中资料名称一样，项目1借出，则 在项目2中存在借出记录
+
+3、收存里，总份数=剩余份数，则无变化；总份数＞剩余 份数，则标识颜色1；剩余份数=0，则标识颜色2.
+
+4、修改借出时， 检查是否允许借出。
+
+更新脚本：
+--	Alter table LendArchive add column ArchId integer not Null default 0;
+--	Alter table ReturnArchive add column ArchId integer not Null default 0;
+ select * from lendArchive
+
+--update LendArchive set ArchId = (select id from archiveInfo t where LendArchive.ArchiveName = t.ArchiveName)
+
+--update lendArchive set NeedReturn = '需归还'
+
+-- 清除借出记录，重置剩余份数
+-- delete from LendArchive;
+-- update ArchiveInfo set remaining = copies ;

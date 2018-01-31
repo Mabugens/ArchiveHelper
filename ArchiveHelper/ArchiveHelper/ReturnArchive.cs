@@ -20,5 +20,7 @@ namespace ArchiveHelper
 
 
         public string Returner { get; set; }
+
+        public int ArchId { get; set; }
     }
 }

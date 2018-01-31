@@ -57,7 +57,7 @@ namespace ArchiveHelper
             panel.Columns[6].EditorType = typeof(GridDoubleIntInputEditControl);
             GridDoubleIntInputEditControl de5 = (GridDoubleIntInputEditControl)panel.Columns[6].EditControl;
             panel.Columns[6].DataType = typeof(int);
-            panel.Columns[6].CellStyles.Default.Background.Color1 = Color.BurlyWood;
+            //panel.Columns[6].CellStyles.Default.Background.Color1 = Color.BurlyWood;
             de5.MinValue = 0;
 
             GridColumn gcRegisterDate = panel.Columns["gcRegisteDate"];
@@ -93,13 +93,13 @@ namespace ArchiveHelper
                 MessageBox.Show("请先保存资料，然后再归还资料");
                 return;
             }
-            string archiveName = row.Cells["gcArchName"].Value.ToString();
-            ReturnForm form = new ReturnForm(archiveName);
+            ArchiveInfo ai = (ArchiveInfo)row.Cells["gcId"].Tag;
+            ReturnForm form = new ReturnForm(ai);
             this.Hide();
             form.ShowDialog();
             this.Show();
             btnRefreshArchive_Click(sender, e);
-            NavigateTo(archiveName);
+            NavigateTo(ai.ArchiveName);
         }
 
         private void ToLendClick(object sender, EventArgs e)
@@ -111,13 +111,13 @@ namespace ArchiveHelper
                 MessageBox.Show("请先保存资料，然后再借出资料");
                 return;
             }
-            string archiveName = row.Cells["gcArchName"].Value.ToString();
-            LendForm form = new LendForm(archiveName);
+            ArchiveInfo ai = (ArchiveInfo)row.Cells["gcId"].Tag;
+            LendForm form = new LendForm(ai);
             this.Hide();
             form.ShowDialog();
             this.Show();
             btnRefreshArchive_Click(sender, e);
-            NavigateTo(archiveName);
+            NavigateTo(ai.ArchiveName);
         }
 
         private void NavigateTo(string archiveName)
@@ -203,6 +203,14 @@ namespace ArchiveHelper
                 gr[4].Value = ai.DispatchNum;
                 gr[5].Value = ai.Copies;
                 gr[6].Value = ai.Remaining;
+                if (ai.Copies > ai.Remaining)
+                {
+                    gr[6].CellStyles.Default.Background.Color1 = Color.RoyalBlue;
+                    if (ai.Remaining == 0)
+                    {
+                        gr[6].CellStyles.Default.Background.Color1 = Color.DarkGray;
+                    }
+                }
                 gr[7].Value = ai.StorageLocation;
                 gr[8].Value = ai.Handler;
                 gr[9].Value = ai.ProjectId;
@@ -345,8 +353,8 @@ namespace ArchiveHelper
             cmd.Connection = conn;
             try
             {
-                string name = row.Cells[0].Value.ToString();
-                string strsql = string.Format("select * from ReturnArchive where ArchiveName='{0}' order by ReturnDate desc", name);
+                int archId = int.Parse(row.Cells[1].Value.ToString());
+                string strsql = string.Format("select * from ReturnArchive where ArchId={0} order by ReturnDate desc", archId);
                 cmd.CommandText = strsql;
                 SQLiteDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -410,8 +418,8 @@ namespace ArchiveHelper
             cmd.Connection = conn;
             try
             {
-                string name = row.Cells[0].Value.ToString();
-                string strsql = string.Format("select * from LendArchive where ArchiveName='{0}' order by LendDate desc", name);
+                int archId = int.Parse(row.Cells[1].Value.ToString());
+                string strsql = string.Format("select * from LendArchive where ArchId ={0} order by LendDate desc", archId);
                 cmd.CommandText = strsql;
                 SQLiteDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -517,6 +525,55 @@ namespace ArchiveHelper
                 ToastMessage.Show(this, "尚有未保存的内容，请保存后再退出。");
                 e.Cancel = true;
             }
+        }
+
+        private void buttonX1_Click(object sender, EventArgs e)
+        {
+            if (ArchiveGrid.PrimaryGrid.Rows.Count == 0)
+            {
+                MessageBox.Show("没有导出数据");
+                return;
+            }
+            try
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.InitializeLifetimeService();
+                sfd.Filter = "Excel Files | *.xls";
+                sfd.DefaultExt = "xls";
+                DialogResult ret = STAShowDialog(sfd);
+                if (!ret.Equals(DialogResult.OK))
+                {
+                    return;
+                }
+                string path = sfd.FileName;
+                MessageBox.Show("文件导出成功");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private DialogResult STAShowDialog(FileDialog dialog)
+        {
+            DialogState state = new DialogState();
+            state.dialog = dialog;
+            System.Threading.Thread t = new System.Threading.Thread(state.ThreadProcShowDialog);
+            t.SetApartmentState(System.Threading.ApartmentState.STA);
+            t.Start();
+            t.Join();
+            return state.result;
+        }
+    }
+
+    public class DialogState
+    {
+        public DialogResult result;
+        public FileDialog dialog;
+
+        public void ThreadProcShowDialog()
+        {
+            result = dialog.ShowDialog();
         }
     }
 }

@@ -22,5 +22,9 @@ namespace ArchiveHelper
         public string Borrower { get; set; }
 
         public string ApprovedBy { get; set; }
+
+        public string NeedReturn { get; set; }
+
+        public int ArchId { get; set; }
     }
 }

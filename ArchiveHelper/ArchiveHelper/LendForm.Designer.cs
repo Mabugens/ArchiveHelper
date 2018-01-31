@@ -42,6 +42,7 @@
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn10 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn11 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn12 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn13 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridRow gridRow1 = new DevComponents.DotNetBar.SuperGrid.GridRow();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell1 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell2 = new DevComponents.DotNetBar.SuperGrid.GridCell();
@@ -100,6 +101,8 @@
             gridColumn11.Name = "gcApprovedBy";
             gridColumn12.HeaderText = "是否需要归还";
             gridColumn12.Name = "gcNeedReturn";
+            gridColumn13.Name = "gcArchId";
+            gridColumn13.Visible = false;
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn1);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn2);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn3);
@@ -112,6 +115,7 @@
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn10);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn11);
             this.LendGrid.PrimaryGrid.Columns.Add(gridColumn12);
+            this.LendGrid.PrimaryGrid.Columns.Add(gridColumn13);
             this.LendGrid.PrimaryGrid.EnableFiltering = true;
             this.LendGrid.PrimaryGrid.Filter.RowHeight = 25;
             this.LendGrid.PrimaryGrid.Filter.Visible = true;

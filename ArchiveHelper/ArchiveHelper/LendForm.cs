@@ -32,12 +32,19 @@ namespace ArchiveHelper
             GridPanel panel = LendGrid.PrimaryGrid;
             panel.Rows.Clear();
             panel.EnableColumnFiltering = true;
+            panel.ShowCheckBox = !Authority.AllowDelete;
+            panel.CheckBoxes = Authority.AllowDelete;
+            panel.ShowTreeButtons = true;
+            panel.ShowTreeLines = true;
+            panel.ShowRowGridIndex = true;
+            panel.EnableColumnFiltering = true;
+
             panel.FilterLevel = FilterLevel.AllConditional;
             panel.FilterMatchType = FilterMatchType.RegularExpressions;
 
-            panel.Columns[1].EditorType = typeof(ArchiveDropDownEditControl);
-            List<string> Archives = GetArchiveList();
-            panel.Columns[1].EditorParams = new object[] { Archives };
+            //panel.Columns[1].EditorType = typeof(ArchiveDropDownEditControl);
+            //List<string> Archives = GetArchiveList();
+            //panel.Columns[1].EditorParams = new object[] { Archives };
 
             panel.Columns[2].EditorType = typeof(GridDateTimePickerEditControl);
             panel.Columns[2].RenderType = typeof(GridDateTimePickerEditControl);
@@ -281,6 +288,44 @@ namespace ArchiveHelper
         private void LendForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             btnSaveSend_Click(sender, e);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            GridPanel panel = LendGrid.PrimaryGrid;
+            foreach (GridRow row in panel.Rows)
+            {
+                if (row.Checked && !row.Cells["gcId"].IsValueNull)
+                {
+                    try
+                    {
+                        int id = int.Parse(row.Cells["gcId"].Value.ToString());
+                        int copies = int.Parse(row.Cells["gcCount"].Value.ToString());
+                        DeleteLeadArchive(id, copies);
+                        row.IsDeleted = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+        }
+
+        private void DeleteLeadArchive(int id, int copies)
+        {
+            string sql = string.Format("Delete from LendArchive where archId = {0}", id);
+            using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
+            {
+                conn.Open();
+                SQLiteCommand cmd = new SQLiteCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+                sql = string.Format("Update ArchiveInfo set Remaining = Remaining + {1} where id = {0}", id, copies);
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+            }
         }
 
     }

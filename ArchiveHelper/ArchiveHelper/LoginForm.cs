@@ -38,6 +38,11 @@ namespace ArchiveHelper
                 sql_cmd.CommandText = string.Format("select * from User where name='{0}' and password='{1}'", Username.Text, Password.Text);
                 SQLiteDataReader dr = sql_cmd.ExecuteReader();
                 bool avild = dr.HasRows;
+                if (avild && dr.Read())
+                {
+                    User user = new User() { Id = dr.GetInt16(0), Name = dr.GetString(1), Password = dr.GetString(2), RealName = dr.GetString(3), Unit = dr.GetString(4), RoleType = dr.GetInt16(5) };
+                    Authority.Init(user);
+                }
                 conn.Close();
                 return avild;
             }

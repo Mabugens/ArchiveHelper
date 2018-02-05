@@ -58,6 +58,7 @@
             this.btnLendRefresh = new DevComponents.DotNetBar.ButtonX();
             this.btnSaveSend = new DevComponents.DotNetBar.ButtonX();
             this.btnLend = new DevComponents.DotNetBar.ButtonX();
+            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -130,12 +131,13 @@
             this.LendGrid.PrimaryGrid.Rows.Add(gridRow1);
             this.LendGrid.PrimaryGrid.Rows.Add(gridRow2);
             this.LendGrid.PrimaryGrid.ShowRowGridIndex = true;
-            this.LendGrid.Size = new System.Drawing.Size(1285, 543);
+            this.LendGrid.Size = new System.Drawing.Size(1283, 543);
             this.LendGrid.TabIndex = 7;
             this.LendGrid.Text = "superGridControl3";
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btnDelete);
             this.panel3.Controls.Add(this.btnSaveAndReturn);
             this.panel3.Controls.Add(this.btnLendRefresh);
             this.panel3.Controls.Add(this.btnSaveSend);
@@ -143,7 +145,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1285, 51);
+            this.panel3.Size = new System.Drawing.Size(1283, 51);
             this.panel3.TabIndex = 6;
             // 
             // btnSaveAndReturn
@@ -152,7 +154,7 @@
             this.btnSaveAndReturn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveAndReturn.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSaveAndReturn.Location = new System.Drawing.Point(1133, 15);
+            this.btnSaveAndReturn.Location = new System.Drawing.Point(1131, 15);
             this.btnSaveAndReturn.Name = "btnSaveAndReturn";
             this.btnSaveAndReturn.Size = new System.Drawing.Size(140, 26);
             this.btnSaveAndReturn.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
@@ -180,7 +182,7 @@
             this.btnSaveSend.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveSend.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSaveSend.Location = new System.Drawing.Point(1027, 15);
+            this.btnSaveSend.Location = new System.Drawing.Point(1025, 15);
             this.btnSaveSend.Name = "btnSaveSend";
             this.btnSaveSend.Size = new System.Drawing.Size(75, 26);
             this.btnSaveSend.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
@@ -200,11 +202,25 @@
             this.btnLend.Text = "登记借出";
             this.btnLend.Click += new System.EventHandler(this.btnLend_Click);
             // 
+            // btnDelete
+            // 
+            this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.Location = new System.Drawing.Point(354, 15);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 26);
+            this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
+            this.btnDelete.TabIndex = 5;
+            this.btnDelete.Text = "删除";
+            this.btnDelete.TextColor = System.Drawing.Color.Red;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // LendForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1285, 594);
+            this.ClientSize = new System.Drawing.Size(1283, 594);
             this.Controls.Add(this.LendGrid);
             this.Controls.Add(this.panel3);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -227,5 +243,6 @@
         private DevComponents.DotNetBar.ButtonX btnSaveSend;
         private DevComponents.DotNetBar.ButtonX btnLend;
         private DevComponents.DotNetBar.ButtonX btnSaveAndReturn;
+        private DevComponents.DotNetBar.ButtonX btnDelete;
     }
 }

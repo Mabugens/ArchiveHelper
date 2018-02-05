@@ -80,7 +80,7 @@
     </Compile>
     <Compile Include="ArchiveInfo.cs" />
     <Compile Include="ArchType.cs" />
-    <Compile Include="CurrentUser.cs" />
+    <Compile Include="Authority.cs" />
     <Compile Include="DataSourceManager.cs" />
     <Compile Include="GridCellDropDownEditControl.cs">
       <SubType>Component</SubType>

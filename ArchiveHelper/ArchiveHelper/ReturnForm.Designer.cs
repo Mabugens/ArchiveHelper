@@ -52,6 +52,7 @@
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.btnSaveReturn = new DevComponents.DotNetBar.ButtonX();
             this.btnReturn = new DevComponents.DotNetBar.ButtonX();
+            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,11 +64,11 @@
             this.ReturnGrid.Name = "ReturnGrid";
             this.ReturnGrid.PrimaryGrid.Caption.RowHeight = 40;
             this.ReturnGrid.PrimaryGrid.Caption.Text = "资料总目";
-            gridColumn1.Name = "gcId";
-            gridColumn1.Visible = false;
-            gridColumn2.HeaderText = "资料名称";
-            gridColumn2.Name = "gcArchName";
-            gridColumn2.Width = 360;
+            gridColumn1.HeaderText = "资料名称";
+            gridColumn1.Name = "gcArchName";
+            gridColumn1.Width = 360;
+            gridColumn2.Name = "gcId";
+            gridColumn2.Visible = false;
             gridColumn3.HeaderText = "归还日期";
             gridColumn3.Name = "gcReturnDate";
             gridColumn4.HeaderText = "份数";
@@ -114,6 +115,7 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.btnDelete);
             this.panel4.Controls.Add(this.btnSaveAndClose);
             this.panel4.Controls.Add(this.buttonX1);
             this.panel4.Controls.Add(this.btnSaveReturn);
@@ -178,6 +180,20 @@
             this.btnReturn.Text = "登记归还";
             this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
+            // btnDelete
+            // 
+            this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDelete.Location = new System.Drawing.Point(318, 15);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 26);
+            this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
+            this.btnDelete.TabIndex = 6;
+            this.btnDelete.Text = "删除";
+            this.btnDelete.TextColor = System.Drawing.Color.Red;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // ReturnForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -205,5 +221,6 @@
         private DevComponents.DotNetBar.ButtonX btnSaveReturn;
         private DevComponents.DotNetBar.ButtonX btnReturn;
         private DevComponents.DotNetBar.ButtonX btnSaveAndClose;
+        private DevComponents.DotNetBar.ButtonX btnDelete;
     }
 }

@@ -24,6 +24,7 @@ namespace ArchiveHelper
         public ReturnForm(ArchiveInfo ai)
         {
             InitializeComponent();
+            btnDelete.Visible = Authority.AllowDelete;
             this.CurrentArchiveInfo = ai;
         }
 
@@ -32,12 +33,14 @@ namespace ArchiveHelper
             GridPanel panel = ReturnGrid.PrimaryGrid;
             panel.Rows.Clear();
             panel.EnableColumnFiltering = true;
+            panel.ShowCheckBox = !Authority.AllowDelete;
+            panel.CheckBoxes = Authority.AllowDelete;
             panel.FilterLevel = FilterLevel.AllConditional;
             panel.FilterMatchType = FilterMatchType.RegularExpressions;
 
-            panel.Columns[1].EditorType = typeof(ArchiveDropDownEditControl);
+            panel.Columns["gcArchName"].EditorType = typeof(ArchiveDropDownEditControl);
             List<string> Archives = GetArchiveList();
-            panel.Columns[1].EditorParams = new object[] { Archives };
+            panel.Columns["gcArchName"].EditorParams = new object[] { Archives };
             
             GridColumn gcReturnDate = panel.Columns[2];
             gcReturnDate.EditorType = typeof(GridDateTimePickerEditControl);
@@ -91,8 +94,8 @@ namespace ArchiveHelper
                         while (reader.Read())
                         {
                             GridRow gr = ReturnGrid.PrimaryGrid.NewRow();
-                            gr[0].Value = reader.GetInt16(0);
-                            gr[1].Value = reader.GetString(1);
+                            gr["gcId"].Value = reader.GetInt16(0);
+                            gr["gcArchName"].Value = reader.GetString(1);
                             if (!reader.IsDBNull(2))
                             {
                                 gr[2].Value = Convert.ToDateTime(reader.GetString(2));
@@ -120,7 +123,7 @@ namespace ArchiveHelper
             List<GridRow> list = new List<GridRow>();
             foreach (GridRow gr in ReturnGrid.PrimaryGrid.Rows)
             {
-                if (gr.RowDirty)
+                if (gr.RowDirty && !gr.IsDeleted)
                 {
                     list.Add(gr);
                 }
@@ -178,8 +181,8 @@ namespace ArchiveHelper
         {
             return new ReturnArchive()
             {
-                Id = gr[0].IsValueNull ? 0 : Convert.ToInt16(gr[0].Value),
-                ArchiveName = (string)gr[1].Value,
+                Id = gr["gcId"].IsValueNull ? 0 : Convert.ToInt16(gr["gcId"].Value),
+                ArchiveName = (string)gr["gcArchName"].Value,
                 ReturnDate = Convert.ToDateTime(gr[2].Value),
                 Copies = (null != gr[3].Value) ? int.Parse(gr[3].Value.ToString()) : 0,
                 Handler = (string)gr["gcHandler"].Value,
@@ -242,6 +245,61 @@ namespace ArchiveHelper
         private void ReturnForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             btnSaveReturn_Click(sender, e);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            bool IsWarninged = false;
+            GridPanel panel = ReturnGrid.PrimaryGrid;
+            int DeleteCount = 0;
+            foreach (GridRow row in panel.Rows)
+            {
+                if (row.Checked && !row.Cells["gcId"].IsValueNull)
+                {
+                    if (!IsWarninged)
+                    {
+                        bool IsCancel = MessageBox.Show("若删除记录，资料的剩余份数会被减去当前归还记录的份数。确定要删除吗？ ", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2).Equals(DialogResult.No);
+                        if (IsCancel)
+                        {
+                            return;
+                        }
+                        IsWarninged = true;
+                    }
+                    try
+                    {
+                        int id = int.Parse(row.Cells["gcId"].Value.ToString());
+                        int copies = int.Parse(row.Cells["gcReturnCount"].Value.ToString());
+                        int archId = int.Parse(row.Cells["gcArchId"].Value.ToString());
+                        DeleteReturnArchive(id, copies, archId);
+                        row.IsDeleted = true;
+                        DeleteCount++;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+            if (DeleteCount > 0)
+            {
+                ToastMessage.Show(this, "已删除 " + DeleteCount.ToString() + " 条记录");
+            }
+        }
+
+        private void DeleteReturnArchive(int id, int copies, int archId)
+        {
+            string sql = string.Format("Delete from ReturnArchive where Id = {0}", id);
+            using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
+            {
+                conn.Open();
+                SQLiteCommand cmd = new SQLiteCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+                sql = string.Format("Update ArchiveInfo set Remaining = Remaining - {1} where id = {0}", archId, copies);
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }

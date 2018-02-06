@@ -64,6 +64,7 @@
             this.btnRefreshArchive = new DevComponents.DotNetBar.ButtonX();
             this.btnSaveRegister = new DevComponents.DotNetBar.ButtonX();
             this.btnRegistration = new DevComponents.DotNetBar.ButtonX();
+            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
             this.tabControlPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -196,6 +197,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnDelete);
             this.panel2.Controls.Add(this.buttonX1);
             this.panel2.Controls.Add(this.btnRefreshArchive);
             this.panel2.Controls.Add(this.btnSaveRegister);
@@ -259,6 +261,20 @@
             this.btnRegistration.Text = "登记收存";
             this.btnRegistration.Click += new System.EventHandler(this.btnRegistration_Click);
             // 
+            // btnDelete
+            // 
+            this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDelete.Location = new System.Drawing.Point(347, 12);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 26);
+            this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
+            this.btnDelete.TabIndex = 7;
+            this.btnDelete.Text = "删除";
+            this.btnDelete.TextColor = System.Drawing.Color.Red;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // ArchiveForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -287,5 +303,6 @@
         private DevComponents.DotNetBar.ButtonX btnSaveRegister;
         private DevComponents.DotNetBar.ButtonX btnRegistration;
         private DevComponents.DotNetBar.ButtonX buttonX1;
+        private DevComponents.DotNetBar.ButtonX btnDelete;
     }
 }

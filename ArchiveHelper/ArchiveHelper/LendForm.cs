@@ -25,6 +25,7 @@ namespace ArchiveHelper
         {
             InitializeComponent();
             this.CurrentArchiveInfo = ai;
+            btnDelete.Visible = Authority.AllowDelete;
         }
 
         private void InitLendArchiveGrid()
@@ -42,9 +43,9 @@ namespace ArchiveHelper
             panel.FilterLevel = FilterLevel.AllConditional;
             panel.FilterMatchType = FilterMatchType.RegularExpressions;
 
-            //panel.Columns[1].EditorType = typeof(ArchiveDropDownEditControl);
-            //List<string> Archives = GetArchiveList();
-            //panel.Columns[1].EditorParams = new object[] { Archives };
+            panel.Columns["gcArchName"].EditorType = typeof(ArchiveDropDownEditControl);
+            List<string> Archives = GetArchiveList();
+            panel.Columns["gcArchName"].EditorParams = new object[] { Archives };
 
             panel.Columns[2].EditorType = typeof(GridDateTimePickerEditControl);
             panel.Columns[2].RenderType = typeof(GridDateTimePickerEditControl);
@@ -70,9 +71,9 @@ namespace ArchiveHelper
         private void btnLend_Click(object sender, EventArgs e)
         {
             GridPanel panel = LendGrid.PrimaryGrid;
-            panel.Columns[1].EditorType = typeof(ArchiveDropDownEditControl);
+            panel.Columns["gcArchName"].EditorType = typeof(ArchiveDropDownEditControl);
             List<string> Archives = GetArchiveList();
-            panel.Columns[1].EditorParams = new object[] { Archives };
+            panel.Columns["gcArchName"].EditorParams = new object[] { Archives };
 
             GridRow gr = LendGrid.PrimaryGrid.NewRow();
             gr.Cells["gcArchName"].Value = CurrentArchiveInfo.ArchiveName;
@@ -143,10 +144,11 @@ namespace ArchiveHelper
         private void btnSaveSend_Click(object sender, EventArgs e)
         {
             btnSaveSend.Focus();
+            LendGrid.PrimaryGrid.EndDataUpdate();
             List<GridRow> list = new List<GridRow>();
             foreach (GridRow gr in LendGrid.PrimaryGrid.Rows)
             {
-                if (gr.RowDirty)
+                if (gr.RowDirty && !gr.IsDeleted)
                 {
                     list.Add(gr);
                 }
@@ -292,17 +294,29 @@ namespace ArchiveHelper
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            bool IsWarninged = false;
             GridPanel panel = LendGrid.PrimaryGrid;
+            int DeleteCount = 0;
             foreach (GridRow row in panel.Rows)
             {
                 if (row.Checked && !row.Cells["gcId"].IsValueNull)
                 {
+                    if(!IsWarninged){
+                        bool IsCancel = MessageBox.Show("若删除记录，借出的资料份数会返还到该资料的剩余份数。确定要删除借出记录吗？ ", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2).Equals(DialogResult.No);
+                        if (IsCancel)
+                        {
+                            return;
+                        }
+                        IsWarninged = true;
+                    }
                     try
                     {
                         int id = int.Parse(row.Cells["gcId"].Value.ToString());
                         int copies = int.Parse(row.Cells["gcCount"].Value.ToString());
-                        DeleteLeadArchive(id, copies);
+                        int archId = int.Parse(row.Cells["gcArchId"].Value.ToString());
+                        DeleteLeadArchive(id, copies, archId);
                         row.IsDeleted = true;
+                        DeleteCount++;
                     }
                     catch (Exception ex)
                     {
@@ -310,11 +324,15 @@ namespace ArchiveHelper
                     }
                 }
             }
+            if (DeleteCount > 0)
+            {
+                ToastMessage.Show(this, "已删除 " + DeleteCount.ToString() + " 条记录");
+            }
         }
 
-        private void DeleteLeadArchive(int id, int copies)
+        private void DeleteLeadArchive(int id, int copies, int archId)
         {
-            string sql = string.Format("Delete from LendArchive where archId = {0}", id);
+            string sql = string.Format("Delete from LendArchive where Id = {0}", id);
             using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
             {
                 conn.Open();
@@ -322,7 +340,7 @@ namespace ArchiveHelper
                 cmd.Connection = conn;
                 cmd.CommandText = sql;
                 cmd.ExecuteNonQuery();
-                sql = string.Format("Update ArchiveInfo set Remaining = Remaining + {1} where id = {0}", id, copies);
+                sql = string.Format("Update ArchiveInfo set Remaining = Remaining + {1} where id = {0}", archId, copies);
                 cmd.CommandText = sql;
                 cmd.ExecuteNonQuery();
             }

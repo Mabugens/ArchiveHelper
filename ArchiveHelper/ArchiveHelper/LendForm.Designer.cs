@@ -70,11 +70,11 @@
             this.LendGrid.Name = "LendGrid";
             this.LendGrid.PrimaryGrid.Caption.RowHeight = 40;
             this.LendGrid.PrimaryGrid.Caption.Text = "资料借出登记表";
-            gridColumn1.Name = "gcId";
-            gridColumn1.Visible = false;
-            gridColumn2.HeaderText = "资料名称";
-            gridColumn2.Name = "gcArchName";
-            gridColumn2.Width = 360;
+            gridColumn1.HeaderText = "资料名称";
+            gridColumn1.Name = "gcArchName";
+            gridColumn1.Width = 360;
+            gridColumn2.Name = "gcId";
+            gridColumn2.Visible = false;
             gridColumn3.HeaderText = "借出日期";
             gridColumn3.Name = "gcLendDate";
             backColorBlend1.Colors = new System.Drawing.Color[] {
@@ -206,8 +206,8 @@
             // 
             this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(354, 15);
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDelete.Location = new System.Drawing.Point(345, 15);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 26);
             this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;

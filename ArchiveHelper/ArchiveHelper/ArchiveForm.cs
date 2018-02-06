@@ -26,13 +26,14 @@ namespace ArchiveHelper
         {
             InitializeComponent();
             this.ProjectId = projectId;
+            btnDelete.Visible = Authority.AllowDelete;
         }
 
         private void InitArchiveGrid()
         {
             GridPanel panel = ArchiveGrid.PrimaryGrid;
-            //panel.CheckBoxes = true;
-            //panel.ShowCheckBox = false;
+            panel.ShowCheckBox = !Authority.AllowDelete;
+            panel.CheckBoxes = Authority.AllowDelete;
             panel.ShowTreeButtons = true;
             panel.ShowTreeLines = true;
             panel.ShowRowGridIndex = true;
@@ -240,7 +241,7 @@ namespace ArchiveHelper
             List<GridRow> list = new List<GridRow>();
             foreach (GridRow gr in ArchiveGrid.PrimaryGrid.Rows)
             {
-                if (gr.RowDirty)
+                if (gr.RowDirty && !gr.IsDeleted)
                 {
                     list.Add(gr);
                 }
@@ -563,6 +564,75 @@ namespace ArchiveHelper
             t.Start();
             t.Join();
             return state.result;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            bool IsWarninged = false;
+            GridPanel panel = ArchiveGrid.PrimaryGrid;
+            int DeleteCount = 0;
+            foreach (GridRow row in panel.Rows)
+            {
+                if (row.Checked && !row.Cells["gcId"].IsValueNull)
+                {
+                    int id = int.Parse(row.Cells["gcId"].Value.ToString());
+                    string name = row.Cells["gcArchName"].Value.ToString();
+                    if(!CheckDelete(id)){
+                        MessageBox.Show(string.Format("“{0}”有借出或归还记录，无法删除。若要删除，请先删除该资料的借出或归还信息。 ", name), "提示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        continue;
+                    }
+                    if (!IsWarninged)
+                    {
+                        bool IsCancel = MessageBox.Show("确定要删除借出记录吗？ ", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2).Equals(DialogResult.No);
+                        if (IsCancel)
+                        {
+                            return;
+                        }
+                        IsWarninged = true;
+                    }
+                    try
+                    {                        
+                        DeleteArchiveInfo(id);
+                        row.IsDeleted = true;
+                        DeleteCount++;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+            if (DeleteCount > 0)
+            {
+                ToastMessage.Show(this, "已删除 " + DeleteCount.ToString() + " 条记录");
+            }
+        }
+
+        private bool CheckDelete(int id)
+        {
+            string sql = string.Format("select id from LendArchive where ArchId = {0} union select id from ReturnArchive where ArchId = {0}", id);
+            using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
+            {
+                conn.Open();
+                SQLiteCommand cmd = new SQLiteCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = sql;
+                SQLiteDataReader reader = cmd.ExecuteReader();
+                return !reader.HasRows;
+            }
+        }
+
+        private void DeleteArchiveInfo(int id)
+        {
+            string sql = string.Format("Delete from ArchiveInfo where Id = {0}", id);
+            using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
+            {
+                conn.Open();
+                SQLiteCommand cmd = new SQLiteCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 

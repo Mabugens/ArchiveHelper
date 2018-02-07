@@ -84,6 +84,7 @@ namespace ArchiveHelper
         {
             InitProjectGrid();
             LoadProjectInfoList();
+            btnDelete.Visible = Authority.AllowDelete;
         }
 
         private void RegisterDataSavingTask()
@@ -341,6 +342,76 @@ namespace ArchiveHelper
             if (EditList.Count > 0)
             {
                 e.Cancel = true;
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            bool IsWarninged = false;
+            GridPanel panel = ProjectGrid.PrimaryGrid;
+            int DeleteCount = 0;
+            foreach (GridRow row in panel.Rows)
+            {
+                if (row.Checked && !row.Cells["gcId"].IsValueNull)
+                {
+                    int id = int.Parse(row.Cells["gcId"].Value.ToString());
+                    string name = row.Cells["gcProjectName"].Value.ToString();
+                    if (!CheckDelete(id))
+                    {
+                        MessageBox.Show(string.Format("项目“{0}”已收存资料，无法删除。若要删除，请先删除该项目下所有资料。 ", name), "提示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        continue;
+                    }
+                    if (!IsWarninged)
+                    {
+                        bool IsCancel = MessageBox.Show("确定要删除项目吗？ ", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2).Equals(DialogResult.No);
+                        if (IsCancel)
+                        {
+                            return;
+                        }
+                        IsWarninged = true;
+                    }
+                    try
+                    {
+                        DeleteProjectInfo(id);
+                        row.IsDeleted = true;
+                        DeleteCount++;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+            if (DeleteCount > 0)
+            {
+                ToastMessage.Show(this, "已删除 " + DeleteCount.ToString() + " 条记录");
+            }
+        }
+
+        private void DeleteProjectInfo(int id)
+        {
+            string sql = string.Format("Delete from ProjectInfo where Id = {0}", id);
+            using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
+            {
+                conn.Open();
+                SQLiteCommand cmd = new SQLiteCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        private bool CheckDelete(int id)
+        {
+            string sql = string.Format("select id from ArchiveInfo where ProjectId = {0}", id);
+            using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
+            {
+                conn.Open();
+                SQLiteCommand cmd = new SQLiteCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = sql;
+                SQLiteDataReader reader = cmd.ExecuteReader();
+                return !reader.HasRows;
             }
         }
     }

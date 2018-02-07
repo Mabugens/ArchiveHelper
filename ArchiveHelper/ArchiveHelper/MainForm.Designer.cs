@@ -44,6 +44,20 @@
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell7 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell8 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell9 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn5 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn6 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn7 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn8 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn9 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn10 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            DevComponents.DotNetBar.SuperGrid.GridRow gridRow3 = new DevComponents.DotNetBar.SuperGrid.GridRow();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell10 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell11 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell12 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell13 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell14 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridCell gridCell15 = new DevComponents.DotNetBar.SuperGrid.GridCell();
+            DevComponents.DotNetBar.SuperGrid.GridRow gridRow4 = new DevComponents.DotNetBar.SuperGrid.GridRow();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn11 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn12 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn13 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
@@ -97,20 +111,6 @@
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell34 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell35 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell36 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn5 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn6 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn7 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn8 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn9 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn10 = new DevComponents.DotNetBar.SuperGrid.GridColumn();
-            DevComponents.DotNetBar.SuperGrid.GridRow gridRow3 = new DevComponents.DotNetBar.SuperGrid.GridRow();
-            DevComponents.DotNetBar.SuperGrid.GridCell gridCell10 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            DevComponents.DotNetBar.SuperGrid.GridCell gridCell11 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            DevComponents.DotNetBar.SuperGrid.GridCell gridCell12 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            DevComponents.DotNetBar.SuperGrid.GridCell gridCell13 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            DevComponents.DotNetBar.SuperGrid.GridCell gridCell14 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            DevComponents.DotNetBar.SuperGrid.GridCell gridCell15 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            DevComponents.DotNetBar.SuperGrid.GridRow gridRow4 = new DevComponents.DotNetBar.SuperGrid.GridRow();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -124,6 +124,34 @@
             this.btnSaveProject = new DevComponents.DotNetBar.ButtonX();
             this.btnRegisterProject = new DevComponents.DotNetBar.ButtonX();
             this.tabItem5 = new DevComponents.DotNetBar.TabItem(this.components);
+            this.tabControlPanel4 = new DevComponents.DotNetBar.TabControlPanel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.UserGrid = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
+            this.expandableSplitter1 = new DevComponents.DotNetBar.ExpandableSplitter();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBoxX3 = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBoxX5 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.label3 = new System.Windows.Forms.Label();
+            this.checkBoxX2 = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxX4 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.textBoxX3 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.checkBoxX1 = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BtnChangeMyPsd = new DevComponents.DotNetBar.ButtonX();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.textBoxX2 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.textBoxX1 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.tabItem4 = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel3 = new DevComponents.DotNetBar.TabControlPanel();
             this.ReturnGrid = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -145,55 +173,28 @@
             this.btnSaveRegister = new DevComponents.DotNetBar.ButtonX();
             this.btnRegistration = new DevComponents.DotNetBar.ButtonX();
             this.tabItem1 = new DevComponents.DotNetBar.TabItem(this.components);
-            this.tabControlPanel4 = new DevComponents.DotNetBar.TabControlPanel();
-            this.tabItem4 = new DevComponents.DotNetBar.TabItem(this.components);
             this.ArchiveInfoTimer = new System.Windows.Forms.Timer(this.components);
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.expandableSplitter1 = new DevComponents.DotNetBar.ExpandableSplitter();
-            this.UserGrid = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.BtnChangeMyPsd = new DevComponents.DotNetBar.ButtonX();
-            this.labelX2 = new DevComponents.DotNetBar.LabelX();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.textBoxX2 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.textBoxX1 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.checkBoxX1 = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.textBoxX3 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.textBoxX4 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.label2 = new System.Windows.Forms.Label();
-            this.checkBoxX2 = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.textBoxX5 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.checkBoxX3 = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.label5 = new System.Windows.Forms.Label();
+            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainTabCtrl)).BeginInit();
             this.MainTabCtrl.SuspendLayout();
             this.tabControlPanel5.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.tabControlPanel4.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.tabControlPanel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.tabControlPanel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.tabControlPanel4.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel8.SuspendLayout();
-            this.panel9.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -328,6 +329,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.btnDelete);
             this.panel5.Controls.Add(this.btnRefreshProject);
             this.panel5.Controls.Add(this.btnSaveProject);
             this.panel5.Controls.Add(this.btnRegisterProject);
@@ -382,6 +384,403 @@
             this.tabItem5.AttachedControl = this.tabControlPanel5;
             this.tabItem5.Name = "tabItem5";
             this.tabItem5.Text = "项目管理";
+            // 
+            // tabControlPanel4
+            // 
+            this.tabControlPanel4.Controls.Add(this.panel6);
+            this.tabControlPanel4.DisabledBackColor = System.Drawing.Color.Empty;
+            this.tabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel4.Location = new System.Drawing.Point(0, 26);
+            this.tabControlPanel4.Name = "tabControlPanel4";
+            this.tabControlPanel4.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel4.Size = new System.Drawing.Size(1070, 594);
+            this.tabControlPanel4.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(179)))), ((int)(((byte)(231)))));
+            this.tabControlPanel4.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(254)))));
+            this.tabControlPanel4.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel4.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(97)))), ((int)(((byte)(156)))));
+            this.tabControlPanel4.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
+            | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel4.Style.GradientAngle = 90;
+            this.tabControlPanel4.TabIndex = 4;
+            this.tabControlPanel4.TabItem = this.tabItem4;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.panel8);
+            this.panel6.Controls.Add(this.panel7);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(1, 1);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1068, 592);
+            this.panel6.TabIndex = 0;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.UserGrid);
+            this.panel8.Controls.Add(this.expandableSplitter1);
+            this.panel8.Controls.Add(this.panel9);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Location = new System.Drawing.Point(0, 69);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(1068, 523);
+            this.panel8.TabIndex = 1;
+            // 
+            // UserGrid
+            // 
+            this.UserGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UserGrid.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
+            this.UserGrid.Location = new System.Drawing.Point(0, 0);
+            this.UserGrid.Name = "UserGrid";
+            this.UserGrid.PrimaryGrid.Caption.RowHeight = 40;
+            this.UserGrid.PrimaryGrid.Caption.Text = "用户列表";
+            gridColumn5.Name = "gcId";
+            gridColumn5.Visible = false;
+            gridColumn6.HeaderText = "登陆名称";
+            gridColumn6.Name = "gcUserName";
+            gridColumn6.Width = 160;
+            gridColumn7.HeaderText = "真实姓名";
+            gridColumn7.Name = "gcRealName";
+            gridColumn7.Width = 120;
+            gridColumn8.HeaderText = "单位";
+            gridColumn8.Name = "gcUnit";
+            gridColumn8.Width = 160;
+            gridColumn9.HeaderText = "角色类型";
+            gridColumn9.Name = "gcRoleType";
+            gridColumn10.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridButtonXEditControl);
+            gridColumn10.Name = "";
+            this.UserGrid.PrimaryGrid.Columns.Add(gridColumn5);
+            this.UserGrid.PrimaryGrid.Columns.Add(gridColumn6);
+            this.UserGrid.PrimaryGrid.Columns.Add(gridColumn7);
+            this.UserGrid.PrimaryGrid.Columns.Add(gridColumn8);
+            this.UserGrid.PrimaryGrid.Columns.Add(gridColumn9);
+            this.UserGrid.PrimaryGrid.Columns.Add(gridColumn10);
+            this.UserGrid.PrimaryGrid.EnableFiltering = true;
+            this.UserGrid.PrimaryGrid.Filter.RowHeight = 25;
+            this.UserGrid.PrimaryGrid.Filter.Visible = true;
+            this.UserGrid.PrimaryGrid.RowHeaderIndexOffset = 1;
+            gridRow3.Cells.Add(gridCell10);
+            gridRow3.Cells.Add(gridCell11);
+            gridRow3.Cells.Add(gridCell12);
+            gridRow3.Cells.Add(gridCell13);
+            gridRow3.Cells.Add(gridCell14);
+            gridRow3.Cells.Add(gridCell15);
+            gridRow3.InfoText = "";
+            this.UserGrid.PrimaryGrid.Rows.Add(gridRow3);
+            this.UserGrid.PrimaryGrid.Rows.Add(gridRow4);
+            this.UserGrid.PrimaryGrid.ShowRowGridIndex = true;
+            this.UserGrid.Size = new System.Drawing.Size(680, 523);
+            this.UserGrid.TabIndex = 9;
+            this.UserGrid.Text = "UserGrid";
+            // 
+            // expandableSplitter1
+            // 
+            this.expandableSplitter1.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(101)))), ((int)(((byte)(147)))), ((int)(((byte)(207)))));
+            this.expandableSplitter1.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.expandableSplitter1.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.expandableSplitter1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.expandableSplitter1.ExpandFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(101)))), ((int)(((byte)(147)))), ((int)(((byte)(207)))));
+            this.expandableSplitter1.ExpandFillColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.expandableSplitter1.ExpandLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.expandableSplitter1.ExpandLineColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.expandableSplitter1.GripDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.expandableSplitter1.GripDarkColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.expandableSplitter1.GripLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.expandableSplitter1.GripLightColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.expandableSplitter1.HotBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(151)))), ((int)(((byte)(61)))));
+            this.expandableSplitter1.HotBackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(184)))), ((int)(((byte)(94)))));
+            this.expandableSplitter1.HotBackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemPressedBackground2;
+            this.expandableSplitter1.HotBackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemPressedBackground;
+            this.expandableSplitter1.HotExpandFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(101)))), ((int)(((byte)(147)))), ((int)(((byte)(207)))));
+            this.expandableSplitter1.HotExpandFillColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.expandableSplitter1.HotExpandLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.expandableSplitter1.HotExpandLineColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.expandableSplitter1.HotGripDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(101)))), ((int)(((byte)(147)))), ((int)(((byte)(207)))));
+            this.expandableSplitter1.HotGripDarkColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.expandableSplitter1.HotGripLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.expandableSplitter1.HotGripLightColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.expandableSplitter1.Location = new System.Drawing.Point(680, 0);
+            this.expandableSplitter1.Name = "expandableSplitter1";
+            this.expandableSplitter1.Size = new System.Drawing.Size(22, 523);
+            this.expandableSplitter1.Style = DevComponents.DotNetBar.eSplitterStyle.Office2007;
+            this.expandableSplitter1.TabIndex = 8;
+            this.expandableSplitter1.TabStop = false;
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.groupBox3);
+            this.panel9.Controls.Add(this.groupBox2);
+            this.panel9.Controls.Add(this.groupBox1);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel9.Location = new System.Drawing.Point(702, 0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(366, 523);
+            this.panel9.TabIndex = 7;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.checkBoxX3);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.textBoxX5);
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.checkBoxX2);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(0, 171);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(366, 174);
+            this.groupBox3.TabIndex = 8;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "系统设置";
+            // 
+            // checkBoxX3
+            // 
+            // 
+            // 
+            // 
+            this.checkBoxX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.checkBoxX3.Location = new System.Drawing.Point(46, 101);
+            this.checkBoxX3.Name = "checkBoxX3";
+            this.checkBoxX3.Size = new System.Drawing.Size(239, 29);
+            this.checkBoxX3.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
+            this.checkBoxX3.TabIndex = 6;
+            this.checkBoxX3.Text = "关闭程序时不退出，最小化到托盘";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(190, 59);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 12);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "提前";
+            // 
+            // textBoxX5
+            // 
+            // 
+            // 
+            // 
+            this.textBoxX5.Border.Class = "TextBoxBorder";
+            this.textBoxX5.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.textBoxX5.Location = new System.Drawing.Point(225, 55);
+            this.textBoxX5.Name = "textBoxX5";
+            this.textBoxX5.PreventEnterBeep = true;
+            this.textBoxX5.Size = new System.Drawing.Size(42, 21);
+            this.textBoxX5.TabIndex = 4;
+            this.textBoxX5.Text = "3";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(273, 59);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "天提醒";
+            // 
+            // checkBoxX2
+            // 
+            // 
+            // 
+            // 
+            this.checkBoxX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.checkBoxX2.Location = new System.Drawing.Point(46, 47);
+            this.checkBoxX2.Name = "checkBoxX2";
+            this.checkBoxX2.Size = new System.Drawing.Size(125, 29);
+            this.checkBoxX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
+            this.checkBoxX2.TabIndex = 2;
+            this.checkBoxX2.Text = "自动提醒归还资料";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.textBoxX4);
+            this.groupBox2.Controls.Add(this.textBoxX3);
+            this.groupBox2.Controls.Add(this.checkBoxX1);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox2.Location = new System.Drawing.Point(0, 345);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(366, 178);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "备份";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 87);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "备份路径";
+            // 
+            // textBoxX4
+            // 
+            // 
+            // 
+            // 
+            this.textBoxX4.Border.Class = "TextBoxBorder";
+            this.textBoxX4.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.textBoxX4.Location = new System.Drawing.Point(67, 85);
+            this.textBoxX4.Name = "textBoxX4";
+            this.textBoxX4.PreventEnterBeep = true;
+            this.textBoxX4.Size = new System.Drawing.Size(288, 21);
+            this.textBoxX4.TabIndex = 3;
+            this.textBoxX4.Text = "d:\\ArchiveInfoBackup";
+            // 
+            // textBoxX3
+            // 
+            // 
+            // 
+            // 
+            this.textBoxX3.Border.Class = "TextBoxBorder";
+            this.textBoxX3.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.textBoxX3.Location = new System.Drawing.Point(148, 36);
+            this.textBoxX3.Name = "textBoxX3";
+            this.textBoxX3.PreventEnterBeep = true;
+            this.textBoxX3.Size = new System.Drawing.Size(100, 21);
+            this.textBoxX3.TabIndex = 2;
+            this.textBoxX3.Text = "3";
+            // 
+            // checkBoxX1
+            // 
+            // 
+            // 
+            // 
+            this.checkBoxX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.checkBoxX1.Location = new System.Drawing.Point(62, 32);
+            this.checkBoxX1.Name = "checkBoxX1";
+            this.checkBoxX1.Size = new System.Drawing.Size(80, 29);
+            this.checkBoxX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
+            this.checkBoxX1.TabIndex = 1;
+            this.checkBoxX1.Text = "自动备份";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(251, 40);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(17, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "天";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.BtnChangeMyPsd);
+            this.groupBox1.Controls.Add(this.labelX2);
+            this.groupBox1.Controls.Add(this.labelX1);
+            this.groupBox1.Controls.Add(this.textBoxX2);
+            this.groupBox1.Controls.Add(this.textBoxX1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(366, 171);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "修改口令";
+            // 
+            // BtnChangeMyPsd
+            // 
+            this.BtnChangeMyPsd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.BtnChangeMyPsd.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.BtnChangeMyPsd.Location = new System.Drawing.Point(156, 119);
+            this.BtnChangeMyPsd.Name = "BtnChangeMyPsd";
+            this.BtnChangeMyPsd.Size = new System.Drawing.Size(129, 23);
+            this.BtnChangeMyPsd.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
+            this.BtnChangeMyPsd.TabIndex = 9;
+            this.BtnChangeMyPsd.Text = "修改我的口令";
+            this.BtnChangeMyPsd.Click += new System.EventHandler(this.BtnChangeMyPsd_Click);
+            // 
+            // labelX2
+            // 
+            // 
+            // 
+            // 
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.Location = new System.Drawing.Point(75, 78);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(75, 23);
+            this.labelX2.TabIndex = 8;
+            this.labelX2.Text = "再次输入密码";
+            this.labelX2.TextAlignment = System.Drawing.StringAlignment.Far;
+            // 
+            // labelX1
+            // 
+            // 
+            // 
+            // 
+            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.Location = new System.Drawing.Point(75, 36);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(75, 23);
+            this.labelX1.TabIndex = 7;
+            this.labelX1.Text = "请输入密码";
+            this.labelX1.TextAlignment = System.Drawing.StringAlignment.Far;
+            // 
+            // textBoxX2
+            // 
+            // 
+            // 
+            // 
+            this.textBoxX2.Border.Class = "TextBoxBorder";
+            this.textBoxX2.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.textBoxX2.Location = new System.Drawing.Point(156, 78);
+            this.textBoxX2.Name = "textBoxX2";
+            this.textBoxX2.PasswordChar = '*';
+            this.textBoxX2.PreventEnterBeep = true;
+            this.textBoxX2.Size = new System.Drawing.Size(129, 21);
+            this.textBoxX2.TabIndex = 6;
+            // 
+            // textBoxX1
+            // 
+            // 
+            // 
+            // 
+            this.textBoxX1.Border.Class = "TextBoxBorder";
+            this.textBoxX1.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.textBoxX1.Location = new System.Drawing.Point(156, 36);
+            this.textBoxX1.Name = "textBoxX1";
+            this.textBoxX1.PasswordChar = '*';
+            this.textBoxX1.PreventEnterBeep = true;
+            this.textBoxX1.Size = new System.Drawing.Size(129, 21);
+            this.textBoxX1.TabIndex = 5;
+            // 
+            // panel7
+            // 
+            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel7.Controls.Add(this.label5);
+            this.panel7.Controls.Add(this.checkBox1);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1068, 69);
+            this.panel7.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(195, 28);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(164, 26);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "本页功能暂未实现";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(796, 28);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(132, 16);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "允许管理员删除数据";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // tabItem4
+            // 
+            this.tabItem4.AttachedControl = this.tabControlPanel4;
+            this.tabItem4.Name = "tabItem4";
+            this.tabItem4.Text = "系统管理";
             // 
             // tabControlPanel3
             // 
@@ -792,407 +1191,24 @@
             this.tabItem1.Text = "收存登录";
             this.tabItem1.Visible = false;
             // 
-            // tabControlPanel4
-            // 
-            this.tabControlPanel4.Controls.Add(this.panel6);
-            this.tabControlPanel4.DisabledBackColor = System.Drawing.Color.Empty;
-            this.tabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel4.Location = new System.Drawing.Point(0, 26);
-            this.tabControlPanel4.Name = "tabControlPanel4";
-            this.tabControlPanel4.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel4.Size = new System.Drawing.Size(1070, 594);
-            this.tabControlPanel4.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(179)))), ((int)(((byte)(231)))));
-            this.tabControlPanel4.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(254)))));
-            this.tabControlPanel4.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel4.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(97)))), ((int)(((byte)(156)))));
-            this.tabControlPanel4.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
-            | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel4.Style.GradientAngle = 90;
-            this.tabControlPanel4.TabIndex = 4;
-            this.tabControlPanel4.TabItem = this.tabItem4;
-            // 
-            // tabItem4
-            // 
-            this.tabItem4.AttachedControl = this.tabControlPanel4;
-            this.tabItem4.Name = "tabItem4";
-            this.tabItem4.Text = "系统管理";
-            // 
             // ArchiveInfoTimer
             // 
             this.ArchiveInfoTimer.Interval = 9000;
             this.ArchiveInfoTimer.Tick += new System.EventHandler(this.ArchiveInfoTimer_Tick);
             // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.panel8);
-            this.panel6.Controls.Add(this.panel7);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(1, 1);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1068, 592);
-            this.panel6.TabIndex = 0;
-            // 
-            // panel7
-            // 
-            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel7.Controls.Add(this.label5);
-            this.panel7.Controls.Add(this.checkBox1);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1068, 69);
-            this.panel7.TabIndex = 0;
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.UserGrid);
-            this.panel8.Controls.Add(this.expandableSplitter1);
-            this.panel8.Controls.Add(this.panel9);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(0, 69);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1068, 523);
-            this.panel8.TabIndex = 1;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(796, 28);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(132, 16);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "允许管理员删除数据";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.groupBox3);
-            this.panel9.Controls.Add(this.groupBox2);
-            this.panel9.Controls.Add(this.groupBox1);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel9.Location = new System.Drawing.Point(702, 0);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(366, 523);
-            this.panel9.TabIndex = 7;
-            // 
-            // expandableSplitter1
-            // 
-            this.expandableSplitter1.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(101)))), ((int)(((byte)(147)))), ((int)(((byte)(207)))));
-            this.expandableSplitter1.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.expandableSplitter1.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.expandableSplitter1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.expandableSplitter1.ExpandFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(101)))), ((int)(((byte)(147)))), ((int)(((byte)(207)))));
-            this.expandableSplitter1.ExpandFillColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.expandableSplitter1.ExpandLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.expandableSplitter1.ExpandLineColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
-            this.expandableSplitter1.GripDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.expandableSplitter1.GripDarkColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
-            this.expandableSplitter1.GripLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
-            this.expandableSplitter1.GripLightColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
-            this.expandableSplitter1.HotBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(151)))), ((int)(((byte)(61)))));
-            this.expandableSplitter1.HotBackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(184)))), ((int)(((byte)(94)))));
-            this.expandableSplitter1.HotBackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemPressedBackground2;
-            this.expandableSplitter1.HotBackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemPressedBackground;
-            this.expandableSplitter1.HotExpandFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(101)))), ((int)(((byte)(147)))), ((int)(((byte)(207)))));
-            this.expandableSplitter1.HotExpandFillColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.expandableSplitter1.HotExpandLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.expandableSplitter1.HotExpandLineColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
-            this.expandableSplitter1.HotGripDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(101)))), ((int)(((byte)(147)))), ((int)(((byte)(207)))));
-            this.expandableSplitter1.HotGripDarkColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.expandableSplitter1.HotGripLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
-            this.expandableSplitter1.HotGripLightColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
-            this.expandableSplitter1.Location = new System.Drawing.Point(680, 0);
-            this.expandableSplitter1.Name = "expandableSplitter1";
-            this.expandableSplitter1.Size = new System.Drawing.Size(22, 523);
-            this.expandableSplitter1.Style = DevComponents.DotNetBar.eSplitterStyle.Office2007;
-            this.expandableSplitter1.TabIndex = 8;
-            this.expandableSplitter1.TabStop = false;
-            // 
-            // UserGrid
-            // 
-            this.UserGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UserGrid.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
-            this.UserGrid.Location = new System.Drawing.Point(0, 0);
-            this.UserGrid.Name = "UserGrid";
-            this.UserGrid.PrimaryGrid.Caption.RowHeight = 40;
-            this.UserGrid.PrimaryGrid.Caption.Text = "用户列表";
-            gridColumn5.Name = "gcId";
-            gridColumn5.Visible = false;
-            gridColumn6.HeaderText = "登陆名称";
-            gridColumn6.Name = "gcUserName";
-            gridColumn6.Width = 160;
-            gridColumn7.HeaderText = "真实姓名";
-            gridColumn7.Name = "gcRealName";
-            gridColumn7.Width = 120;
-            gridColumn8.HeaderText = "单位";
-            gridColumn8.Name = "gcUnit";
-            gridColumn8.Width = 160;
-            gridColumn9.HeaderText = "角色类型";
-            gridColumn9.Name = "gcRoleType";
-            gridColumn10.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridButtonXEditControl);
-            gridColumn10.Name = "";
-            this.UserGrid.PrimaryGrid.Columns.Add(gridColumn5);
-            this.UserGrid.PrimaryGrid.Columns.Add(gridColumn6);
-            this.UserGrid.PrimaryGrid.Columns.Add(gridColumn7);
-            this.UserGrid.PrimaryGrid.Columns.Add(gridColumn8);
-            this.UserGrid.PrimaryGrid.Columns.Add(gridColumn9);
-            this.UserGrid.PrimaryGrid.Columns.Add(gridColumn10);
-            this.UserGrid.PrimaryGrid.EnableFiltering = true;
-            this.UserGrid.PrimaryGrid.Filter.RowHeight = 25;
-            this.UserGrid.PrimaryGrid.Filter.Visible = true;
-            this.UserGrid.PrimaryGrid.RowHeaderIndexOffset = 1;
-            gridRow3.Cells.Add(gridCell10);
-            gridRow3.Cells.Add(gridCell11);
-            gridRow3.Cells.Add(gridCell12);
-            gridRow3.Cells.Add(gridCell13);
-            gridRow3.Cells.Add(gridCell14);
-            gridRow3.Cells.Add(gridCell15);
-            gridRow3.InfoText = "";
-            this.UserGrid.PrimaryGrid.Rows.Add(gridRow3);
-            this.UserGrid.PrimaryGrid.Rows.Add(gridRow4);
-            this.UserGrid.PrimaryGrid.ShowRowGridIndex = true;
-            this.UserGrid.Size = new System.Drawing.Size(680, 523);
-            this.UserGrid.TabIndex = 9;
-            this.UserGrid.Text = "UserGrid";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.BtnChangeMyPsd);
-            this.groupBox1.Controls.Add(this.labelX2);
-            this.groupBox1.Controls.Add(this.labelX1);
-            this.groupBox1.Controls.Add(this.textBoxX2);
-            this.groupBox1.Controls.Add(this.textBoxX1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(366, 171);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "修改口令";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.textBoxX4);
-            this.groupBox2.Controls.Add(this.textBoxX3);
-            this.groupBox2.Controls.Add(this.checkBoxX1);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox2.Location = new System.Drawing.Point(0, 345);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(366, 178);
-            this.groupBox2.TabIndex = 7;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "备份";
-            // 
-            // BtnChangeMyPsd
-            // 
-            this.BtnChangeMyPsd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.BtnChangeMyPsd.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.BtnChangeMyPsd.Location = new System.Drawing.Point(156, 119);
-            this.BtnChangeMyPsd.Name = "BtnChangeMyPsd";
-            this.BtnChangeMyPsd.Size = new System.Drawing.Size(129, 23);
-            this.BtnChangeMyPsd.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
-            this.BtnChangeMyPsd.TabIndex = 9;
-            this.BtnChangeMyPsd.Text = "修改我的口令";
-            this.BtnChangeMyPsd.Click += new System.EventHandler(this.BtnChangeMyPsd_Click);
-            // 
-            // labelX2
-            // 
-            // 
-            // 
-            // 
-            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(75, 78);
-            this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(75, 23);
-            this.labelX2.TabIndex = 8;
-            this.labelX2.Text = "再次输入密码";
-            this.labelX2.TextAlignment = System.Drawing.StringAlignment.Far;
-            // 
-            // labelX1
-            // 
-            // 
-            // 
-            // 
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(75, 36);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(75, 23);
-            this.labelX1.TabIndex = 7;
-            this.labelX1.Text = "请输入密码";
-            this.labelX1.TextAlignment = System.Drawing.StringAlignment.Far;
-            // 
-            // textBoxX2
-            // 
-            // 
-            // 
-            // 
-            this.textBoxX2.Border.Class = "TextBoxBorder";
-            this.textBoxX2.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX2.Location = new System.Drawing.Point(156, 78);
-            this.textBoxX2.Name = "textBoxX2";
-            this.textBoxX2.PasswordChar = '*';
-            this.textBoxX2.PreventEnterBeep = true;
-            this.textBoxX2.Size = new System.Drawing.Size(129, 21);
-            this.textBoxX2.TabIndex = 6;
-            // 
-            // textBoxX1
-            // 
-            // 
-            // 
-            // 
-            this.textBoxX1.Border.Class = "TextBoxBorder";
-            this.textBoxX1.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX1.Location = new System.Drawing.Point(156, 36);
-            this.textBoxX1.Name = "textBoxX1";
-            this.textBoxX1.PasswordChar = '*';
-            this.textBoxX1.PreventEnterBeep = true;
-            this.textBoxX1.Size = new System.Drawing.Size(129, 21);
-            this.textBoxX1.TabIndex = 5;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.checkBoxX3);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.textBoxX5);
-            this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Controls.Add(this.checkBoxX2);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(0, 171);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(366, 174);
-            this.groupBox3.TabIndex = 8;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "系统设置";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(251, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(17, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "天";
-            // 
-            // checkBoxX1
-            // 
-            // 
-            // 
-            // 
-            this.checkBoxX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.checkBoxX1.Location = new System.Drawing.Point(62, 32);
-            this.checkBoxX1.Name = "checkBoxX1";
-            this.checkBoxX1.Size = new System.Drawing.Size(80, 29);
-            this.checkBoxX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
-            this.checkBoxX1.TabIndex = 1;
-            this.checkBoxX1.Text = "自动备份";
-            // 
-            // textBoxX3
-            // 
-            // 
-            // 
-            // 
-            this.textBoxX3.Border.Class = "TextBoxBorder";
-            this.textBoxX3.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX3.Location = new System.Drawing.Point(148, 36);
-            this.textBoxX3.Name = "textBoxX3";
-            this.textBoxX3.PreventEnterBeep = true;
-            this.textBoxX3.Size = new System.Drawing.Size(100, 21);
-            this.textBoxX3.TabIndex = 2;
-            this.textBoxX3.Text = "3";
-            // 
-            // textBoxX4
-            // 
-            // 
-            // 
-            // 
-            this.textBoxX4.Border.Class = "TextBoxBorder";
-            this.textBoxX4.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX4.Location = new System.Drawing.Point(67, 85);
-            this.textBoxX4.Name = "textBoxX4";
-            this.textBoxX4.PreventEnterBeep = true;
-            this.textBoxX4.Size = new System.Drawing.Size(288, 21);
-            this.textBoxX4.TabIndex = 3;
-            this.textBoxX4.Text = "d:\\ArchiveInfoBackup";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 87);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "备份路径";
-            // 
-            // checkBoxX2
-            // 
-            // 
-            // 
-            // 
-            this.checkBoxX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.checkBoxX2.Location = new System.Drawing.Point(46, 47);
-            this.checkBoxX2.Name = "checkBoxX2";
-            this.checkBoxX2.Size = new System.Drawing.Size(125, 29);
-            this.checkBoxX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
-            this.checkBoxX2.TabIndex = 2;
-            this.checkBoxX2.Text = "自动提醒归还资料";
-            // 
-            // textBoxX5
-            // 
-            // 
-            // 
-            // 
-            this.textBoxX5.Border.Class = "TextBoxBorder";
-            this.textBoxX5.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX5.Location = new System.Drawing.Point(225, 55);
-            this.textBoxX5.Name = "textBoxX5";
-            this.textBoxX5.PreventEnterBeep = true;
-            this.textBoxX5.Size = new System.Drawing.Size(42, 21);
-            this.textBoxX5.TabIndex = 4;
-            this.textBoxX5.Text = "3";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(273, 59);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 12);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "天提醒";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(190, 59);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(29, 12);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "提前";
-            // 
-            // checkBoxX3
-            // 
-            // 
-            // 
-            // 
-            this.checkBoxX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.checkBoxX3.Location = new System.Drawing.Point(46, 101);
-            this.checkBoxX3.Name = "checkBoxX3";
-            this.checkBoxX3.Size = new System.Drawing.Size(239, 29);
-            this.checkBoxX3.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
-            this.checkBoxX3.TabIndex = 6;
-            this.checkBoxX3.Text = "关闭程序时不退出，最小化到托盘";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(195, 28);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(164, 26);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "本页功能暂未实现";
+            // btnDelete
+            // 
+            this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDelete.Location = new System.Drawing.Point(366, 15);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 26);
+            this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
+            this.btnDelete.TabIndex = 6;
+            this.btnDelete.Text = "删除";
+            this.btnDelete.TextColor = System.Drawing.Color.Red;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // MainForm
             // 
@@ -1217,23 +1233,23 @@
             this.MainTabCtrl.ResumeLayout(false);
             this.tabControlPanel5.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
+            this.tabControlPanel4.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.tabControlPanel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.tabControlPanel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.tabControlPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.tabControlPanel4.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            this.panel8.ResumeLayout(false);
-            this.panel9.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1361,6 +1377,7 @@
         private System.Windows.Forms.Label label3;
         private DevComponents.DotNetBar.Controls.CheckBoxX checkBoxX2;
         private System.Windows.Forms.Label label5;
+        private DevComponents.DotNetBar.ButtonX btnDelete;
 
     }
 }

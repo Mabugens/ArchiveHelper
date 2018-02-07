@@ -583,7 +583,7 @@ namespace ArchiveHelper
                     }
                     if (!IsWarninged)
                     {
-                        bool IsCancel = MessageBox.Show("确定要删除借出记录吗？ ", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2).Equals(DialogResult.No);
+                        bool IsCancel = MessageBox.Show("确定要删除吗？ ", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2).Equals(DialogResult.No);
                         if (IsCancel)
                         {
                             return;

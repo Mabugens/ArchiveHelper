@@ -1,4 +1,5 @@
 ﻿using DevComponents.DotNetBar.SuperGrid;
+using DevComponents.DotNetBar.SuperGrid.Style;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace ArchiveHelper
     {
         private ArchiveInfo CurrentArchiveInfo;
         private string[] MissingDamageItems = { "无损坏", "有损坏" };
+        private bool CtrlPressed = false;
 
         public ReturnForm()
         {
@@ -26,6 +28,7 @@ namespace ArchiveHelper
             InitializeComponent();
             btnDelete.Visible = Authority.AllowDelete;
             this.CurrentArchiveInfo = ai;
+            ReturnGrid.MouseWheel += new System.Windows.Forms.MouseEventHandler(mouseWheel);
         }
 
         private void InitReturnArhiveGrid()
@@ -37,6 +40,7 @@ namespace ArchiveHelper
             panel.CheckBoxes = Authority.AllowDelete;
             panel.FilterLevel = FilterLevel.AllConditional;
             panel.FilterMatchType = FilterMatchType.RegularExpressions;
+            panel.DefaultVisualStyles.CellStyles.Default.Font = new Font("宋体", 11f);
 
             panel.Columns["gcArchName"].EditorType = typeof(ArchiveDropDownEditControl);
             List<string> Archives = GetArchiveList();
@@ -120,6 +124,7 @@ namespace ArchiveHelper
         private void btnSaveReturn_Click(object sender, EventArgs e)
         {
             btnSaveReturn.Focus();
+            ReturnGrid.PrimaryGrid.FlushSelected();
             List<GridRow> list = new List<GridRow>();
             foreach (GridRow gr in ReturnGrid.PrimaryGrid.Rows)
             {
@@ -300,6 +305,43 @@ namespace ArchiveHelper
                 cmd.CommandText = sql;
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        private void mouseWheel(object sender, MouseEventArgs e)
+        {
+            if (CtrlPressed)
+            {
+                GridPanel panel = ReturnGrid.PrimaryGrid;
+                CellVisualStyles cs = panel.DefaultVisualStyles.CellStyles;
+                if (e.Delta > 0)
+                {
+                    Font f = new Font(cs.Default.Font.FontFamily, cs.Default.Font.Size + 1);
+                    cs.Default.Font = f;
+                    panel.DefaultRowHeight++;
+                    panel.DefaultVisualStyles.ColumnHeaderStyles.Default.Font = f;
+                }
+                else
+                {
+                    if (cs.Default.Font.Size <= 8)
+                    {
+                        return;
+                    }
+                    Font f = new Font(cs.Default.Font.FontFamily, cs.Default.Font.Size - 1);
+                    cs.Default.Font = f;
+                    panel.DefaultRowHeight--;
+                    panel.DefaultVisualStyles.ColumnHeaderStyles.Default.Font = f;
+                }
+            }
+        }
+
+        private void ReturnGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            CtrlPressed = e.KeyValue.Equals(17);
+        }
+
+        private void ReturnGrid_KeyUp(object sender, KeyEventArgs e)
+        {
+            CtrlPressed = !e.KeyValue.Equals(17);
         }
     }
 }

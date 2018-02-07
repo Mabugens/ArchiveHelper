@@ -60,11 +60,11 @@
             this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
             this.ArchiveGrid = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.btnRefreshArchive = new DevComponents.DotNetBar.ButtonX();
             this.btnSaveRegister = new DevComponents.DotNetBar.ButtonX();
             this.btnRegistration = new DevComponents.DotNetBar.ButtonX();
-            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
             this.tabControlPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -194,6 +194,8 @@
             this.ArchiveGrid.EndEdit += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridEditEventArgs>(this.ArchiveGrid_EndEdit);
             this.ArchiveGrid.AfterExpand += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridAfterExpandEventArgs>(this.ArchiveGrid_AfterExpand);
             this.ArchiveGrid.RowHeaderDoubleClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowHeaderDoubleClickEventArgs>(this.ArchiveGrid_RowHeaderDoubleClick);
+            this.ArchiveGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ArchiveGrid_KeyDown);
+            this.ArchiveGrid.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ArchiveGrid_KeyUp);
             // 
             // panel2
             // 
@@ -207,6 +209,20 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1372, 51);
             this.panel2.TabIndex = 2;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDelete.Location = new System.Drawing.Point(347, 12);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 26);
+            this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
+            this.btnDelete.TabIndex = 7;
+            this.btnDelete.Text = "删除";
+            this.btnDelete.TextColor = System.Drawing.Color.Red;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // buttonX1
             // 
@@ -260,20 +276,6 @@
             this.btnRegistration.TabIndex = 0;
             this.btnRegistration.Text = "登记收存";
             this.btnRegistration.Click += new System.EventHandler(this.btnRegistration_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDelete.Location = new System.Drawing.Point(347, 12);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 26);
-            this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
-            this.btnDelete.TabIndex = 7;
-            this.btnDelete.Text = "删除";
-            this.btnDelete.TextColor = System.Drawing.Color.Red;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // ArchiveForm
             // 

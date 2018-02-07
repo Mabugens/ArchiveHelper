@@ -1,4 +1,5 @@
 ﻿using DevComponents.DotNetBar.SuperGrid;
+using DevComponents.DotNetBar.SuperGrid.Style;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace ArchiveHelper
         private List<ArchiveInfo> ArchiveInfoList = new List<ArchiveInfo>();
         private string[] ArchTypes = { "证件", "红头", "文本", "图纸", "合同", "其他" };
         private int ProjectId;
+        private bool CtrlPressed = false;
 
         public ArchiveForm()
         {
@@ -27,6 +29,7 @@ namespace ArchiveHelper
             InitializeComponent();
             this.ProjectId = projectId;
             btnDelete.Visible = Authority.AllowDelete;
+            ArchiveGrid.MouseWheel += new System.Windows.Forms.MouseEventHandler(mouseWheel);
         }
 
         private void InitArchiveGrid()
@@ -41,6 +44,7 @@ namespace ArchiveHelper
             panel.FilterLevel = FilterLevel.AllConditional;
             panel.FilterMatchType = FilterMatchType.RegularExpressions;
             panel.RowDragBehavior = RowDragBehavior.GroupMove;
+            panel.DefaultVisualStyles.CellStyles.Default.Font = new Font("宋体", 11f);
 
             panel.Rows.Clear();
             panel.Columns[2].EditorType = typeof(ArchiveTypeComboBox);
@@ -633,6 +637,35 @@ namespace ArchiveHelper
                 cmd.CommandText = sql;
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        private void mouseWheel(object sender, MouseEventArgs e)
+        {
+            GridPanel panel = ArchiveGrid.PrimaryGrid;
+            CellVisualStyles cs = panel.DefaultVisualStyles.CellStyles;
+            if (!CtrlPressed || (cs.Default.Font.Size <= 8 && e.Delta < 0))
+            {
+                return;
+            }
+            int step = e.Delta > 0 ? 1 : -1;
+            Font f = new Font(cs.Default.Font.FontFamily, cs.Default.Font.Size + step);
+            cs.Default.Font = f;
+            panel.DefaultRowHeight += step;
+            panel.DefaultVisualStyles.ColumnHeaderStyles.Default.Font = f;
+            foreach (GridColumn gc in panel.Columns)
+            {
+                gc.Width += step * 4;
+            }
+        }
+
+        private void ArchiveGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            CtrlPressed = e.KeyValue.Equals(17);
+        }
+
+        private void ArchiveGrid_KeyUp(object sender, KeyEventArgs e)
+        {
+            CtrlPressed = !e.KeyValue.Equals(17);
         }
     }
 

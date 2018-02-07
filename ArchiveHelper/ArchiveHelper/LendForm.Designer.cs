@@ -134,6 +134,8 @@
             this.LendGrid.Size = new System.Drawing.Size(1283, 543);
             this.LendGrid.TabIndex = 7;
             this.LendGrid.Text = "superGridControl3";
+            this.LendGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LendGrid_KeyDown);
+            this.LendGrid.KeyUp += new System.Windows.Forms.KeyEventHandler(this.LendGrid_KeyUp);
             // 
             // panel3
             // 

@@ -112,6 +112,8 @@
             this.ReturnGrid.Size = new System.Drawing.Size(1056, 517);
             this.ReturnGrid.TabIndex = 7;
             this.ReturnGrid.Text = "superGridControl3";
+            this.ReturnGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ReturnGrid_KeyDown);
+            this.ReturnGrid.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ReturnGrid_KeyUp);
             // 
             // panel4
             // 

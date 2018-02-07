@@ -1,4 +1,5 @@
 ﻿using DevComponents.DotNetBar.SuperGrid;
+using DevComponents.DotNetBar.SuperGrid.Style;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace ArchiveHelper
     {
         private ArchiveInfo CurrentArchiveInfo;
         private string[] NeedReturnArgs = { "需归还", "不归还" };
+        private bool CtrlPressed = false;
 
         public LendForm()
         {
@@ -26,6 +28,7 @@ namespace ArchiveHelper
             InitializeComponent();
             this.CurrentArchiveInfo = ai;
             btnDelete.Visible = Authority.AllowDelete;
+            LendGrid.MouseWheel += new System.Windows.Forms.MouseEventHandler(mouseWheel);
         }
 
         private void InitLendArchiveGrid()
@@ -39,6 +42,7 @@ namespace ArchiveHelper
             panel.ShowTreeLines = true;
             panel.ShowRowGridIndex = true;
             panel.EnableColumnFiltering = true;
+            panel.DefaultVisualStyles.CellStyles.Default.Font = new Font("宋体", 11f);
 
             panel.FilterLevel = FilterLevel.AllConditional;
             panel.FilterMatchType = FilterMatchType.RegularExpressions;
@@ -66,6 +70,33 @@ namespace ArchiveHelper
             nr.EditorType = typeof(ArchiveDropDownEditControl);
             nr.EditorParams = new object[] { NeedReturnArgs };
             nr.DefaultNewRowCellValue = NeedReturnArgs[0];
+        }
+
+        private void mouseWheel(object sender, MouseEventArgs e)
+        {
+            if (CtrlPressed)
+            {
+                GridPanel panel = LendGrid.PrimaryGrid;
+                CellVisualStyles cs = panel.DefaultVisualStyles.CellStyles;
+                if (e.Delta > 0)
+                {
+                    Font f = new Font(cs.Default.Font.FontFamily, cs.Default.Font.Size + 1);
+                    cs.Default.Font = f;
+                    panel.DefaultRowHeight++;
+                    panel.DefaultVisualStyles.ColumnHeaderStyles.Default.Font = f;
+                }
+                else
+                {
+                    if (cs.Default.Font.Size <= 8)
+                    {
+                        return;
+                    }
+                    Font f = new Font(cs.Default.Font.FontFamily, cs.Default.Font.Size - 1);
+                    cs.Default.Font = f;
+                    panel.DefaultRowHeight--;
+                    panel.DefaultVisualStyles.ColumnHeaderStyles.Default.Font = f;
+                }
+            }
         }
 
         private void btnLend_Click(object sender, EventArgs e)
@@ -116,7 +147,6 @@ namespace ArchiveHelper
                                 gr["gcLendDate"].Value = Convert.ToDateTime(reader.GetString(2));
                             }
                             gr["gcCount"].Value = reader.GetInt16(3);
-                            //gr["gcCount"].AllowEdit = false;
                             gr["gcReason"].Value = reader.IsDBNull(4) ? "" : reader.GetString(4);
                             gr["gcLendUnit"].Value = reader.IsDBNull(5) ? "" : reader.GetString(5);
                             gr["gcHandler"].Value = reader.IsDBNull(6) ? "" : reader.GetString(6);
@@ -129,7 +159,6 @@ namespace ArchiveHelper
                             gr["gcApprovedBy"].Value = reader.IsDBNull(10) ? "" : reader.GetString(10);
                             gr["gcNeedReturn"].Value = reader.IsDBNull(11) ? "" : reader.GetString(11);
                             gr["gcArchId"].Value = reader.GetInt16(12);
-                            //gr["gcCount"].ReadOnly = true;
                             LendGrid.PrimaryGrid.Rows.Add(gr);
                         }
                     }
@@ -346,5 +375,15 @@ namespace ArchiveHelper
             }
         }
 
+        private void LendGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            CtrlPressed = e.KeyValue.Equals(17);
+        }
+
+        private void LendGrid_KeyUp(object sender, KeyEventArgs e)
+        {
+            CtrlPressed = !e.KeyValue.Equals(17);
+        }
+        
     }
 }

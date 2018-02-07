@@ -1,5 +1,6 @@
 ﻿using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.SuperGrid;
+using DevComponents.DotNetBar.SuperGrid.Style;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,10 +21,12 @@ namespace ArchiveHelper
         private List<ProjectInfo> ProjectList = new List<ProjectInfo>();
         private List<GridRow> EditList = new List<GridRow>();
         private object preEditValue = null;
+        private bool CtrlPressed = false;
 
         public MainForm()
         {
             InitializeComponent();
+            ProjectGrid.MouseWheel += new System.Windows.Forms.MouseEventHandler(mouseWheel);
         }
 
         private void InitProjectGrid()
@@ -38,6 +41,7 @@ namespace ArchiveHelper
             panel.FilterLevel = FilterLevel.AllConditional;
             panel.FilterMatchType = FilterMatchType.RegularExpressions;
             panel.RowDragBehavior = RowDragBehavior.GroupMove;
+            panel.DefaultVisualStyles.CellStyles.Default.Font = new Font("宋体", 12f);
 
             GridButtonXEditControl ddc =
                 panel.Columns["gcToRegister"].EditControl as GridButtonXEditControl;
@@ -47,6 +51,32 @@ namespace ArchiveHelper
                 ddc.Text = "查看资料";
                 ddc.UseCellValueAsButtonText = false;
                 ddc.Click += ToRegisterClick;
+            }
+        }
+
+        private void mouseWheel(object sender, MouseEventArgs e)
+        {
+            if (CtrlPressed)
+            {
+                GridPanel panel = ProjectGrid.PrimaryGrid;
+                CellVisualStyles cs = panel.DefaultVisualStyles.CellStyles;
+                if (e.Delta > 0){
+                    Font f = new Font(cs.Default.Font.FontFamily, cs.Default.Font.Size + 1);
+                    cs.Default.Font = f;
+                    panel.DefaultRowHeight++;
+                    panel.DefaultVisualStyles.ColumnHeaderStyles.Default.Font = f;
+                }
+                else
+                {
+                    if (cs.Default.Font.Size <= 8)
+                    {
+                        return;
+                    }
+                    Font f = new Font(cs.Default.Font.FontFamily, cs.Default.Font.Size - 1);
+                    cs.Default.Font = f;
+                    panel.DefaultRowHeight--;
+                    panel.DefaultVisualStyles.ColumnHeaderStyles.Default.Font = f;
+                }
             }
         }
 
@@ -342,6 +372,7 @@ namespace ArchiveHelper
             if (EditList.Count > 0)
             {
                 e.Cancel = true;
+                ToastMessage.Show(this, "有未保存的项目，请保存完之后再退出。");
             }
         }
 
@@ -413,6 +444,16 @@ namespace ArchiveHelper
                 SQLiteDataReader reader = cmd.ExecuteReader();
                 return !reader.HasRows;
             }
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            CtrlPressed = e.KeyValue.Equals(17);
+        }
+
+        private void MainForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            CtrlPressed = !e.KeyValue.Equals(17);
         }
     }
 

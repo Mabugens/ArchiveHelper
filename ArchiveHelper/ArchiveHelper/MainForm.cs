@@ -27,6 +27,7 @@ namespace ArchiveHelper
         {
             InitializeComponent();
             ProjectGrid.MouseWheel += new System.Windows.Forms.MouseEventHandler(mouseWheel);
+            btnRegisterProject.Visible = Authority.AllowDelete;
         }
 
         private void InitProjectGrid()
@@ -43,6 +44,8 @@ namespace ArchiveHelper
             panel.RowDragBehavior = RowDragBehavior.GroupMove;
             panel.DefaultVisualStyles.CellStyles.Default.Font = new Font("宋体", 12f);
 
+            panel.Columns["gcFreeze"].AllowEdit = Authority.AllowDelete;
+            panel.Columns["gcProjectName"].AllowEdit = Authority.AllowDelete;
             GridButtonXEditControl ddc =
                 panel.Columns["gcToRegister"].EditControl as GridButtonXEditControl;
             if (ddc != null)
@@ -89,9 +92,9 @@ namespace ArchiveHelper
                 MessageBox.Show("请先保存项目，然后收存资料");
                 return;
             }
-            int id = (int)row.Cells["gcId"].Value;
+            ProjectInfo pi = (ProjectInfo)row.Cells["gcId"].Tag;
             row.Cells[3].EditorDirty = false;
-            ArchiveForm archiveFrom = new ArchiveForm(id);
+            ArchiveForm archiveFrom = new ArchiveForm(pi);
             this.Hide();
             archiveFrom.ShowDialog();
             this.Show();
@@ -162,6 +165,7 @@ namespace ArchiveHelper
             {
                 GridRow gr = ProjectGrid.PrimaryGrid.NewRow();
                 gr[1].Value = ai.Id;
+                gr[1].Tag = ai;
                 gr[0].Value = ai.ProjectName;
                 gr[2].Value = ai.IsFreeze;
                 ProjectGrid.PrimaryGrid.Rows.Add(gr);
@@ -236,8 +240,8 @@ namespace ArchiveHelper
             subPanel.Caption.Visible = true;
             subPanel.Caption.RowHeight = 40;
             subPanel.Caption.Text = "资料记录";
-
-            foreach (GridColumn gc in ArchiveGrid.PrimaryGrid.Columns)
+            GridColumnCollection sourceColumns = GetArchiveColumns();
+            foreach (GridColumn gc in sourceColumns)
             {
                 GridColumn col = new GridColumn()
                 {
@@ -248,6 +252,12 @@ namespace ArchiveHelper
                 };
                 subPanel.Columns.Add(col);
             }
+        }
+
+        private GridColumnCollection GetArchiveColumns()
+        {
+            GridPanelProvider provider = new ArchiveGridPanelProvider();
+            return provider.GetColumns();
         }
 
         private void btnRegisterProject_Click(object sender, EventArgs e)
@@ -276,8 +286,6 @@ namespace ArchiveHelper
                 conn.Open();
                 SQLiteCommand cmd = new SQLiteCommand();
                 cmd.Connection = conn;
-                //SQLiteTransaction tx = conn.BeginTransaction();
-                //cmd.Transaction = tx;
                 try
                 {
                     foreach (GridRow gr in list)
@@ -293,11 +301,9 @@ namespace ArchiveHelper
                         ProjectInfoRetreeIdFixRowCellReadonly(gr, ai);
                         ProjectList.Add(ai);
                     }
-                    //tx.Commit();
                 }
                 catch (System.Data.SQLite.SQLiteException E)
                 {
-                    //tx.Rollback();
                     MessageBox.Show(cmd.CommandText + Environment.NewLine + E.Message);
                 }
                 finally

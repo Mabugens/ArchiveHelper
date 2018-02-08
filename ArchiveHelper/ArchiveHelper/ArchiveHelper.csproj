@@ -78,6 +78,13 @@
     <Compile Include="ArchiveForm.Designer.cs">
       <DependentUpon>ArchiveForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ArchiveGridCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ArchiveGridCtrl.Designer.cs">
+      <DependentUpon>ArchiveGridCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ArchiveGridPanelProvider.cs" />
     <Compile Include="ArchiveInfo.cs" />
     <Compile Include="ArchType.cs" />
     <Compile Include="Authority.cs" />
@@ -136,6 +143,9 @@
     <Compile Include="User.cs" />
     <EmbeddedResource Include="ArchiveForm.resx">
       <DependentUpon>ArchiveForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ArchiveGridCtrl.resx">
+      <DependentUpon>ArchiveGridCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LendForm.resx">
       <DependentUpon>LendForm.cs</DependentUpon>

@@ -48,11 +48,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReturnForm));
             this.ReturnGrid = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
             this.btnSaveAndClose = new DevComponents.DotNetBar.ButtonX();
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.btnSaveReturn = new DevComponents.DotNetBar.ButtonX();
             this.btnReturn = new DevComponents.DotNetBar.ButtonX();
-            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,7 +83,7 @@
             gridColumn7.Name = "gcHandler";
             gridColumn8.HeaderText = "备注";
             gridColumn8.Name = "gcRemark";
-            gridColumn8.Width = 80;
+            gridColumn8.Width = 120;
             gridColumn9.Name = "gcArchId";
             gridColumn9.Visible = false;
             this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn1);
@@ -95,6 +95,8 @@
             this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn7);
             this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn8);
             this.ReturnGrid.PrimaryGrid.Columns.Add(gridColumn9);
+            this.ReturnGrid.PrimaryGrid.DefaultVisualStyles.CaptionStyles.Default.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ReturnGrid.PrimaryGrid.DefaultVisualStyles.CaptionStyles.Default.TextColor = System.Drawing.Color.Black;
             this.ReturnGrid.PrimaryGrid.EnableFiltering = true;
             this.ReturnGrid.PrimaryGrid.Filter.RowHeight = 25;
             this.ReturnGrid.PrimaryGrid.Filter.Visible = true;
@@ -109,7 +111,7 @@
             this.ReturnGrid.PrimaryGrid.Rows.Add(gridRow1);
             this.ReturnGrid.PrimaryGrid.Rows.Add(gridRow2);
             this.ReturnGrid.PrimaryGrid.ShowRowGridIndex = true;
-            this.ReturnGrid.Size = new System.Drawing.Size(1056, 517);
+            this.ReturnGrid.Size = new System.Drawing.Size(997, 579);
             this.ReturnGrid.TabIndex = 7;
             this.ReturnGrid.Text = "superGridControl3";
             this.ReturnGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ReturnGrid_KeyDown);
@@ -125,8 +127,22 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1056, 51);
+            this.panel4.Size = new System.Drawing.Size(997, 51);
             this.panel4.TabIndex = 6;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDelete.Location = new System.Drawing.Point(318, 15);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 26);
+            this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
+            this.btnDelete.TabIndex = 6;
+            this.btnDelete.Text = "删除";
+            this.btnDelete.TextColor = System.Drawing.Color.Red;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnSaveAndClose
             // 
@@ -134,7 +150,7 @@
             this.btnSaveAndClose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveAndClose.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSaveAndClose.Location = new System.Drawing.Point(899, 15);
+            this.btnSaveAndClose.Location = new System.Drawing.Point(840, 15);
             this.btnSaveAndClose.Name = "btnSaveAndClose";
             this.btnSaveAndClose.Size = new System.Drawing.Size(132, 26);
             this.btnSaveAndClose.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
@@ -154,6 +170,7 @@
             this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
             this.buttonX1.TabIndex = 4;
             this.buttonX1.Text = "刷新";
+            this.buttonX1.Visible = false;
             this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click);
             // 
             // btnSaveReturn
@@ -162,7 +179,7 @@
             this.btnSaveReturn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveReturn.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSaveReturn.Location = new System.Drawing.Point(799, 15);
+            this.btnSaveReturn.Location = new System.Drawing.Point(740, 15);
             this.btnSaveReturn.Name = "btnSaveReturn";
             this.btnSaveReturn.Size = new System.Drawing.Size(75, 26);
             this.btnSaveReturn.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
@@ -182,32 +199,17 @@
             this.btnReturn.Text = "登记归还";
             this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
-            // btnDelete
-            // 
-            this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDelete.Location = new System.Drawing.Point(318, 15);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 26);
-            this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
-            this.btnDelete.TabIndex = 6;
-            this.btnDelete.Text = "删除";
-            this.btnDelete.TextColor = System.Drawing.Color.Red;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
             // ReturnForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1056, 568);
+            this.ClientSize = new System.Drawing.Size(997, 630);
             this.Controls.Add(this.ReturnGrid);
             this.Controls.Add(this.panel4);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ReturnForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "归还资料";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ReturnForm_FormClosing);
             this.Shown += new System.EventHandler(this.ReturnForm_Shown);
             this.panel4.ResumeLayout(false);

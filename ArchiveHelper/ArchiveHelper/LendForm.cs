@@ -43,6 +43,7 @@ namespace ArchiveHelper
             panel.ShowRowGridIndex = true;
             panel.EnableColumnFiltering = true;
             panel.DefaultVisualStyles.CellStyles.Default.Font = new Font("宋体", 11f);
+            panel.Caption.Text = CurrentArchiveInfo.Project.ProjectName;
 
             panel.FilterLevel = FilterLevel.AllConditional;
             panel.FilterMatchType = FilterMatchType.RegularExpressions;

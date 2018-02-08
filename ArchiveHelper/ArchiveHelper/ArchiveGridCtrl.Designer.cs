@@ -1,16 +1,16 @@
 ﻿namespace ArchiveHelper
 {
-    partial class ArchiveForm
+    partial class ArchiveGridCtrl
     {
-        /// <summary>
-        /// Required designer variable.
+        /// <summary> 
+        /// 必需的设计器变量。
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
+        /// <summary> 
+        /// 清理所有正在使用的资源。
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,11 +20,11 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region 组件设计器生成的代码
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// <summary> 
+        /// 设计器支持所需的方法 - 不要
+        /// 使用代码编辑器修改此方法的内容。
         /// </summary>
         private void InitializeComponent()
         {
@@ -56,44 +56,14 @@
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell7 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell8 = new DevComponents.DotNetBar.SuperGrid.GridCell();
             DevComponents.DotNetBar.SuperGrid.GridCell gridCell9 = new DevComponents.DotNetBar.SuperGrid.GridCell();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ArchiveForm));
-            this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
             this.ArchiveGrid = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
-            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
-            this.btnRefreshArchive = new DevComponents.DotNetBar.ButtonX();
-            this.btnSaveRegister = new DevComponents.DotNetBar.ButtonX();
-            this.btnRegistration = new DevComponents.DotNetBar.ButtonX();
-            this.tabControlPanel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tabControlPanel1
-            // 
-            this.tabControlPanel1.Controls.Add(this.ArchiveGrid);
-            this.tabControlPanel1.Controls.Add(this.panel2);
-            this.tabControlPanel1.DisabledBackColor = System.Drawing.Color.Empty;
-            this.tabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tabControlPanel1.Name = "tabControlPanel1";
-            this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(1374, 668);
-            this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(179)))), ((int)(((byte)(231)))));
-            this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(254)))));
-            this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel1.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(97)))), ((int)(((byte)(156)))));
-            this.tabControlPanel1.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
-            | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel1.Style.GradientAngle = 90;
-            this.tabControlPanel1.TabIndex = 2;
-            this.tabControlPanel1.Text = "收存登录";
             // 
             // ArchiveGrid
             // 
             this.ArchiveGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ArchiveGrid.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
-            this.ArchiveGrid.Location = new System.Drawing.Point(1, 52);
+            this.ArchiveGrid.Location = new System.Drawing.Point(0, 0);
             this.ArchiveGrid.Name = "ArchiveGrid";
             this.ArchiveGrid.PrimaryGrid.Caption.RowHeight = 40;
             this.ArchiveGrid.PrimaryGrid.Caption.Text = "资料总目";
@@ -192,125 +162,24 @@
             this.ArchiveGrid.PrimaryGrid.Rows.Add(gridRow1);
             this.ArchiveGrid.PrimaryGrid.Rows.Add(gridRow2);
             this.ArchiveGrid.PrimaryGrid.ShowRowGridIndex = true;
-            this.ArchiveGrid.Size = new System.Drawing.Size(1372, 615);
-            this.ArchiveGrid.TabIndex = 3;
+            this.ArchiveGrid.Size = new System.Drawing.Size(1140, 587);
+            this.ArchiveGrid.TabIndex = 4;
             this.ArchiveGrid.Text = "superGridControl3";
-            this.ArchiveGrid.AfterCollapse += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridAfterCollapseEventArgs>(this.ArchiveGrid_AfterCollapse);
-            this.ArchiveGrid.EndEdit += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridEditEventArgs>(this.ArchiveGrid_EndEdit);
-            this.ArchiveGrid.AfterExpand += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridAfterExpandEventArgs>(this.ArchiveGrid_AfterExpand);
-            this.ArchiveGrid.RowHeaderDoubleClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowHeaderDoubleClickEventArgs>(this.ArchiveGrid_RowHeaderDoubleClick);
-            this.ArchiveGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ArchiveGrid_KeyDown);
-            this.ArchiveGrid.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ArchiveGrid_KeyUp);
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnDelete);
-            this.panel2.Controls.Add(this.buttonX1);
-            this.panel2.Controls.Add(this.btnRefreshArchive);
-            this.panel2.Controls.Add(this.btnSaveRegister);
-            this.panel2.Controls.Add(this.btnRegistration);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(1, 1);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1372, 51);
-            this.panel2.TabIndex = 2;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDelete.Location = new System.Drawing.Point(347, 12);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 26);
-            this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
-            this.btnDelete.TabIndex = 7;
-            this.btnDelete.Text = "删除";
-            this.btnDelete.TextColor = System.Drawing.Color.Red;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // buttonX1
-            // 
-            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX1.Location = new System.Drawing.Point(1140, 15);
-            this.buttonX1.Name = "buttonX1";
-            this.buttonX1.Size = new System.Drawing.Size(75, 23);
-            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
-            this.buttonX1.TabIndex = 3;
-            this.buttonX1.Text = "buttonX1";
-            this.buttonX1.Visible = false;
-            this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click);
-            // 
-            // btnRefreshArchive
-            // 
-            this.btnRefreshArchive.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnRefreshArchive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRefreshArchive.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnRefreshArchive.Location = new System.Drawing.Point(146, 15);
-            this.btnRefreshArchive.Name = "btnRefreshArchive";
-            this.btnRefreshArchive.Size = new System.Drawing.Size(75, 26);
-            this.btnRefreshArchive.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
-            this.btnRefreshArchive.TabIndex = 2;
-            this.btnRefreshArchive.Text = "刷新";
-            this.btnRefreshArchive.Visible = false;
-            this.btnRefreshArchive.Click += new System.EventHandler(this.btnRefreshArchive_Click);
-            // 
-            // btnSaveRegister
-            // 
-            this.btnSaveRegister.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSaveRegister.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveRegister.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSaveRegister.Location = new System.Drawing.Point(1029, 15);
-            this.btnSaveRegister.Name = "btnSaveRegister";
-            this.btnSaveRegister.Size = new System.Drawing.Size(75, 26);
-            this.btnSaveRegister.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
-            this.btnSaveRegister.TabIndex = 1;
-            this.btnSaveRegister.Text = "保存";
-            this.btnSaveRegister.Click += new System.EventHandler(this.btnSaveRegister_Click);
-            // 
-            // btnRegistration
-            // 
-            this.btnRegistration.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnRegistration.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnRegistration.Location = new System.Drawing.Point(27, 15);
-            this.btnRegistration.Name = "btnRegistration";
-            this.btnRegistration.Size = new System.Drawing.Size(75, 26);
-            this.btnRegistration.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
-            this.btnRegistration.TabIndex = 0;
-            this.btnRegistration.Text = "登记收存";
-            this.btnRegistration.Click += new System.EventHandler(this.btnRegistration_Click);
-            // 
-            // ArchiveForm
+            // ArchiveGridCtrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1374, 668);
-            this.Controls.Add(this.tabControlPanel1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "ArchiveForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "资料管理";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ArchiveForm_FormClosing);
-            this.Shown += new System.EventHandler(this.ArchiveForm_Shown);
-            this.tabControlPanel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
+            this.Controls.Add(this.ArchiveGrid);
+            this.Name = "ArchiveGridCtrl";
+            this.Size = new System.Drawing.Size(1140, 587);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevComponents.DotNetBar.TabControlPanel tabControlPanel1;
         private DevComponents.DotNetBar.SuperGrid.SuperGridControl ArchiveGrid;
-        private System.Windows.Forms.Panel panel2;
-        private DevComponents.DotNetBar.ButtonX btnRefreshArchive;
-        private DevComponents.DotNetBar.ButtonX btnSaveRegister;
-        private DevComponents.DotNetBar.ButtonX btnRegistration;
-        private DevComponents.DotNetBar.ButtonX buttonX1;
-        private DevComponents.DotNetBar.ButtonX btnDelete;
+
     }
 }

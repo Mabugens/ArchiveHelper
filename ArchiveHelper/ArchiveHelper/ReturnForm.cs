@@ -41,6 +41,7 @@ namespace ArchiveHelper
             panel.FilterLevel = FilterLevel.AllConditional;
             panel.FilterMatchType = FilterMatchType.RegularExpressions;
             panel.DefaultVisualStyles.CellStyles.Default.Font = new Font("宋体", 11f);
+            panel.Caption.Text = CurrentArchiveInfo.Project.ProjectName;
 
             panel.Columns["gcArchName"].EditorType = typeof(ArchiveDropDownEditControl);
             List<string> Archives = GetArchiveList();

@@ -16,7 +16,7 @@ namespace ArchiveHelper
     {
         private List<ArchiveInfo> ArchiveInfoList = new List<ArchiveInfo>();
         private string[] ArchTypes = { "证件", "红头", "文本", "图纸", "合同", "其他" };
-        private int ProjectId;
+        private ProjectInfo Project;
         private bool CtrlPressed = false;
 
         public ArchiveForm()
@@ -24,10 +24,10 @@ namespace ArchiveHelper
             InitializeComponent();
         }
 
-        public ArchiveForm(int projectId)
+        public ArchiveForm(ProjectInfo pi)
         {
             InitializeComponent();
-            this.ProjectId = projectId;
+            this.Project = pi;
             btnDelete.Visible = Authority.AllowDelete;
             ArchiveGrid.MouseWheel += new System.Windows.Forms.MouseEventHandler(mouseWheel);
         }
@@ -45,6 +45,7 @@ namespace ArchiveHelper
             panel.FilterMatchType = FilterMatchType.RegularExpressions;
             panel.RowDragBehavior = RowDragBehavior.GroupMove;
             panel.DefaultVisualStyles.CellStyles.Default.Font = new Font("宋体", 11f);
+            panel.Caption.Text = Project.ProjectName;
 
             panel.Rows.Clear();
             panel.Columns[2].EditorType = typeof(ArchiveTypeComboBox);
@@ -100,9 +101,9 @@ namespace ArchiveHelper
             }
             ArchiveInfo ai = (ArchiveInfo)row.Cells["gcId"].Tag;
             ReturnForm form = new ReturnForm(ai);
-            this.Hide();
+            //this.Hide();
             form.ShowDialog();
-            this.Show();
+            //this.Show();
             btnRefreshArchive_Click(sender, e);
             NavigateTo(ai.ArchiveName);
         }
@@ -118,9 +119,9 @@ namespace ArchiveHelper
             }
             ArchiveInfo ai = (ArchiveInfo)row.Cells["gcId"].Tag;
             LendForm form = new LendForm(ai);
-            this.Hide();
+            //this.Hide();
             form.ShowDialog();
-            this.Show();
+            //this.Show();
             btnRefreshArchive_Click(sender, e);
             NavigateTo(ai.ArchiveName);
         }
@@ -161,7 +162,7 @@ namespace ArchiveHelper
                 sql_cmd.CommandText = string.Format("select a.Id,a.ArchiveName,ArchType,ArchDate,DispatchNum,a.Copies,Remaining,StorageLocation,a.Handler,ProjectId, RegisterDate, Remark"
                     + ", count(b.Id) bcount from ArchiveInfo a left join lendArchive b on a.ArchiveName = b.ArchiveName where ProjectId = {0} "
                     + " group by a.Id,a.ArchiveName,ArchType,ArchDate,DispatchNum,a.Copies,Remaining,StorageLocation,a.Handler,ProjectId, RegisterDate, Remark "
-                    + " order by ArchDate desc ", ProjectId);
+                    + " order by ArchDate desc ", Project.Id);
                 SQLiteDataReader reader = sql_cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -184,6 +185,7 @@ namespace ArchiveHelper
                         ai.RegisterDate = reader.IsDBNull(10) ? DateTime.Now : Convert.ToDateTime(reader.GetString(10));
                         ai.Remark = reader.IsDBNull(11) ? "" : reader.GetString(11);
                         ai.HasLend = reader.GetInt16(12) > 0;
+                        ai.Project = Project;
                         ArchiveInfoList.Add(ai);
                     }
                 }
@@ -265,7 +267,6 @@ namespace ArchiveHelper
                     foreach (GridRow gr in list)
                     {
                         ArchiveInfo ai = GridCellMapToArchiveInfo(gr);
-
                         string strsql = GenSQL(ai);
                         if (strsql.Trim().Length > 1)
                         {
@@ -273,17 +274,43 @@ namespace ArchiveHelper
                             cmd.ExecuteNonQuery();
                         }
                         ArchiveInfoRetreeIdFixRowCellReadonly(gr, ai);
+                        UpdateCascadeArchiveName(ai);
                         ArchiveInfoList.Add(ai);
                     }
                 }
                 catch (System.Data.SQLite.SQLiteException E)
                 {
-                    MessageBox.Show(cmd.CommandText + Environment.NewLine + E.Message);
+                    string msg = "保存失败。原因：" + E.Message;
+                    if (E.Message.Contains("UNIQUE constraint failed"))
+                    {
+                        msg = "保存失败。原因：资料名称重复。";
+                    }
+                    MessageBox.Show(msg);
                 }
                 finally
                 {
                     conn.Close();
                 }
+            }
+        }
+
+        private void UpdateCascadeArchiveName(ArchiveInfo ai)
+        {
+            if (ai.Id < 1)
+            {
+                return;
+            }
+            string sql = string.Format("update LendArchive set ArchiveName = '{1}' where ArchId = {0}", ai.Id, ai.ArchiveName);
+            using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
+            {
+                conn.Open();
+                SQLiteCommand cmd = new SQLiteCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+                sql = string.Format("update ReturnArchive set ArchiveName = '{1}' where ArchId = {0}", ai.Id, ai.ArchiveName);
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
             }
         }
 
@@ -313,10 +340,11 @@ namespace ArchiveHelper
                 Remaining = (null != gr[6].Value) ? int.Parse(gr[6].Value.ToString()) : 0,
                 StorageLocation = (string)gr[7].Value,
                 Handler = (string)gr[8].Value,
-                ProjectId = this.ProjectId,
+                ProjectId = this.Project.Id,
                 RegisterDate = Convert.ToDateTime(gr[10].Value),
                 Remark = (string)gr[11].Value,
-                HasLend = gr[6].ReadOnly
+                HasLend = gr[6].ReadOnly,
+                Project = this.Project
             };
         }
         private void ArchiveInfoRetreeIdFixRowCellReadonly(GridRow gr, ArchiveInfo ai)
@@ -580,8 +608,8 @@ namespace ArchiveHelper
                 if (row.Checked && !row.Cells["gcId"].IsValueNull)
                 {
                     int id = int.Parse(row.Cells["gcId"].Value.ToString());
-                    string name = row.Cells["gcArchName"].Value.ToString();
                     if(!CheckDelete(id)){
+                        string name = row.Cells["gcArchName"].Value.ToString();
                         MessageBox.Show(string.Format("“{0}”有借出或归还记录，无法删除。若要删除，请先删除该资料的借出或归还信息。 ", name), "提示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         continue;
                     }

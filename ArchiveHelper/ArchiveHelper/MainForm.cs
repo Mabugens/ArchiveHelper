@@ -45,6 +45,11 @@ namespace ArchiveHelper
             panel.DefaultVisualStyles.CellStyles.Default.Font = new Font("宋体", 12f);
 
             panel.Columns["gcFreeze"].AllowEdit = Authority.AllowDelete;
+            GridSwitchButtonEditControl gbc = panel.Columns["gcFreeze"].RenderControl as GridSwitchButtonEditControl;
+            gbc.OnText = "激活";
+            gbc.OffText = "冻结";
+            gbc.OnValue = 0;
+            gbc.OffValue = 1;
             panel.Columns["gcProjectName"].AllowEdit = Authority.AllowDelete;
             GridButtonXEditControl ddc =
                 panel.Columns["gcToRegister"].EditControl as GridButtonXEditControl;
@@ -119,18 +124,7 @@ namespace ArchiveHelper
             LoadProjectInfoList();
             btnDelete.Visible = Authority.AllowDelete;
         }
-
-        private void RegisterDataSavingTask()
-        {
-            ArchiveInfoTimer.Start();
-        }
-
-         
-        private void ArchiveInfoTimer_Tick(object sender, EventArgs e)
-        {
             
-        }
-
         private void btnRefreshProject_Click(object sender, EventArgs e)
         {
             LoadProjectInfoList();
@@ -167,7 +161,9 @@ namespace ArchiveHelper
                 gr[1].Value = ai.Id;
                 gr[1].Tag = ai;
                 gr[0].Value = ai.ProjectName;
+                gr[0].AllowEdit = ai.IsFreeze == 0;
                 gr[2].Value = ai.IsFreeze;
+                gr[2].AllowEdit = ai.IsFreeze == 0;
                 ProjectGrid.PrimaryGrid.Rows.Add(gr);
             }
         }
@@ -269,6 +265,7 @@ namespace ArchiveHelper
         private void btnSaveProject_Click(object sender, EventArgs e)
         {
             btnSaveProject.Focus();
+            ProjectGrid.EndUpdate();
             if (EditList.Count == 0)
             {
                 ToastMessage.Show(this, "没有可保存的内容。");
@@ -316,14 +313,15 @@ namespace ArchiveHelper
         private void ProjectInfoRetreeIdFixRowCellReadonly(GridRow gr, ProjectInfo ai)
         {
             gr.RowDirty = false;
-            gr[2].ReadOnly = ai.IsFreeze == 1; // AllowEdit
+            gr[0].AllowEdit = ai.IsFreeze == 0;
+            gr[2].AllowEdit = ai.IsFreeze == 0;
             if (ai.Id == 0)
             {
                 using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
                 {
                     conn.Open();
                     SQLiteCommand sql_cmd = conn.CreateCommand();
-                    sql_cmd.CommandText = "select seq from sqlite_sequence where name='ProjectInfo'"; //"select Id from ProjectInfo where ProjectName='{0}'"; // 
+                    sql_cmd.CommandText = "select seq from sqlite_sequence where name='ProjectInfo'";
                     int newId = Convert.ToInt32(sql_cmd.ExecuteScalar());
                     gr["gcId"].Value = newId;
                     conn.Close();
@@ -356,15 +354,14 @@ namespace ArchiveHelper
 
         private void ProjectGrid_EndEdit(object sender, GridEditEventArgs e)
         {
-            if (e.GridCell.ColumnIndex == 0 && !preEditValue.Equals(e.GridCell.Value))
+            if ((e.GridCell.ColumnIndex == 0 && !preEditValue.Equals(e.GridCell.Value))|| e.GridCell.ColumnIndex == 2)
             {
                 EditList.Add(e.GridCell.GridRow);
             }
         }
-
         
         private void ProjectGrid_BeginEdit(object sender, GridEditEventArgs e)
-        {
+        {            
             preEditValue = (null == e.GridCell.Value) ? "" : e.GridCell.Value;
         }
 
@@ -461,6 +458,20 @@ namespace ArchiveHelper
         {
             CtrlPressed = !e.KeyValue.Equals(17);
         }
+
+        private void ProjectGrid_EditorValueChanged(object sender, GridEditEventArgs e)
+        {
+            if (e.EditControl is GridSwitchButtonEditControl)
+            {
+                GridSwitchButtonEditControl gbc = e.EditControl as GridSwitchButtonEditControl;
+                e.Cancel = MessageBox.Show("确实要冻结该项目吗？ 冻结项目以后，该项目的所有资料将无法借出/归还，也不能进行任何维护操作。", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2).Equals(DialogResult.No);
+                if (!e.Cancel)
+                {
+                    EditList.Add(e.GridCell.GridRow);
+                }
+            }
+        }
+        
     }
 
     internal class ArchiveTypeComboBox : GridComboBoxExEditControl

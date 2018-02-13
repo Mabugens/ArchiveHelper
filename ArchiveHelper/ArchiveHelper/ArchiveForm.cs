@@ -46,6 +46,7 @@ namespace ArchiveHelper
             panel.RowDragBehavior = RowDragBehavior.GroupMove;
             panel.DefaultVisualStyles.CellStyles.Default.Font = new Font("宋体", 11f);
             panel.Caption.Text = Project.ProjectName;
+            panel.ReadOnly = Project.IsFreeze == 1;
 
             panel.Rows.Clear();
             panel.Columns[2].EditorType = typeof(ArchiveTypeComboBox);
@@ -63,7 +64,6 @@ namespace ArchiveHelper
             panel.Columns[6].EditorType = typeof(GridDoubleIntInputEditControl);
             GridDoubleIntInputEditControl de5 = (GridDoubleIntInputEditControl)panel.Columns[6].EditControl;
             panel.Columns[6].DataType = typeof(int);
-            //panel.Columns[6].CellStyles.Default.Background.Color1 = Color.BurlyWood;
             de5.MinValue = 0;
 
             GridColumn gcRegisterDate = panel.Columns["gcRegisteDate"];
@@ -101,9 +101,7 @@ namespace ArchiveHelper
             }
             ArchiveInfo ai = (ArchiveInfo)row.Cells["gcId"].Tag;
             ReturnForm form = new ReturnForm(ai);
-            //this.Hide();
             form.ShowDialog();
-            //this.Show();
             btnRefreshArchive_Click(sender, e);
             NavigateTo(ai.ArchiveName);
         }
@@ -119,9 +117,7 @@ namespace ArchiveHelper
             }
             ArchiveInfo ai = (ArchiveInfo)row.Cells["gcId"].Tag;
             LendForm form = new LendForm(ai);
-            //this.Hide();
             form.ShowDialog();
-            //this.Show();
             btnRefreshArchive_Click(sender, e);
             NavigateTo(ai.ArchiveName);
         }

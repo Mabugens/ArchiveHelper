@@ -44,12 +44,15 @@ namespace ArchiveHelper
             panel.RowDragBehavior = RowDragBehavior.GroupMove;
             panel.DefaultVisualStyles.CellStyles.Default.Font = new Font("宋体", 12f);
 
-            panel.Columns["gcFreeze"].AllowEdit = Authority.AllowDelete;
-            GridSwitchButtonEditControl gbc = panel.Columns["gcFreeze"].RenderControl as GridSwitchButtonEditControl;
-            gbc.OnText = "激活";
-            gbc.OffText = "冻结";
-            gbc.OnValue = 0;
-            gbc.OffValue = 1;
+            //panel.Columns["gcFreeze"].AllowEdit = Authority.AllowDelete;
+            panel.Columns["gcFreeze"].EditorType = typeof(ArchiveDropDownEditControl);
+            //GridTextBoxDropDownEditControl gbc = panel.Columns["gcFreeze"].RenderControl as GridTextBoxDropDownEditControl;
+            //gbc.OnText = "激活";
+            //gbc.OffText = "冻结";
+            //gbc.OnValue = 0;
+            //gbc.OffValue = 1;
+            string[] objs = new string[2] { "激活", "冻结" };
+            panel.Columns["gcFreeze"].EditorParams = new object[] { objs };
             panel.Columns["gcProjectName"].AllowEdit = Authority.AllowDelete;
             GridButtonXEditControl ddc =
                 panel.Columns["gcToRegister"].EditControl as GridButtonXEditControl;
@@ -162,8 +165,8 @@ namespace ArchiveHelper
                 gr[1].Tag = ai;
                 gr[0].Value = ai.ProjectName;
                 gr[0].AllowEdit = ai.IsFreeze == 0;
-                gr[2].Value = ai.IsFreeze;
-                gr[2].AllowEdit = ai.IsFreeze == 0;
+                gr["gcFreeze"].Value = ai.IsFreeze == 0 ? "激活" : "冻结";
+                gr["gcFreeze"].AllowEdit = ai.IsFreeze == 0;
                 ProjectGrid.PrimaryGrid.Rows.Add(gr);
             }
         }
@@ -343,7 +346,7 @@ namespace ArchiveHelper
             ProjectInfo pi = new ProjectInfo();
             pi.Id =  string.IsNullOrEmpty(gr[1].Value.ToString()) ? 0 : Convert.ToInt16(gr[1].Value);
             pi.ProjectName = (string)gr[0].Value;
-            pi.IsFreeze = gr[2].Value == null ? 0 : Convert.ToInt16(gr[2].Value);
+            pi.IsFreeze = gr[2].Value.ToString().Equals("激活") ? 0 : 1;
             return pi;
         }
 
@@ -461,12 +464,24 @@ namespace ArchiveHelper
 
         private void ProjectGrid_EditorValueChanged(object sender, GridEditEventArgs e)
         {
-            if (e.EditControl is GridSwitchButtonEditControl)
+            
+        }
+
+        private void ProjectGrid_CellValueChanged(object sender, GridCellValueChangedEventArgs e)
+        {
+            if (e.GridCell.GridColumn.EditControl is ArchiveDropDownEditControl)
             {
-                GridSwitchButtonEditControl gbc = e.EditControl as GridSwitchButtonEditControl;
-                e.Cancel = MessageBox.Show("确实要冻结该项目吗？ 冻结项目以后，该项目的所有资料将无法借出/归还，也不能进行任何维护操作。", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2).Equals(DialogResult.No);
-                if (!e.Cancel)
+                //ArchiveDropDownEditControl gbc = e.GridCell.EditControl as ArchiveDropDownEditControl;
+                if (e.OldValue.Equals("激活") && e.NewValue.Equals("冻结"))
                 {
+                    DialogResult dr = MessageBox.Show("确实要冻结该项目吗？ 冻结项目以后，该项目的所有资料将无法借出/归还，也不能进行任何维护操作。", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                    if (dr.Equals(DialogResult.No))
+                    {
+                        e.GridCell.Value = "激活";
+                        return;
+                    }
+                    ProjectInfo pi = (ProjectInfo)e.GridCell.GridRow[1].Tag;
+                    pi.IsFreeze = 1;
                     EditList.Add(e.GridCell.GridRow);
                 }
             }
@@ -481,12 +496,5 @@ namespace ArchiveHelper
             DataSource = orderArray;
         }
     }
-
-    internal class ArchiveDropDownEditControl : GridComboTreeEditControl
-    {
-        public ArchiveDropDownEditControl(IEnumerable orderArray)
-        {
-            DataSource = orderArray;
-        }
-    }
+    
 }

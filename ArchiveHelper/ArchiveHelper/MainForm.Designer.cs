@@ -209,7 +209,7 @@
             gridColumn2.DefaultNewRowCellValue = "";
             gridColumn2.Name = "gcId";
             gridColumn2.Visible = false;
-            gridColumn3.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridSwitchButtonEditControl);
+            gridColumn3.DefaultNewRowCellValue = "激活";
             gridColumn3.HeaderText = "是否冻结";
             gridColumn3.Name = "gcFreeze";
             gridColumn4.EditorType = typeof(DevComponents.DotNetBar.SuperGrid.GridButtonXEditControl);
@@ -247,7 +247,9 @@
             this.ProjectGrid.Size = new System.Drawing.Size(1068, 541);
             this.ProjectGrid.TabIndex = 6;
             this.ProjectGrid.Text = "ProjectGrid";
+            this.ProjectGrid.CellValueChanged += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridCellValueChangedEventArgs>(this.ProjectGrid_CellValueChanged);
             this.ProjectGrid.BeginEdit += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridEditEventArgs>(this.ProjectGrid_BeginEdit);
+            this.ProjectGrid.EditorValueChanged += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridEditEventArgs>(this.ProjectGrid_EditorValueChanged);
             this.ProjectGrid.EndEdit += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridEditEventArgs>(this.ProjectGrid_EndEdit);
             this.ProjectGrid.RowHeaderDoubleClick += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridRowHeaderDoubleClickEventArgs>(this.ProjectGrid_RowHeaderDoubleClick);
             this.ProjectGrid.RowMarkedDirty += new System.EventHandler<DevComponents.DotNetBar.SuperGrid.GridEditEventArgs>(this.ProjectGrid_RowMarkedDirty);
@@ -271,7 +273,7 @@
             this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDelete.Location = new System.Drawing.Point(366, 15);
+            this.btnDelete.Location = new System.Drawing.Point(132, 15);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 26);
             this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
@@ -286,7 +288,7 @@
             this.btnRefreshProject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRefreshProject.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnRefreshProject.Location = new System.Drawing.Point(144, 15);
+            this.btnRefreshProject.Location = new System.Drawing.Point(238, 15);
             this.btnRefreshProject.Name = "btnRefreshProject";
             this.btnRefreshProject.Size = new System.Drawing.Size(75, 26);
             this.btnRefreshProject.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
@@ -818,7 +820,6 @@
             // ArchiveInfoTimer
             // 
             this.ArchiveInfoTimer.Interval = 9000;
-            this.ArchiveInfoTimer.Tick += new System.EventHandler(this.ArchiveInfoTimer_Tick);
             // 
             // MainForm
             // 

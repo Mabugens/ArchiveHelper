@@ -486,6 +486,12 @@ namespace ArchiveHelper
                 }
             }
         }
+
+        private void btnStat_Click(object sender, EventArgs e)
+        {
+            NoReturnForm form = new NoReturnForm();
+            form.ShowDialog();
+        }
         
     }
 

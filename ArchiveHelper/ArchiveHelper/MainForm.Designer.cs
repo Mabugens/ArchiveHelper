@@ -110,6 +110,7 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabItem4 = new DevComponents.DotNetBar.TabItem(this.components);
             this.ArchiveInfoTimer = new System.Windows.Forms.Timer(this.components);
+            this.btnStat = new DevComponents.DotNetBar.ButtonX();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainTabCtrl)).BeginInit();
@@ -258,6 +259,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.btnStat);
             this.panel5.Controls.Add(this.btnDelete);
             this.panel5.Controls.Add(this.btnRefreshProject);
             this.panel5.Controls.Add(this.btnSaveProject);
@@ -272,8 +274,8 @@
             // 
             this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDelete.Location = new System.Drawing.Point(132, 15);
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.Location = new System.Drawing.Point(955, 15);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 26);
             this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
@@ -288,7 +290,7 @@
             this.btnRefreshProject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRefreshProject.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnRefreshProject.Location = new System.Drawing.Point(238, 15);
+            this.btnRefreshProject.Location = new System.Drawing.Point(437, 15);
             this.btnRefreshProject.Name = "btnRefreshProject";
             this.btnRefreshProject.Size = new System.Drawing.Size(75, 26);
             this.btnRefreshProject.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
@@ -301,9 +303,9 @@
             // 
             this.btnSaveProject.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnSaveProject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSaveProject.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSaveProject.Location = new System.Drawing.Point(902, 15);
+            this.btnSaveProject.Location = new System.Drawing.Point(151, 15);
             this.btnSaveProject.Name = "btnSaveProject";
             this.btnSaveProject.Size = new System.Drawing.Size(75, 26);
             this.btnSaveProject.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
@@ -821,6 +823,20 @@
             // 
             this.ArchiveInfoTimer.Interval = 9000;
             // 
+            // btnStat
+            // 
+            this.btnStat.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnStat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnStat.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnStat.Location = new System.Drawing.Point(276, 15);
+            this.btnStat.Name = "btnStat";
+            this.btnStat.Size = new System.Drawing.Size(96, 26);
+            this.btnStat.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
+            this.btnStat.TabIndex = 7;
+            this.btnStat.Text = "未归还统计";
+            this.btnStat.Click += new System.EventHandler(this.btnStat_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -864,72 +880,15 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private DevComponents.DotNetBar.SuperGrid.GridRow gridRow1;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell1;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell2;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell3;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell4;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell5;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell6;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell7;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell8;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell9;
+        
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel curUser;
         private DevComponents.DotNetBar.TabControl MainTabCtrl;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn2;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gcType;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn4;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn5;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn6;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn7;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn8;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn9;
-        private DevComponents.DotNetBar.SuperGrid.GridRow gridRow2;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell10;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell11;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell12;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell13;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell14;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell15;
-        private DevComponents.DotNetBar.SuperGrid.GridRow gridRow3;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn1;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn10;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn11;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn12;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn13;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn14;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn15;
-        private DevComponents.DotNetBar.SuperGrid.GridRow gridRow4;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell16;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell17;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell18;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell19;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell20;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell21;
-        private DevComponents.DotNetBar.SuperGrid.GridRow gridRow5;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn16;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn18;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn19;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn20;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn21;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn23;
-        private DevComponents.DotNetBar.SuperGrid.GridRow gridRow6;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell22;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell23;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell24;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell25;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell26;
-        private DevComponents.DotNetBar.SuperGrid.GridCell gridCell27;
-        private DevComponents.DotNetBar.SuperGrid.GridRow gridRow7;
+        
         private DevComponents.DotNetBar.TabControlPanel tabControlPanel4;
         private DevComponents.DotNetBar.TabItem tabItem4;
-        private System.Windows.Forms.Timer ArchiveInfoTimer;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn24;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn25;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn17;
-        private DevComponents.DotNetBar.SuperGrid.GridColumn gridColumn3;
+        private System.Windows.Forms.Timer ArchiveInfoTimer;        
         private DevComponents.DotNetBar.TabControlPanel tabControlPanel5;
         private DevComponents.DotNetBar.SuperGrid.SuperGridControl ProjectGrid;
         private System.Windows.Forms.Panel panel5;
@@ -973,6 +932,7 @@
         private DevComponents.Editors.ComboItem comboItem4;
         private DevComponents.Editors.ComboItem comboItem5;
         private DevComponents.DotNetBar.Controls.CheckBoxX cbBold;
+        private DevComponents.DotNetBar.ButtonX btnStat;
 
     }
 }

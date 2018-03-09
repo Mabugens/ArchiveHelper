@@ -532,6 +532,27 @@ namespace ArchiveHelper
             {
                 e.GridCell.GridRow.Cells["gcRemaining"].Value = e.GridCell.Value;
             }
+            else
+            {
+                int newCount = Convert.ToInt32(e.GridCell.GridRow.Cells["gcAllCount"].Value);
+                e.GridCell.GridRow.Cells["gcRemaining"].Value = CalcRemaining(newCount, ai);
+            }
+        }
+
+        private int CalcRemaining(int newCount, ArchiveInfo ai)
+        {
+            string sql = string.Format("SELECT {1} - ifnull((SELECT sum(copies) FROM lendArchive WHERE archid = {0}),0) "
+                       + " + ifnull(( SELECT sum( copies ) FROM ReturnArchive WHERE archid = {0}),0) as Remaining "
+                       + " FROM ArchiveInfo WHERE id = {0}", ai.Id, newCount);
+            using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
+            {
+                conn.Open();
+                SQLiteCommand cmd = new SQLiteCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = sql;
+               // SQLiteDataReader reader = cmd.ExecuteReader();
+                return Convert.ToInt32(cmd.ExecuteScalar()); //reader.GetInt16(0);
+            }
         }
 
         private void ArchiveGrid_AfterExpand(object sender, GridAfterExpandEventArgs e)

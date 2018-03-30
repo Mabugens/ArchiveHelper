@@ -22,7 +22,7 @@ namespace ArchiveHelper
         private void btnRefreshArchive_Click(object sender, EventArgs e)
         {
             StatGrid.PrimaryGrid.Rows.Clear();
-            string sql = @"select p.projectName, t.archiveName, t.copies-t.Remaining as Copies, b.Borrower, b.Phone from ArchiveInfo t 
+            string sql = @"select p.projectName, t.archiveName, t.copies-t.Remaining as Copies, b.Borrower, b.Phone, b.lendUnit, b.lendReason, b.NeedReturn from ArchiveInfo t 
                             join lendArchive b on t.id = b.ArchId
                             join ProjectInfo p on p.id = t.projectId
                             Left join ReturnArchive c on t.id = c.ArchId
@@ -42,6 +42,10 @@ namespace ArchiveHelper
                         gr[1].Value = reader.IsDBNull(1) ? "" : reader.GetString(1);
                         gr[2].Value = reader.GetInt16(2);
                         gr[3].Value = reader.IsDBNull(3) ? "" : reader.GetString(3);
+                        gr[4].Value = reader.IsDBNull(4) ? "" : reader.GetString(4);
+                        gr[5].Value = reader.IsDBNull(5) ? "" : reader.GetString(5);
+                        gr[6].Value = reader.IsDBNull(6) ? "" : reader.GetString(6);
+                        gr[7].Value = reader.IsDBNull(7) ? "" : reader.GetString(7);
                         StatGrid.PrimaryGrid.Rows.Add(gr);
                     }
                 }
@@ -53,6 +57,7 @@ namespace ArchiveHelper
         private void NoReturnForm_Shown(object sender, EventArgs e)
         {
             this.StatGrid.PrimaryGrid.EnableCellMerging = true;
+            this.StatGrid.PrimaryGrid.Columns[2].CellMergeMode = CellMergeMode.None;
             btnRefreshArchive_Click(sender, e);
         }
 
@@ -105,7 +110,7 @@ namespace ArchiveHelper
             //设置列的宽度  
             workSheet.Column(1).Width = 60;
             workSheet.Column(2).Width = 60;
-            workSheet.Columns(3, 5).Width = 25;
+            workSheet.Columns(3, 7).Width = 45;
             //设置第4到7列的宽度  
            // workSheet.Columns(4, 7).Width = 40;
             int iCol = 1;

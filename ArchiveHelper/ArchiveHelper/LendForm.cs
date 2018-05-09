@@ -240,7 +240,8 @@ namespace ArchiveHelper
             {
                 conn.Open();
                 SQLiteCommand sql_cmd = conn.CreateCommand();
-                sql_cmd.CommandText = string.Format("select (copies - ifnull((select sum(copies) from lendArchive where archId={0} and id <> {4}),0) - {1}) as copies from archiveInfo where archiveName='{2}' And ProjectId={3}", ai.ArchId, ai.Copies, ai.ArchiveName, CurrentArchiveInfo.ProjectId, ai.Id);
+                sql_cmd.CommandText = string.Format("select (copies + ifnull((select sum(copies) from ReturnArchive where archId={0} and id <> 0),0) - ifnull((select sum(copies) from lendArchive where archId={0} and id <> {4}),0) - {1}) as copies from archiveInfo where archiveName='{2}' And ProjectId={3}", ai.ArchId, ai.Copies, ai.ArchiveName, CurrentArchiveInfo.ProjectId, ai.Id);
+                //sql_cmd.CommandText = string.Format("select remaining - {1} as copies from archiveInfo where id='{0}' And ProjectId={2}", ai.ArchId, ai.Copies,CurrentArchiveInfo.ProjectId);
                 int value = Convert.ToInt32(sql_cmd.ExecuteScalar());
                 conn.Close();
                 return value >= 0;
@@ -301,7 +302,16 @@ namespace ArchiveHelper
 
         private string NotifyLendArchiveRemaining(LendArchive ai)
         {
-            return string.Format("update archiveInfo set remaining = copies - (select sum(copies) from lendArchive b where b.ArchId = {0}) where id = {0}", ai.ArchId);
+            int remaining = 0;
+            using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
+            {
+                conn.Open();
+                SQLiteCommand sql_cmd = conn.CreateCommand();
+                sql_cmd.CommandText = string.Format("select copies - ifnull((select sum(copies) from lendArchive where archId={0} and id <> 0),0) + ifnull((select sum(copies) from ReturnArchive where archId={0} and id <> 0),0) as c from archiveInfo where id = {0}", ai.ArchId);
+                remaining = Convert.ToInt32(sql_cmd.ExecuteScalar());
+                conn.Close();
+            }
+            return string.Format("update archiveInfo set remaining = {1} where id = {0}", ai.ArchId, remaining);
         }
 
         private void LendForm_Shown(object sender, EventArgs e)

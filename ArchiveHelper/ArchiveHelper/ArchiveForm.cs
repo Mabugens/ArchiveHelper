@@ -400,7 +400,7 @@ namespace ArchiveHelper
                             gr.Cells.Add(new GridCell(Convert.ToDateTime(reader.GetString(2))));
                         }
                         gr.Cells.Add(new GridCell(reader.GetInt16(3)));
-                        gr.Cells.Add(new GridCell(reader.IsDBNull(4) ? "" : reader.GetString(4)));
+                        gr.Cells.Add(new GridCell(reader.IsDBNull(7) ? "" : reader.GetString(7)));
                         gr.Cells.Add(new GridCell(reader.GetInt16(5)));
                         gr.Cells.Add(new GridCell(reader.IsDBNull(6) ? "" : reader.GetString(6)));
                         subPanel.Rows.Add(gr);

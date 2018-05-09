@@ -93,7 +93,7 @@
             this.ReturnGrid.PrimaryGrid.Rows.Add(gridRow1);
             this.ReturnGrid.PrimaryGrid.Rows.Add(gridRow2);
             this.ReturnGrid.PrimaryGrid.ShowRowGridIndex = true;
-            this.ReturnGrid.Size = new System.Drawing.Size(751, 435);
+            this.ReturnGrid.Size = new System.Drawing.Size(847, 431);
             this.ReturnGrid.TabIndex = 6;
             this.ReturnGrid.Text = "superGridControl3";
             // 
@@ -103,7 +103,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ReturnGrid);
             this.Name = "ReturnGridCtrl";
-            this.Size = new System.Drawing.Size(751, 435);
+            this.Size = new System.Drawing.Size(847, 431);
             this.ResumeLayout(false);
 
         }

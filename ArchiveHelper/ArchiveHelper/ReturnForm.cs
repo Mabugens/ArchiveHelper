@@ -125,6 +125,7 @@ namespace ArchiveHelper
         private void btnSaveReturn_Click(object sender, EventArgs e)
         {
             btnSaveReturn.Focus();
+            ReturnGrid.PrimaryGrid.EndDataUpdate();
             ReturnGrid.PrimaryGrid.FlushSelected();
             List<GridRow> list = new List<GridRow>();
             foreach (GridRow gr in ReturnGrid.PrimaryGrid.Rows)
@@ -215,7 +216,16 @@ namespace ArchiveHelper
 
         private string NotifyArchiveRemaining(ReturnArchive ai)
         {
-            return "update ArchiveInfo set Remaining=Remaining+" + ai.Copies + " where Id='" + CurrentArchiveInfo.Id + "'";
+            int remaining = 0;
+            using (SQLiteConnection conn = new SQLiteConnection(DataSourceManager.DataSource))
+            {
+                conn.Open();
+                SQLiteCommand sql_cmd = conn.CreateCommand();
+                sql_cmd.CommandText = string.Format("select copies - ifnull((select sum(copies) from lendArchive where archId={0} and id <> 0),0) + ifnull((select sum(copies) from ReturnArchive where archId={0} and id <> 0),0) as c from archiveInfo where id = {0}", ai.ArchId);
+                remaining = Convert.ToInt32(sql_cmd.ExecuteScalar());
+                conn.Close();
+            }
+            return "update ArchiveInfo set Remaining = " + remaining + " where Id='" + CurrentArchiveInfo.Id + "'";
         }
 
         private void ReturnArchiveRetreeIdFixRowCellReadonly(GridRow gr, ReturnArchive ai)
